@@ -1,7 +1,8 @@
+import { isOverwolf } from "@/app/lib/env";
 import nodes, { NODE, NODE_TYPE } from "@/app/lib/nodes";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+async function _GET(request: NextRequest) {
   const search = request.nextUrl.search;
   const q = new URLSearchParams(search).get("q")?.toLowerCase();
   if (!q) {
@@ -27,3 +28,5 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json(result);
 }
+
+export const GET = isOverwolf ? undefined : _GET;
