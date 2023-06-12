@@ -10,6 +10,10 @@
     "altars": "Altare von Lilith",
     "cellars": "Keller",
     "dungeons": "Verliese",
+    "alchemists": "Alchemisten",
+    "healers": "Heiler",
+    "jewelers": "Juweliere",
+    "stableMasters": "Stallmeister",
     "waypoints": "Durchgänge"
   },
   "territories": {

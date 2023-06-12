@@ -10,6 +10,10 @@
     "altars": "Altars of Lilith",
     "cellars": "Cellars",
     "dungeons": "Dungeons",
+    "alchemists": "Alchemists",
+    "healers": "Healers",
+    "jewelers": "Jewelers",
+    "stableMasters": "Stable Masters",
     "waypoints": "Waypoints"
   },
   "territories": {
