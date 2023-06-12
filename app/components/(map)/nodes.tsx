@@ -64,7 +64,9 @@ export default function Nodes() {
         } else if (search && !isHighlighted) {
           isTrivial = !(
             item.name.toLowerCase().includes(search) ||
-            dict.nodes[type].toLowerCase().includes(search)
+            dict.nodes[type].toLowerCase().includes(search) ||
+            ("attribute" in item &&
+              item.attribute.toLowerCase().includes(search))
           );
         }
         const id = getID(item, type);
@@ -214,7 +216,8 @@ export default function Nodes() {
         } else if (search && !isHighlighted) {
           isTrivial = !(
             marker.options.name.toLowerCase().includes(search) ||
-            dict.nodes[marker.options.type].toLowerCase().includes(search)
+            dict.nodes[marker.options.type].toLowerCase().includes(search) ||
+            marker.options.attribute?.toLowerCase().includes(search)
           );
           if (!isTrivial) {
             highlightedGroup.addLayer(marker);
