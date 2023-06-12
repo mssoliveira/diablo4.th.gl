@@ -148,6 +148,9 @@ export function useCurrentWindow() {
     useState<overwolf.windows.WindowInfo | null>(null);
 
   useEffect(() => {
+    if (typeof overwolf === "undefined") {
+      return;
+    }
     let currentWindowName = "";
     overwolf.windows.onStateChanged.addListener((event) => {
       if (event.window_name === currentWindowName) {
