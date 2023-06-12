@@ -7,6 +7,13 @@ export default function Settings() {
   return (
     <>
       <div className="flex">
+        <span className="w-1/2">Show Helltide Timer</span>
+        <Toggle
+          checked={!!settingsStore.showTimers}
+          onChange={settingsStore.toggleShowTimers}
+        />
+      </div>
+      <div className="flex">
         <span className="w-1/2">Show Territory Names</span>
         <Toggle
           checked={!!settingsStore.showTerritoryNames}

@@ -8,6 +8,7 @@ import { useUpdateSearchParams } from "../lib/search-params";
 import { useSettingsStore } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Filters from "./filters";
+import Helltide from "./helltide";
 import Menu from "./menu";
 import useFilters from "./use-filters";
 
@@ -17,7 +18,6 @@ export default function Search() {
   const [search, setSearch] = useState(() => searchParams.get("search") ?? "");
   const dict = useDict();
   const updateSearchParams = useUpdateSearchParams();
-  const [showFilters, setShowFilters] = useState(false);
   const filters = useFilters();
   const settingsStore = useSettingsStore();
 
@@ -108,9 +108,9 @@ export default function Search() {
           )}
           <button
             className={`flex absolute inset-y-0 right-0 items-center pr-2 text-gray-400 hover:text-gray-200 ${
-              showFilters ? "text-white" : ""
+              settingsStore.showFilters ? "text-white" : ""
             }`}
-            onClick={() => setShowFilters(!showFilters)}
+            onClick={settingsStore.toggleShowFilters}
           >
             <svg
               className="block w-5"
@@ -129,7 +129,14 @@ export default function Search() {
               <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" />
             </svg>
           </button>
-          {showFilters && <Filters />}
+          <div className="absolute top-full w-full md:w-fit md:top-0 md:left-full md:ml-2 pointer-events-none">
+            {settingsStore.showTimers && <Helltide />}
+          </div>
+          <div
+            className={`absolute top-full text-sm w-full md:mt-1 md:space-y-2`}
+          >
+            {settingsStore.showFilters && <Filters />}
+          </div>
         </div>
       )}
       <Menu />

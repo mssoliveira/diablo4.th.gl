@@ -1,0 +1,60 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const EVENT_INTERVAL_MINUTES = 2 * 60 + 15;
+const EVENT_DURATION_MINUTES = 60;
+
+function calculateTimeLeft() {
+  const calibrationIntervalStartTime = Date.UTC(1970, 1, 1, 9, 59, 0);
+
+  const elapsedTimeMinutes = Math.floor(
+    (Date.now() - calibrationIntervalStartTime) / (1000 * 60)
+  );
+
+  let timeLeftMinutes;
+  const isActive = elapsedTimeMinutes < EVENT_DURATION_MINUTES;
+  if (isActive) {
+    timeLeftMinutes = EVENT_DURATION_MINUTES - elapsedTimeMinutes;
+  } else {
+    const nextEventTimeMinutes =
+      Math.ceil(elapsedTimeMinutes / EVENT_INTERVAL_MINUTES) *
+      EVENT_INTERVAL_MINUTES;
+    timeLeftMinutes = nextEventTimeMinutes - elapsedTimeMinutes;
+  }
+  const hoursLeft = Math.floor(timeLeftMinutes / 60)
+    .toFixed(0)
+    .padStart(2, "0");
+  const minutesLeft = (timeLeftMinutes % 60).toFixed(0).padStart(2, "0");
+  const secondsLeft = (60 - ((Date.now() / 1000) % 60))
+    .toFixed(0)
+    .padStart(2, "0");
+
+  return {
+    isActive,
+    value: `${hoursLeft}:${minutesLeft}:${secondsLeft}`,
+  };
+}
+
+export default function Helltide() {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  });
+
+  return (
+    <div className="text-gray-200 text-sm px-2.5 py-2.5 space-x-1 text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap">
+      <span className="text-orange-400 uppercase">
+        {timeLeft.isActive ? "Helltide Is Active" : "Helltide Starts In"}
+      </span>
+      <span>{timeLeft.value}</span>
+    </div>
+  );
+}

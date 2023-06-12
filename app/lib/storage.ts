@@ -81,6 +81,10 @@ export const useSettingsStore = create(
     setIconSize: (iconSize: number) => void;
     filters: string[];
     setFilters: (filters: string[]) => void;
+    showFilters: boolean;
+    toggleShowFilters: () => void;
+    showTimers: boolean;
+    toggleShowTimers: () => void;
     // App only
     showSidebar: boolean;
     toggleShowSidebar: () => void;
@@ -114,6 +118,12 @@ export const useSettingsStore = create(
         setIconSize: (iconSize) => set({ iconSize }),
         filters,
         setFilters: (filters) => set({ filters }),
+        showFilters: false,
+        toggleShowFilters: () =>
+          set((state) => ({ showFilters: !state.showFilters })),
+        showTimers: false,
+        toggleShowTimers: () =>
+          set((state) => ({ showTimers: !state.showTimers })),
         showSidebar:
           typeof document !== "undefined"
             ? document.body.clientWidth >= 768
