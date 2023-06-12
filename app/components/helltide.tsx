@@ -11,15 +11,15 @@ function calculateTimeLeft() {
     (Date.now() - CALIBRATION_START_TIME) / (1000 * 60)
   );
 
-  let timeLeftMinutes;
-  const isActive = elapsedTimeMinutes < EVENT_DURATION_MINUTES;
+  const nextEventTimeMinutes =
+    Math.ceil(elapsedTimeMinutes / EVENT_INTERVAL_MINUTES) *
+    EVENT_INTERVAL_MINUTES;
+  let timeLeftMinutes = nextEventTimeMinutes - elapsedTimeMinutes;
+  const eventTimeLeftMinutes =
+    EVENT_DURATION_MINUTES - (EVENT_INTERVAL_MINUTES - timeLeftMinutes);
+  const isActive = eventTimeLeftMinutes > 0;
   if (isActive) {
-    timeLeftMinutes = EVENT_DURATION_MINUTES - elapsedTimeMinutes;
-  } else {
-    const nextEventTimeMinutes =
-      Math.ceil(elapsedTimeMinutes / EVENT_INTERVAL_MINUTES) *
-      EVENT_INTERVAL_MINUTES;
-    timeLeftMinutes = nextEventTimeMinutes - elapsedTimeMinutes;
+    timeLeftMinutes = eventTimeLeftMinutes;
   }
   const hoursLeft = Math.floor(timeLeftMinutes / 60)
     .toFixed(0)
@@ -51,7 +51,7 @@ export default function Helltide() {
   return (
     <div className="text-gray-200 text-sm px-2.5 py-2.5 space-x-1 text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap">
       <span className="text-orange-400 uppercase">
-        {timeLeft.isActive ? "Helltide Is Active" : "Helltide Starts In"}
+        {timeLeft.isActive ? "Helltide In Progress" : "Helltide Starts In"}
       </span>
       <span>{timeLeft.value}</span>
     </div>
