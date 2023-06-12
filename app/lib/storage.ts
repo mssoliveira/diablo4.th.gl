@@ -121,7 +121,7 @@ export const useSettingsStore = create(
         showFilters: false,
         toggleShowFilters: () =>
           set((state) => ({ showFilters: !state.showFilters })),
-        showTimers: false,
+        showTimers: true,
         toggleShowTimers: () =>
           set((state) => ({ showTimers: !state.showTimers })),
         showSidebar:
