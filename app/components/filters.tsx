@@ -10,9 +10,9 @@ export default function Filters() {
 
   return (
     <div className="divide-y divide-neutral-700 border-t border-t-neutral-600 bg-neutral-900 text-gray-200 text-sm w-full md:border md:border-gray-600 md:rounded-lg">
-      <div className="flex justify-center gap-2">
+      <div className="flex">
         <button
-          className="p-2 uppercase hover:text-white"
+          className="p-2 uppercase hover:text-white  w-1/2"
           onClick={() => {
             setFilters(ALL_FILTERS);
           }}
@@ -20,7 +20,7 @@ export default function Filters() {
           Show All
         </button>
         <button
-          className="p-2 uppercase hover:text-white"
+          className="p-2 uppercase hover:text-white  w-1/2"
           onClick={() => {
             setFilters([]);
           }}
@@ -28,22 +28,24 @@ export default function Filters() {
           Hide All
         </button>
       </div>
-      {Object.entries(ICONS).map(([key, icon]) => (
-        <button
-          key={key}
-          className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-full ${
-            !filters.includes(key) ? "text-gray-500" : ""
-          }`}
-          onClick={() => {
-            toggleFilter(key);
-          }}
-        >
-          <svg viewBox="0 0 100 100" fill={icon.color} className="h-5">
-            <path d={icon.path} />
-          </svg>
-          {dict.nodes[key as keyof typeof ICONS]}
-        </button>
-      ))}
+      <div className="flex flex-wrap">
+        {Object.entries(ICONS).map(([key, icon]) => (
+          <button
+            key={key}
+            className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-1/2 ${
+              !filters.includes(key) ? "text-gray-500" : ""
+            }`}
+            onClick={() => {
+              toggleFilter(key);
+            }}
+          >
+            <svg viewBox="0 0 100 100" fill={icon.color} className="h-5">
+              <path d={icon.path} />
+            </svg>
+            {dict.nodes[key as keyof typeof ICONS]}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
