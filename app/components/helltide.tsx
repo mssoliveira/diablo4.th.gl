@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 
 const EVENT_INTERVAL_MINUTES = 2 * 60 + 15;
 const EVENT_DURATION_MINUTES = 60;
+const CALIBRATION_START_TIME = Date.UTC(1970, 1, 1, 9, 59, 0);
 
 function calculateTimeLeft() {
-  const calibrationIntervalStartTime = Date.UTC(1970, 1, 1, 9, 59, 0);
-
   const elapsedTimeMinutes = Math.floor(
-    (Date.now() - calibrationIntervalStartTime) / (1000 * 60)
+    (Date.now() - CALIBRATION_START_TIME) / (1000 * 60)
   );
 
   let timeLeftMinutes;
