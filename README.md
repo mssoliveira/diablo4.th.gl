@@ -1,6 +1,6 @@
 # Diablo 4 Map
 
-Maximize your Diablo 4 gameplay in Sancturay with this Open Source Diablo 4 map! Discover locations, altars, cellars, dungeons, waypoints & more.
+Maximize your Diablo 4 gameplay in Sanctuary with this Open Source Diablo 4 map! Discover locations, altars, cellars, dungeons, waypoints & more.
 
 ## Installation
 
