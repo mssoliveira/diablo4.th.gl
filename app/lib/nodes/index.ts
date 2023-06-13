@@ -3,7 +3,9 @@ import { altars } from "./altars";
 import { cellars } from "./cellars";
 import { dungeons } from "./dungeons";
 import { healers } from "./healers";
+import { helltideChests } from "./helltide-chests";
 import { jewelers } from "./jewelers";
+import { occultists } from "./occultists";
 import { stableMasters } from "./stableMasters";
 import { waypoints } from "./waypoints";
 
@@ -13,7 +15,9 @@ const nodes = {
   cellars,
   dungeons,
   healers,
+  helltideChests,
   jewelers,
+  occultists,
   stableMasters,
   waypoints,
 } as const;
