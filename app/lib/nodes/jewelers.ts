@@ -20,11 +20,6 @@ export const jewelers = [
     name: "Realyn",
   },
   {
-    x: -57.037066548129594,
-    y: 107.79754478574439,
-    name: "Realyn",
-  },
-  {
     x: -70.10308866537943,
     y: 65.53065754518497,
     name: "Tungal",
