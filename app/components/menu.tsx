@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import AppSettings from "../(overwolf)/components/app-settings";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { API_BASE_URI, PATREON_CLIENT_ID } from "../lib/env";
-import { useAccountStore, useSettingsStore } from "../lib/storage";
+import { useAccountStore, useGlobalSettingsStore } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Drawer from "./drawer";
 import ExternalLink from "./external-link";
@@ -32,19 +32,19 @@ const DISCOVER_LINKS = [
 export default function Menu() {
   const router = useOverwolfRouter();
   const isOverwolf = "value" in router;
-  const settingsStore = useSettingsStore();
+  const globalSettingsStore = useGlobalSettingsStore();
   const accountStore = useAccountStore();
   const dict = useDict();
 
   return (
-    <Drawer show={settingsStore.showSidebar}>
+    <Drawer show={globalSettingsStore.showSidebar}>
       <div className="flex flex-col text-gray-300 h-full">
         <header className="p-2 my-2 flex justify-between">
           <div className="flex gap-2 items-center">
             <h1 className="text-xl font-bold">{dict.meta.subtitle}</h1>
             <LocaleSelect />
           </div>
-          <button onClick={settingsStore.toggleShowSidebar}>
+          <button onClick={globalSettingsStore.toggleShowSidebar}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5 text-gray-400"
