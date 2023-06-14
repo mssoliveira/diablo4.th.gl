@@ -63,11 +63,11 @@ function isSupporter(result: any) {
 function toCookieString(token: PatreonToken) {
   return `patreon_token=${JSON.stringify(
     token
-  )}; path=/; Max-Age=2592000; HttpOnly; SameSite=Strict;`;
+  )}; path=/; Max-Age=2592000; HttpOnly; SameSite=Lax;`;
 }
 
 function toCookieStringEmpty() {
-  return `patreon_token=; Max-Age=0; path=/; HttpOnly; SameSite=Strict;`;
+  return `patreon_token=; Max-Age=0; path=/; HttpOnly; SameSite=Lax;`;
 }
 
 const CORS_HEADERS = {
