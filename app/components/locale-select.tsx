@@ -1,11 +1,11 @@
-import "/node_modules/flag-icons/css/flag-icons.min.css";
-
 import Link from "next/link";
 import { useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { useSettingsStore } from "../lib/storage";
 import { useI18N } from "./(i18n)/i18n-provider";
 import Popover from "./popover";
+
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 const getFlagCode = (locale: string) => {
   if (locale === "en") {
@@ -26,7 +26,9 @@ export default function LocaleSelect({ className }: { className?: string }) {
       onOpenChange={setIsOpen}
       trigger={
         <button
-          className={`text-xl fi fi-${getFlagCode(i18n.locale)} ${className}`}
+          className={`text-xl fi fi-${getFlagCode(i18n.locale)} ${
+            className ?? ""
+          }`}
         />
       }
     >
