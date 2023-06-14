@@ -19,7 +19,7 @@ function OverwolfLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <body
-        className={`${inter.className} h-screen flex flex-col text-white app antialiased select-none`}
+        className={`${inter.className} h-screen flex flex-col text-white app antialiased select-none overflow-hidden`}
       >
         <OverwolfRouterProvider>{children}</OverwolfRouterProvider>
         <PlausibleTracker

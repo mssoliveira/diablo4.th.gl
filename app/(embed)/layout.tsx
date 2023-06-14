@@ -32,7 +32,9 @@ function Layout({
 
   return (
     <html lang={lang}>
-      <body className={`${inter.className} h-screen bg-black text-white`}>
+      <body
+        className={`${inter.className} h-screen bg-black text-white  overflow-hidden`}
+      >
         <I18NProvider
           value={{
             dict,
