@@ -40,7 +40,7 @@ async function initController() {
       const matched = decodeURIComponent(event.parameter).match("code=([^&]*)");
       const code = matched ? matched[1] : null;
       if (code) {
-        fetch(`${API_BASE_URI}/api/patreon`, {
+        const response = await fetch(`${API_BASE_URI}/api/patreon`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -49,12 +49,15 @@ async function initController() {
             code,
             redirectURI: `${API_BASE_URI}/patreon/exit`,
           }),
-        })
-          .then((resolve) => resolve.json())
-          .then(() => {
-            const accountStore = useAccountStore.getState();
-            accountStore.setIsPatron(true);
-          });
+        });
+        const body = response.json();
+        if (!response.ok) {
+          console.warn(body);
+        } else {
+          console.log(`Patreon successfully activated`);
+          const accountStore = useAccountStore.getState();
+          accountStore.setIsPatron(true);
+        }
       }
     }
 
