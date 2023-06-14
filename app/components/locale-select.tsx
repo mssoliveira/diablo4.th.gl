@@ -49,6 +49,7 @@ export default function LocaleSelect({ className }: { className?: string }) {
                 }
               }}
               className="text-xl"
+              prefetch={false}
             >
               <span className={`fi fi-${getFlagCode(locale)}`} />
             </Link>
