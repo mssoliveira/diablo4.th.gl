@@ -3,10 +3,25 @@
     "subtitle": "Diablo 4 Karte",
     "description": "Maximiere dein Diablo 4-Gameplay in Sancturay mit dieser Open Source Diablo 4 Karte! Entdecke Orte, Altäre, Verließe, Dungeons, Wegpunkte und mehr."
   },
+  "menu": {
+    "patronInfo": "Entferne die Werbung und unterstütze mich",
+    "becomePatron": "Werde ein Patron",
+    "linkPatreon": "Verbinde deinen Patreon Account",
+    "disconnectPatreon": "Entferne deinen Patreon Account",
+    "discoveredNodes": "Gefundene Marker",
+    "settings": "Einstellungen",
+    "territories": "Territorien",
+    "apps": "Apps",
+    "community": "Community",
+    "discover": "Entdecken",
+    "contribute": "Mitmachen"
+  },
   "search": {
     "placeholder": "Suche nach Name oder Typ"
   },
   "nodes": {
+    "showAll": "Alle",
+    "hideAll": "Keine",
     "altars": "Altare von Lilith",
     "cellars": "Keller",
     "dungeons": "Verliese",
@@ -17,6 +32,10 @@
     "occultists": "Okkultisten",
     "stableMasters": "Stallmeister",
     "waypoints": "Durchgänge"
+  },
+  "helltide": {
+    "inProgress": "Helltide ist aktiv",
+    "startsIn": "Helltide startet in"
   },
   "territories": {
     "Scos_WorldEvent_03": "Carrowcrest Ruins",

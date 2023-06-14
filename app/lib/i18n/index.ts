@@ -7,15 +7,23 @@ const DICTIONARIES = {
   de,
 } as const;
 
-export const isLang = (lang?: string) => {
-  return (
-    typeof lang !== "undefined" && Object.keys(DICTIONARIES).includes(lang)
-  );
+export const LOCALES = Object.keys(DICTIONARIES);
+export const LABELS: {
+  [locale: string]: string;
+} = {
+  en: "English",
+  de: "Deutsch",
 };
 
-export const loadDictionary = (lang = "en") => {
+export const DEFAULT_LOCALE = "en";
+
+export const isLang = (lang?: string) => {
+  return typeof lang !== "undefined" && LOCALES.includes(lang);
+};
+
+export const loadDictionary = (lang = DEFAULT_LOCALE) => {
   if (!isLang(lang)) {
-    return DICTIONARIES.en;
+    return DICTIONARIES[DEFAULT_LOCALE];
   }
 
   return DICTIONARIES[lang as keyof typeof DICTIONARIES];
