@@ -1,8 +1,9 @@
-// 'use client';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 import Link from "next/link";
 import { useState } from "react";
+import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
+import { useSettingsStore } from "../lib/storage";
 import { useI18N } from "./(i18n)/i18n-provider";
 import Popover from "./popover";
 
@@ -14,8 +15,10 @@ const getFlagCode = (locale: string) => {
 };
 
 export default function LocaleSelect({ className }: { className?: string }) {
+  const router = useOverwolfRouter();
   const i18n = useI18N();
   const [isOpen, setIsOpen] = useState(false);
+  const settingsStore = useSettingsStore();
 
   return (
     <Popover
@@ -34,7 +37,13 @@ export default function LocaleSelect({ className }: { className?: string }) {
             <Link
               key={locale}
               href={`/${locale}`}
-              onClick={() => setIsOpen(false)}
+              onClick={(event) => {
+                setIsOpen(false);
+                if ("update" in router) {
+                  settingsStore.setLocale(locale);
+                  event.preventDefault();
+                }
+              }}
               className="text-xl"
             >
               <span className={`fi fi-${getFlagCode(locale)}`} />

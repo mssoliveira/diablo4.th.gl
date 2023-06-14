@@ -196,7 +196,7 @@ export default function Nodes() {
         group.remove();
       });
     };
-  }, []);
+  }, [dict]);
 
   useEffect(() => {
     const highlightedGroup = new leaflet.FeatureGroup();

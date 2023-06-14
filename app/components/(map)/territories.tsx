@@ -47,7 +47,7 @@ export default function Territories() {
       featureGroup.removeFrom(map);
       featureGroup.clearLayers();
     };
-  }, [showTerritoryNames]);
+  }, [showTerritoryNames, dict]);
 
   return <></>;
 }

@@ -144,8 +144,6 @@ export const useGlobalSettingsStore = create(
 // App only
 export const useSettingsStore = create(
   persist<{
-    locale: string;
-    setLocale: (locale: string) => void;
     overlayMode: boolean | null;
     setOverlayMode: (overlayMode: boolean) => void;
     overlayTransparentMode: boolean;
@@ -154,11 +152,11 @@ export const useSettingsStore = create(
     setWindowOpacity: (windowOpacity: number) => void;
     lockedWindow: boolean;
     setLockedWindow: (lockedWindow: boolean) => void;
+    locale: string;
+    setLocale: (locale: string) => void;
   }>(
     (set) => {
       return {
-        locale: "en",
-        setLocale: (locale) => set({ locale }),
         overlayMode: null,
         setOverlayMode: (overlayMode) =>
           set({
@@ -171,6 +169,8 @@ export const useSettingsStore = create(
         setWindowOpacity: (windowOpacity) => set({ windowOpacity }),
         lockedWindow: false,
         setLockedWindow: (lockedWindow) => set({ lockedWindow }),
+        locale: "en",
+        setLocale: (locale) => set({ locale }),
       };
     },
     {
