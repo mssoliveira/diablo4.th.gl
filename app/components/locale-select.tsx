@@ -25,11 +25,13 @@ export default function LocaleSelect({ className }: { className?: string }) {
       open={isOpen}
       onOpenChange={setIsOpen}
       trigger={
-        <button
-          className={`text-xl fi fi-${getFlagCode(i18n.locale)} ${
-            className ?? ""
-          }`}
-        />
+        <button>
+          <span
+            className={`text-xl fi fi-${getFlagCode(i18n.locale)} ${
+              className ?? ""
+            }`}
+          />
+        </button>
       }
     >
       <nav className="flex flex-col">
