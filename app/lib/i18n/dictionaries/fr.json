@@ -1,14 +1,14 @@
 {
   "meta": {
     "subtitle": "Carte de Diablo 4",
-    "description": "Optimisez votre expérience de jeu Diablo 4 à Sanctuaire avec cette carte Open Source de Diablo 4 ! Découvrez les emplacements, autels, caves, donjons, points de passage et plus encore."
+    "description": "Optimisez votre expérience de jeu Diablo 4 dans Sanctuaires avec cette carte Diablo 4 en open source ! Découvrez les emplacements, les autels, les caves, les donjons, les relais et bien plus encore."
   },
   "menu": {
     "patronInfo": "Supprimez les publicités et soutenez-moi sur Patreon",
-    "becomePatron": "Devenir un mécène",
+    "becomePatron": "Devenir un supporter",
     "linkPatreon": "Lier votre compte Patreon",
     "disconnectPatreon": "Déconnecter votre compte Patreon",
-    "discoveredNodes": "Nœuds découverts",
+    "discoveredNodes": "Points de repère découverts",
     "settings": "Paramètres",
     "territories": "Territoires",
     "apps": "Applications",
@@ -17,7 +17,7 @@
     "contribute": "Contribuer"
   },
   "search": {
-    "placeholder": "Recherche par nom ou type"
+    "placeholder": "Rechercher par nom ou type"
   },
   "nodes": {
     "showAll": "Tout afficher",
@@ -26,16 +26,16 @@
     "cellars": "Caves",
     "dungeons": "Donjons",
     "alchemists": "Alchimistes",
-    "healers": "Guérisseurs",
-    "helltideChests": "Coffres de Maréenfer",
-    "jewelers": "Joailliers",
+    "healers": "Soins",
+    "helltideChests": "Dons Torturés (Coffres)",
+    "jewelers": "Joaillerie",
     "occultists": "Occultistes",
-    "stableMasters": "Maîtres d'écurie",
-    "waypoints": "Points de passage"
+    "stableMasters": "Écuries",
+    "waypoints": "Relais"
   },
   "helltide": {
-    "inProgress": "Marée infernale en cours",
-    "startsIn": "Début de la Marée infernale dans"
+    "inProgress": "Vague infernale en cours",
+    "startsIn": "Début de la vague infernale dans"
   },
   "territories": {
     "Scos_WorldEvent_03": "Ruines de la Crête-du-Flambeur",
