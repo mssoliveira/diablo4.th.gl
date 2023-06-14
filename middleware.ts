@@ -52,8 +52,12 @@ export const config = {
     "/",
     "/en",
     "/de",
+    "/fr",
+    "/ru",
     "/en/(nodes/.*)",
     "/de/(nodes/.*)",
+    "/fr/(nodes/.*)",
+    "/ru/(nodes/.*)",
     "/(nodes/.*)",
   ],
 };

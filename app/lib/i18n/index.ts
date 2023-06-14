@@ -1,20 +1,17 @@
 import de from "./dictionaries/de.json";
 import en from "./dictionaries/en.json";
+import fr from "./dictionaries/fr.json";
+import ru from "./dictionaries/ru.json";
 
-export type DICT = typeof en | typeof de;
+export type DICT = typeof en | typeof de | typeof fr | typeof ru;
 const DICTIONARIES = {
   en,
   de,
+  fr,
+  ru,
 } as const;
 
 export const LOCALES = Object.keys(DICTIONARIES);
-export const LABELS: {
-  [locale: string]: string;
-} = {
-  en: "English",
-  de: "Deutsch",
-};
-
 export const DEFAULT_LOCALE = "en";
 
 export const isLang = (lang?: string) => {

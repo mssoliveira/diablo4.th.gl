@@ -34,7 +34,7 @@ export default function LocaleSelect({ className }: { className?: string }) {
         </button>
       }
     >
-      <nav className="flex flex-col">
+      <nav className="flex border rounded border-gray-600 bg-neutral-900 gap-3 p-2">
         {i18n.locales
           .filter((locale) => locale !== i18n.locale)
           .map((locale) => (
