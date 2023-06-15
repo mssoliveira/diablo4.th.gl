@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export default async function GET() {
+export async function GET() {
   const response = await fetch("https://d4armory.io/api/events/recent");
   try {
     const data = (await response.json()) as {
