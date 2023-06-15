@@ -21,6 +21,7 @@ export default async function GET() {
         zone: string;
       };
     };
+    return NextResponse.json(data);
   } catch (err) {
     return NextResponse.json(
       { error: "Could not get recent events" },
