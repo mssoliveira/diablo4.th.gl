@@ -27,11 +27,17 @@
     "dungeons": "Verliese",
     "alchemists": "Alchemisten",
     "healers": "Heiler",
-    "helltideChests": "Helltide Truhen",
     "jewelers": "Juweliere",
     "occultists": "Okkultisten",
     "stableMasters": "Stallmeister",
-    "waypoints": "Durchgänge"
+    "waypoints": "Durchgänge",
+    "additionalMonsters": "Additional Monsters",
+    "chestsAny": "Chests Common",
+    "chestsT1": "Chests T1",
+    "chestsT2": "Chests T2",
+    "chestsT3": "Tortured Gifts of Mysteries",
+    "harbingers": "Harbingers",
+    "highValueTargets": "High Value Targets"
   },
   "helltide": {
     "inProgress": "Helltide ist aktiv",

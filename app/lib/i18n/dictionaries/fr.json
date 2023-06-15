@@ -27,11 +27,17 @@
     "dungeons": "Donjons",
     "alchemists": "Alchimistes",
     "healers": "Soins",
-    "helltideChests": "Dons Torturés (Coffres)",
     "jewelers": "Joaillerie",
     "occultists": "Occultistes",
     "stableMasters": "Écuries",
-    "waypoints": "Relais"
+    "waypoints": "Relais",
+    "additionalMonsters": "Additional Monsters",
+    "chestsAny": "Chests Common",
+    "chestsT1": "Chests T1",
+    "chestsT2": "Chests T2",
+    "chestsT3": "Tortured Gifts of Mysteries",
+    "harbingers": "Harbingers",
+    "highValueTargets": "High Value Targets"
   },
   "helltide": {
     "inProgress": "Vague infernale en cours",

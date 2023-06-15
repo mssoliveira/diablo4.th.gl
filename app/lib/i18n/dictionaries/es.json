@@ -27,11 +27,17 @@
     "dungeons": "Mazmorras",
     "alchemists": "Alquimistas",
     "healers": "Sanadores",
-    "helltideChests": "Cofres de Helltide",
     "jewelers": "Joyerías",
     "occultists": "Ocultistas",
     "stableMasters": "Amos de establos",
-    "waypoints": "Puntos de referencia"
+    "waypoints": "Puntos de referencia",
+    "additionalMonsters": "Additional Monsters",
+    "chestsAny": "Chests Common",
+    "chestsT1": "Chests T1",
+    "chestsT2": "Chests T2",
+    "chestsT3": "Tortured Gifts of Mysteries",
+    "harbingers": "Harbingers",
+    "highValueTargets": "High Value Targets"
   },
   "helltide": {
     "inProgress": "Marea Sangrienta en progreso",

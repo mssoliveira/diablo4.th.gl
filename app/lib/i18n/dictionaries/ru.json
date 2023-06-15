@@ -27,11 +27,17 @@
     "dungeons": "Подземелья",
     "alchemists": "Алхимики",
     "healers": "Целители",
-    "helltideChests": "Сундуки Адского Прилива",
     "jewelers": "Ювелиры",
     "occultists": "Оккультисты",
     "stableMasters": "Стойла для лошадей",
-    "waypoints": "Точки перемещения"
+    "waypoints": "Точки перемещения",
+    "additionalMonsters": "Additional Monsters",
+    "chestsAny": "Chests Common",
+    "chestsT1": "Chests T1",
+    "chestsT2": "Chests T2",
+    "chestsT3": "Tortured Gifts of Mysteries",
+    "harbingers": "Harbingers",
+    "highValueTargets": "High Value Targets"
   },
   "helltide": {
     "inProgress": "Адский Прилив в процессе",

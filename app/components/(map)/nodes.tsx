@@ -1,7 +1,8 @@
 "use client";
 import { useOverwolfRouter } from "@/app/(overwolf)/components/overwolf-router";
-import { ICONS } from "@/app/lib/icons";
+import { ICONS, SPAWN_ICONS } from "@/app/lib/icons";
 import nodes, { getID } from "@/app/lib/nodes";
+import spawnNodes from "@/app/lib/spawn-nodes";
 import {
   useDiscoveredNodesStore,
   useGlobalSettingsStore,
@@ -162,6 +163,11 @@ export default function Nodes() {
             isDiscovered = !isDiscovered;
           };
           div.append(lastDiscoveredButton);
+          const note = document.createElement("p");
+          note.className = "text-gray-300 text-xs italic mt-2";
+          note.innerHTML = "Right click to toggle discovered";
+
+          div.append(note);
           return div;
         };
         marker.bindTooltip(tooltipContent, {
@@ -181,6 +187,60 @@ export default function Nodes() {
       groups.push(group);
       group.addTo(map);
     });
+    Object.entries(spawnNodes).forEach(([_type, items]) => {
+      const type = _type as keyof typeof spawnNodes;
+      const group = leaflet.layerGroup();
+      items.forEach((item) => {
+        const icon = SPAWN_ICONS[type];
+        const marker = new CanvasMarker([item.x, item.y], {
+          id: item.id,
+          type,
+          name: type,
+          icon,
+          radius: icon.radius * iconSize,
+        });
+        const tooltipContent = () => {
+          const territory = getTerritoryByPoint([item.x, item.y]);
+
+          let tooltipContent = `<p class="text-gray-300 text-sm">${dict.nodes[type]}</p>`;
+          if (territory) {
+            tooltipContent += `<p class="text-amber-50 text-sm">${
+              dict.territories[territory.id]
+            }</p>`;
+          }
+          tooltipContent += `<p class="border-t border-t-gray-700 pt-2 text-gray-300 text-xs italic mt-2">This node spawns based on events</p>`;
+          return tooltipContent;
+        };
+
+        marker.bindTooltip(tooltipContent, {
+          direction: "top",
+          offset: [0, -icon.radius * iconSize],
+        });
+
+        marker.on("click", () => {
+          if (location.pathname.startsWith("/embed")) {
+            return;
+          }
+          if ("update" in router) {
+            router.update({
+              name: encodeURIComponent(type),
+              coordinates: `@${item.x},${item.y}`,
+            });
+          } else {
+            router.push(
+              `${params.lang ?? ""}/nodes/${encodeURIComponent(type)}/@${
+                item.x
+              },${item.y}${location.search}`
+            );
+          }
+        });
+
+        marker.addTo(group);
+      });
+      groups.push(group);
+      group.addTo(map);
+    });
+
     groups.forEach((group) => {
       group.eachLayer((layer) => {
         const marker = layer as CanvasMarker;

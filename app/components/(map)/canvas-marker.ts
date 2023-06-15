@@ -1,5 +1,6 @@
-import { ICON } from "@/app/lib/icons";
+import { ICON, SPAWN_ICON } from "@/app/lib/icons";
 import nodes from "@/app/lib/nodes";
+import spawnNodes from "@/app/lib/spawn-nodes";
 import leaflet from "leaflet";
 
 const cachedImages: Record<string, HTMLImageElement> = {};
@@ -84,13 +85,13 @@ const renderer = leaflet.canvas({ pane: "markerPane" }) as leaflet.Canvas & {
 
 export type CanvasMarkerOptions = {
   id: string;
-  type: keyof typeof nodes;
+  type: keyof typeof nodes | keyof typeof spawnNodes;
   name: string;
   attribute?: string;
   isTrivial?: boolean;
   isHighlighted?: boolean;
   isDiscovered?: boolean;
-  icon: ICON;
+  icon: ICON | SPAWN_ICON;
 };
 
 class CanvasMarker extends leaflet.CircleMarker {
