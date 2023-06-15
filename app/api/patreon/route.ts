@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// const ADMIN_USER_IDS = JSON.parse(process.env.PATREON_ADMIN_IDS!) as string[];
-// const PATREON_TIER_IDS = JSON.parse(process.env.PATREON_TIER_IDS!) as number[];
+const PATREON_TIER_IDS = JSON.parse(process.env.PATREON_TIER_IDS!) as string[];
 
 type PatreonToken = {
   access_token: string;
@@ -51,14 +50,12 @@ function getCurrentUser(token: PatreonToken) {
 }
 
 function isSupporter(result: any) {
-  return true;
-  // return (
-  //   ADMIN_USER_IDS.includes(result.data.id) ||
-  //   result.data.relationships.pledges.data.some(
-  //     (pledge: any) =>
-  //       pledge.type === "pledge" && PATREON_TIER_IDS.includes(pledge.id)
-  //   )
-  // );
+  return result.included.some((data: any) => {
+    return (
+      data.type === "pledge" &&
+      PATREON_TIER_IDS.includes(data.relationships?.reward?.data?.id)
+    );
+  });
 }
 
 function toCookieString(token: PatreonToken) {
