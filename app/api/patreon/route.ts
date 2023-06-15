@@ -51,6 +51,8 @@ function getCurrentUser(token: PatreonToken) {
 }
 
 function isSupporter(result: any) {
+  console.log("User is not a patron", result);
+
   return (
     ADMIN_USER_IDS.includes(result.data.id) ||
     result.data.relationships.pledges.data.some(
