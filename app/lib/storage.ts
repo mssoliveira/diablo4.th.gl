@@ -1,8 +1,8 @@
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ICONS } from "./icons";
+import { ICONS, SPAWN_ICONS } from "./icons";
 
-export const ALL_FILTERS = Object.keys(ICONS);
+export const ALL_FILTERS = [...Object.keys(ICONS), ...Object.keys(SPAWN_ICONS)];
 
 type StoreWithPersist<State = any> = Mutate<
   StoreApi<State>,

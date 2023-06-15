@@ -1,5 +1,5 @@
 "use client";
-import { ICONS } from "../lib/icons";
+import { ICONS, SPAWN_ICONS } from "../lib/icons";
 import { ALL_FILTERS } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import useFilters from "./use-filters";
@@ -33,6 +33,24 @@ export default function Filters() {
           <button
             key={key}
             className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-1/2 ${
+              !filters.includes(key) ? "text-gray-500" : ""
+            }`}
+            onClick={() => {
+              toggleFilter(key);
+            }}
+          >
+            <svg viewBox="0 0 100 100" fill={icon.color} className="h-5">
+              <path d={icon.path} />
+            </svg>
+            {dict.nodes[key as keyof typeof ICONS]}
+          </button>
+        ))}
+      </div>
+      <div className="flex flex-wrap">
+        {Object.entries(SPAWN_ICONS).map(([key, icon]) => (
+          <button
+            key={key}
+            className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-full ${
               !filters.includes(key) ? "text-gray-500" : ""
             }`}
             onClick={() => {

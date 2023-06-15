@@ -27,11 +27,17 @@
     "dungeons": "Dungeons",
     "alchemists": "Alchemists",
     "healers": "Healers",
-    "helltideChests": "Helltide Chests",
     "jewelers": "Jewelers",
     "occultists": "Occultists",
     "stableMasters": "Stable Masters",
-    "waypoints": "Waypoints"
+    "waypoints": "Waypoints",
+    "additionalMonsters": "Additional Monsters",
+    "chestsAny": "Chests Common",
+    "chestsT1": "Chests T1",
+    "chestsT2": "Chests T2",
+    "chestsT3": "Tortured Gifts of Mysteries",
+    "harbingers": "Harbingers",
+    "highValueTargets": "High Value Targets"
   },
   "helltide": {
     "inProgress": "Helltide In Progress",

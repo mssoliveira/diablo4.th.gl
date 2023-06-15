@@ -3,9 +3,12 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
-import { ICONS } from "../lib/icons";
 import { useUpdateSearchParams } from "../lib/search-params";
-import { useGlobalSettingsStore, useSettingsStore } from "../lib/storage";
+import {
+  ALL_FILTERS,
+  useGlobalSettingsStore,
+  useSettingsStore,
+} from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Filters from "./filters";
 import Helltide from "./helltide";
@@ -18,7 +21,7 @@ export default function Search() {
   const [search, setSearch] = useState(() => searchParams.get("search") ?? "");
   const dict = useDict();
   const updateSearchParams = useUpdateSearchParams();
-  const filters = useFilters();
+  const [filters] = useFilters();
   const settingsStore = useSettingsStore();
   const globalSettingsStore = useGlobalSettingsStore();
 
@@ -32,7 +35,6 @@ export default function Search() {
     }, 200);
     return () => clearTimeout(handle);
   }, [search]);
-
   return (
     <>
       {!settingsStore.lockedWindow && (
@@ -119,9 +121,7 @@ export default function Search() {
               strokeWidth="2"
               stroke="currentColor"
               fill={
-                filters.length !== Object.keys(ICONS).length
-                  ? "currentColor"
-                  : "none"
+                filters.length !== ALL_FILTERS.length ? "currentColor" : "none"
               }
               strokeLinecap="round"
               strokeLinejoin="round"
