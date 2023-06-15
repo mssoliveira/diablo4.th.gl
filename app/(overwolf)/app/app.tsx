@@ -11,6 +11,7 @@ import { useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useState } from "react";
 import Ads from "../components/ads";
 import Header from "../components/header";
+import Player from "../components/player";
 import ResizeBorders from "../components/resize-borders";
 import { waitForOverwolf } from "../lib/overwolf";
 
@@ -42,6 +43,7 @@ export default function App() {
         <Tiles />
         <Territories />
         <Nodes />
+        <Player />
       </Map>
       <SearchParams />
       <Ads />

@@ -54,3 +54,7 @@
 *[data-radix-popper-content-wrapper] {
   @apply !z-[11000];
 }
+
+.player {
+  z-index: 10000;
+}
