@@ -50,7 +50,7 @@ function getCurrentUser(token: PatreonToken) {
 }
 
 function isSupporter(result: any) {
-  return result.included.some((data: any) => {
+  return result.included?.some((data: any) => {
     return (
       data.type === "pledge" &&
       PATREON_TIER_IDS.includes(data.relationships?.reward?.data?.id)
