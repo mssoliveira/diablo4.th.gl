@@ -19,8 +19,8 @@ function postToken(code: string, redirectURI: string) {
     body: new URLSearchParams({
       code,
       grant_type: "authorization_code",
-      client_id: process.env.NEXT_PUBLIC_PATREON_CLIENT_ID!,
-      client_secret: process.env.PATREON_CLIENT_SECRET!,
+      client_id: process.env.NEXT_PUBLIC_PATREON_CLIENT_ID_V2!,
+      client_secret: process.env.PATREON_CLIENT_SECRET_V2!,
       redirect_uri: redirectURI,
     }),
   });
@@ -35,25 +35,28 @@ function postRefreshToken(refreshToken: string) {
     body: new URLSearchParams({
       grant_type: "refresh_token",
       refresh_token: refreshToken,
-      client_id: process.env.NEXT_PUBLIC_PATREON_CLIENT_ID!,
-      client_secret: process.env.PATREON_CLIENT_SECRET!,
+      client_id: process.env.NEXT_PUBLIC_PATREON_CLIENT_ID_V2!,
+      client_secret: process.env.PATREON_CLIENT_SECRET_V2!,
     }),
   });
 }
 
 function getCurrentUser(token: PatreonToken) {
-  return fetch("https://www.patreon.com/api/oauth2/api/current_user", {
-    headers: {
-      Authorization: `Bearer ${token.access_token}`,
-    },
-  });
+  return fetch(
+    `https://www.patreon.com/api/oauth2/v2/identity?include=memberships.currently_entitled_tiers`,
+    {
+      headers: {
+        Authorization: `Bearer ${token.access_token}`,
+      },
+    }
+  );
 }
 
 function isSupporter(currentUser: any) {
-  return currentUser.included?.some((data: any) => {
-    return (
-      data.type === "pledge" &&
-      PATREON_TIER_IDS.includes(data.relationships?.reward?.data?.id)
+  console.log(JSON.stringify(currentUser));
+  return currentUser.included.some((data: any) => {
+    return data.relationships?.currently_entitled_tiers?.data.some(
+      (tier: any) => PATREON_TIER_IDS.includes(tier.id)
     );
   });
 }
