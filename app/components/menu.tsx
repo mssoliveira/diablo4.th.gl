@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import AppSettings from "../(overwolf)/components/app-settings";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
-import { API_BASE_URI, PATREON_CLIENT_ID } from "../lib/env";
+import { API_BASE_URI, PATREON_CLIENT_ID_V2 } from "../lib/env";
 import { useAccountStore, useGlobalSettingsStore } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Drawer from "./drawer";
@@ -90,7 +90,7 @@ export default function Menu() {
                       `${API_BASE_URI}/patreon`
                     );
                   } else {
-                    location.href = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${PATREON_CLIENT_ID}&redirect_uri=${API_BASE_URI}`;
+                    location.href = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${PATREON_CLIENT_ID_V2}&redirect_uri=${API_BASE_URI}`;
                   }
                 }}
                 className="my-1 p-2 uppercase text-white bg-[#ff424d] hover:bg-[#ca0f25]"

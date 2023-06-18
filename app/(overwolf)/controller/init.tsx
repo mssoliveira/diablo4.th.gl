@@ -40,7 +40,7 @@ async function initController() {
       const matched = decodeURIComponent(event.parameter).match("code=([^&]*)");
       const code = matched ? matched[1] : null;
       if (code) {
-        const response = await fetch(`${API_BASE_URI}/api/patreon`, {
+        const response = await fetch(`${API_BASE_URI}/api/patreon/v2`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

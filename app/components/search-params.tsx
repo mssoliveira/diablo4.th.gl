@@ -37,7 +37,7 @@ export default function SearchParams() {
       return;
     }
     updateSearchParams(["code", "state"], ["", ""]);
-    fetch(`${API_BASE_URI}/api/patreon`, {
+    fetch(`${API_BASE_URI}/api/patreon/v2`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export default function SearchParams() {
 
   useEffect(() => {
     if (accountStore.isPatron) {
-      fetch(`${API_BASE_URI}/api/patreon`, {
+      fetch(`${API_BASE_URI}/api/patreon/v2`, {
         method: "GET",
       })
         .then((res) => res.json())
