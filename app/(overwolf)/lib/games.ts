@@ -1,4 +1,4 @@
-import { GAME_CLASS_ID } from "./config";
+import { GAME_CLASS_ID, INTERESTED_IN_FEATURES } from "./config";
 
 export function getRunningGameInfo(
   gameId: number
@@ -93,5 +93,13 @@ export function listenToOverlayEnablement(
 
   overwolf.settings.games.getOverlayEnabled(GAME_CLASS_ID, (event) => {
     callback(event.enabled);
+  });
+}
+
+export function setFeatures() {
+  overwolf.games.events.setRequiredFeatures(INTERESTED_IN_FEATURES, (info) => {
+    if (info.error) {
+      window.setTimeout(setFeatures, 2000);
+    }
   });
 }

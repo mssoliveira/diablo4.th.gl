@@ -56,7 +56,7 @@ export default function SearchParams() {
       })
       .catch((err) => {
         console.log(err);
-        alert(err?.message || "Something went wrong, please try again.");
+        alert(err?.message || "Unexpect error! Please try again.");
       });
   }, [code]);
 
