@@ -9,6 +9,7 @@ import Drawer from "./drawer";
 import ExternalLink from "./external-link";
 import LocaleSelect from "./locale-select";
 import Settings from "./settings";
+import SpawnNodes from "./spawn-nodes";
 const NitroPay = dynamic(() => import("./nitro-pay"), {
   ssr: false,
 });
@@ -99,11 +100,13 @@ export default function Menu() {
               </button>
             </>
           )}
-          <h2 className="category-title">{dict.menu.discoveredNodes}</h2>
-          <DiscoveredNodes />
           <h2 className="category-title">{dict.menu.settings}</h2>
           {isOverwolf && <AppSettings />}
           <Settings />
+          <h2 className="category-title">{dict.menu.discoveredNodes}</h2>
+          <DiscoveredNodes />
+          <h2 className="category-title">{dict.menu.spawnNodes}</h2>
+          <SpawnNodes />
           <h2 className="category-title">{dict.menu.territories}</h2>
           <Territories />
           <h2 className="category-title">{dict.menu.apps}</h2>

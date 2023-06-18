@@ -9,6 +9,7 @@
     "linkPatreon": "Связать аккаунт Patreon",
     "disconnectPatreon": "Отключить аккаунт Patreon",
     "discoveredNodes": "Обнаруженные узлы",
+    "spawnNodes": "Узлы появления",
     "settings": "Настройки",
     "territories": "Территории",
     "apps": "Приложения",
@@ -35,7 +36,7 @@
     "chestsAny": "Chests Common",
     "chestsT1": "Chests T1",
     "chestsT2": "Chests T2",
-    "chestsT3": "Tortured Gifts of Mysteries",
+    "chestsT3": "Tortured Gifts of Mysteries (T3)",
     "harbingers": "Harbingers",
     "highValueTargets": "High Value Targets"
   },

@@ -9,6 +9,7 @@
     "linkPatreon": "Verbinde deinen Patreon Account",
     "disconnectPatreon": "Entferne deinen Patreon Account",
     "discoveredNodes": "Gefundene Marker",
+    "spawnNodes": "Spawn Nodes",
     "settings": "Einstellungen",
     "territories": "Territorien",
     "apps": "Apps",
@@ -35,7 +36,7 @@
     "chestsAny": "Chests Common",
     "chestsT1": "Chests T1",
     "chestsT2": "Chests T2",
-    "chestsT3": "Tortured Gifts of Mysteries",
+    "chestsT3": "Tortured Gifts of Mysteries (T3)",
     "harbingers": "Harbingers",
     "highValueTargets": "High Value Targets"
   },
