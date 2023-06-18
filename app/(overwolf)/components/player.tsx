@@ -23,9 +23,7 @@ export default function Player() {
     });
     marker.rotation = 0;
 
-    // marker.updatePosition(position);
     marker.addTo(map);
-    // map.flyTo(marker.getLatLng(), 2);
 
     let lastLocation = { x: 0, y: 0, z: 0 };
     function onInfoUpdates2(event: overwolf.games.events.InfoUpdates2Event) {
