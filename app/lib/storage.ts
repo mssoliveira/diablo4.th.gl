@@ -166,7 +166,7 @@ export const useSettingsStore = create(
     windowOpacity: number;
     setWindowOpacity: (windowOpacity: number) => void;
     lockedWindow: boolean;
-    setLockedWindow: (lockedWindow: boolean) => void;
+    toggleLockedWindow: () => void;
     locale: string;
     setLocale: (locale: string) => void;
   }>(
@@ -183,7 +183,8 @@ export const useSettingsStore = create(
         windowOpacity: 1,
         setWindowOpacity: (windowOpacity) => set({ windowOpacity }),
         lockedWindow: false,
-        setLockedWindow: (lockedWindow) => set({ lockedWindow }),
+        toggleLockedWindow: () =>
+          set((state) => ({ lockedWindow: !state.lockedWindow })),
         locale: "en",
         setLocale: (locale) => set({ locale }),
       };

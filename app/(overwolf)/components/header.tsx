@@ -55,9 +55,7 @@ export default function Header() {
         <SVGIcons />
         <button
           className="lock h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 fixed z-10 left-1/2 -translate-x-1/2 text-red-500 rounded-t-lg bg-opacity-5 bg-neutral-800"
-          onClick={() =>
-            settingsStore.setLockedWindow(!settingsStore.lockedWindow)
-          }
+          onClick={settingsStore.toggleLockedWindow}
         >
           <svg>
             <use xlinkHref="#icon-lock-open" />
@@ -93,9 +91,7 @@ export default function Header() {
           <button
             className="h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 absolute left-1/2 -translate-x-1/2"
             title="Lock window control"
-            onClick={() =>
-              settingsStore.setLockedWindow(!settingsStore.lockedWindow)
-            }
+            onClick={settingsStore.toggleLockedWindow}
           >
             <svg>
               <use xlinkHref="#icon-lock" />
