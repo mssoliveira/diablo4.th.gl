@@ -102,6 +102,11 @@
         "title": "Zoom out",
         "action-type": "custom",
         "default": "F8"
+      },
+      "toggle_lock_app": {
+        "title": "Lock/Unlock App",
+        "action-type": "custom",
+        "default": "F9"
       }
     },
     "protocol_override_domains": {

@@ -1,6 +1,6 @@
 "use client";
 import { API_BASE_URI } from "@/app/lib/env";
-import { useAccountStore } from "@/app/lib/storage";
+import { useAccountStore, useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useRef } from "react";
 import { GAME_CLASS_ID, HOTKEYS, WINDOWS } from "../lib/config";
 import { getRunningGameInfo } from "../lib/games";
@@ -80,6 +80,8 @@ async function initController() {
     if (event.name === HOTKEYS.TOGGLE_APP) {
       const preferedWindowName = await getPreferedWindowName();
       toggleWindow(preferedWindowName);
+    } else if (event.name === HOTKEYS.TOGGLE_LOCK_APP) {
+      useSettingsStore.getState().toggleLockedWindow();
     }
   });
 

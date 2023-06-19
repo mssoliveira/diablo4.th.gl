@@ -1,5 +1,6 @@
 "use client";
 import { useOverwolfRouter } from "@/app/(overwolf)/components/overwolf-router";
+import { HOTKEYS } from "@/app/(overwolf)/lib/config";
 import leaflet, { LatLngBoundsExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useParams } from "next/navigation";
@@ -73,9 +74,9 @@ export default function Map({ children }: { children?: React.ReactNode }) {
 
     if (typeof overwolf !== "undefined") {
       overwolf.settings.hotkeys.onPressed.addListener((event) => {
-        if (event.name === "zoom_in_app") {
+        if (event.name === HOTKEYS.ZOOM_IN_APP) {
           map.zoomIn();
-        } else if (event.name === "zoom_out_app") {
+        } else if (event.name === HOTKEYS.ZOOM_OUT_APP) {
           map.zoomOut();
         }
       });
