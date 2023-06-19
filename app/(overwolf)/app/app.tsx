@@ -13,6 +13,7 @@ import Ads from "../components/ads";
 import Header from "../components/header";
 import Player from "../components/player";
 import ResizeBorders from "../components/resize-borders";
+import TraceLine from "../components/trace-line";
 import { waitForOverwolf } from "../lib/overwolf";
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
         <Territories />
         <Nodes />
         <Player />
+        <TraceLine />
       </Map>
       <SearchParams />
       <Ads />

@@ -1,7 +1,7 @@
 import leaflet from "leaflet";
 
 export type PlayerPosition = {
-  location: {
+  position: {
     x: number;
     y: number;
     z: number;
@@ -15,15 +15,24 @@ const OFFSET = {
   x: 113.2,
   y: -227.4,
 };
-const normalizePoint = ({ x, y }: { x: number; y: number }) => {
+export const normalizePoint = ({
+  x,
+  y,
+  z,
+}: {
+  x: number;
+  y: number;
+  z: number;
+}) => {
   const scaledX = x * SCALE;
   const scaledY = y * SCALE;
   const rotatedX = scaledX * Math.cos(DEG_45) - scaledY * Math.sin(DEG_45);
   const rotatedY = scaledX * Math.sin(DEG_45) + scaledY * Math.cos(DEG_45);
-  return [(-rotatedY + OFFSET.y) / 1.65, (-rotatedX + OFFSET.x) / 1.65] as [
-    number,
-    number
-  ];
+  return {
+    x: (-rotatedX + OFFSET.x) / 1.65,
+    y: (-rotatedY + OFFSET.y) / 1.65,
+    z,
+  };
 };
 
 export default class PlayerMarker extends leaflet.Marker {
@@ -43,7 +52,7 @@ export default class PlayerMarker extends leaflet.Marker {
     return;
   }
 
-  updatePosition({ location, rotation }: PlayerPosition) {
+  updatePosition({ position, rotation }: PlayerPosition) {
     let playerRotation = 90 - rotation;
 
     const oldRotation = this.rotation || playerRotation;
@@ -63,6 +72,6 @@ export default class PlayerMarker extends leaflet.Marker {
 
     this.rotation = playerRotation;
 
-    this.setLatLng(normalizePoint(location));
+    this.setLatLng([position.y, position.x]);
   }
 }
