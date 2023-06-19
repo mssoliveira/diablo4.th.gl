@@ -12,10 +12,12 @@ export async function takeScreenshot(
       },
       body: JSON.stringify({
         url: url,
-        waitUntil: "networkidle0",
+        gotoOptions: {
+          waitUntil: "networkidle0",
+        },
         options: {
           fullPage: true,
-          type: "webp",
+          type: "jpeg",
           quality: 75,
         },
         viewport: {
