@@ -1,4 +1,4 @@
-export async function takeScreenshot(url: string) {
+export async function takeScreenshot(url: string, size: { width: number, height: number }}) {
   const response = await fetch(
     `https://chrome.browserless.io/screenshot?token=${process.env.BROWSERLESS_API_KEY}`,
     {
@@ -9,11 +9,16 @@ export async function takeScreenshot(url: string) {
       },
       body: JSON.stringify({
         url: url,
+        waitUntil: "networkidle0",
         options: {
           fullPage: true,
-          type: "jpeg",
+          type: "webp",
           quality: 75,
+          
         },
+        viewport: {
+...size
+        }
       }),
     }
   );
