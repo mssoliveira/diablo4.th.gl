@@ -1,4 +1,5 @@
 "use client";
+import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { ICONS } from "../lib/icons";
 import nodes from "../lib/nodes";
 import { useDiscoveredNodesStore } from "../lib/storage";
@@ -6,12 +7,97 @@ import { useDict } from "./(i18n)/i18n-provider";
 import useFilters from "./use-filters";
 
 export default function DiscoveredNodes() {
-  const { discoveredNodes } = useDiscoveredNodesStore();
+  const { discoveredNodes, setDiscoveredNodes } = useDiscoveredNodesStore();
   const dict = useDict();
   const [filters, toggleFilter] = useFilters();
+  const router = useOverwolfRouter();
 
   return (
     <div>
+      <div className="grid grid-cols-3 justify-items-center text-sm">
+        {"update" in router ? (
+          <button
+            className="p-1 uppercase hover:text-white"
+            onClick={() => {
+              overwolf.io.writeFileContents(
+                `${
+                  overwolf.io.paths.documents
+                }\\Diablo 4 Map\\discovered_nodes_${Date.now()}.json`,
+                JSON.stringify(discoveredNodes),
+                "UTF8" as overwolf.io.enums.eEncoding.UTF8,
+                true,
+                () => console.log
+              );
+              overwolf.utils.openWindowsExplorer(
+                `${overwolf.io.paths.documents}\\Diablo 4 Map`,
+                console.log
+              );
+            }}
+          >
+            Export
+          </button>
+        ) : (
+          <a
+            href={`data:text/json;charset=utf-8,${encodeURIComponent(
+              JSON.stringify(discoveredNodes)
+            )}`}
+            download="diablo_4_map_discovered_nodes.json"
+            className="p-1 uppercase hover:text-white"
+          >
+            Export
+          </a>
+        )}
+        <label className="p-1 uppercase hover:text-white cursor-pointer">
+          <input
+            type="file"
+            name="discoveredNodes"
+            accept=".json"
+            style={{ display: "none" }}
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (!file) {
+                return;
+              }
+              const reader = new FileReader();
+              reader.addEventListener("load", (loadEvent) => {
+                const text = loadEvent.target?.result;
+                if (!text || typeof text !== "string") {
+                  return;
+                }
+                try {
+                  let discoveredNodes = JSON.parse(text);
+                  if (!Array.isArray(discoveredNodes)) {
+                    discoveredNodes = [];
+                  } else if (
+                    discoveredNodes.some((node) => typeof node !== "string")
+                  ) {
+                    discoveredNodes = [];
+                  }
+
+                  setDiscoveredNodes(discoveredNodes);
+                } catch (error) {
+                  // Do nothing
+                }
+                event.target.value = "";
+              });
+              reader.readAsText(file);
+            }}
+          />
+          Import
+        </label>
+        <button
+          className="p-1 uppercase hover:text-white"
+          onClick={() => {
+            if (
+              confirm("Are you sure you want to reset all discovered nodes?")
+            ) {
+              setDiscoveredNodes([]);
+            }
+          }}
+        >
+          Reset
+        </button>
+      </div>
       {Object.entries(ICONS).map(([key, icon]) => (
         <button
           key={key}

@@ -12,7 +12,7 @@ export default function Filters() {
     <div className="divide-y divide-neutral-700 border-t border-t-neutral-600 bg-neutral-900 text-gray-200 text-sm w-full md:border md:border-gray-600 md:rounded-lg">
       <div className="flex">
         <button
-          className="p-2 uppercase hover:text-white  w-1/2"
+          className="p-2 uppercase hover:text-white w-1/2"
           onClick={() => {
             setFilters(ALL_FILTERS);
           }}
@@ -20,7 +20,7 @@ export default function Filters() {
           {dict.nodes.showAll}
         </button>
         <button
-          className="p-2 uppercase hover:text-white  w-1/2"
+          className="p-2 uppercase hover:text-white w-1/2"
           onClick={() => {
             setFilters([]);
           }}

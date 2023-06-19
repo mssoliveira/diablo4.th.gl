@@ -35,6 +35,7 @@ export const useDiscoveredNodesStore = create(
     discoveredNodes: string[];
     markDiscoveredNode: (node: string) => void;
     unmarkDiscoveredNode: (node: string) => void;
+    setDiscoveredNodes: (discoveredNodes: string[]) => void;
   }>(
     (set, get) => ({
       discoveredNodes: [],
@@ -46,9 +47,23 @@ export const useDiscoveredNodesStore = create(
             (discoveredNode) => discoveredNode !== node
           ),
         }),
+      setDiscoveredNodes: (discoveredNodes) => set({ discoveredNodes }),
     }),
     {
       name: "discovered-nodes-storage",
+      onRehydrateStorage: () => {
+        return (state) => {
+          if (state?.discoveredNodes) {
+            if (!Array.isArray(state.discoveredNodes)) {
+              state.discoveredNodes = [];
+            } else if (
+              state.discoveredNodes.some((node) => typeof node !== "string")
+            ) {
+              state.discoveredNodes = [];
+            }
+          }
+        };
+      },
     }
   )
 );
