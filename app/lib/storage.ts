@@ -169,6 +169,10 @@ export const useSettingsStore = create(
     toggleLockedWindow: () => void;
     locale: string;
     setLocale: (locale: string) => void;
+    followPlayerPosition: boolean;
+    toggleFollowPlayerPosition: () => void;
+    showTraceLine: boolean;
+    toggleShowTraceLine: () => void;
   }>(
     (set) => {
       return {
@@ -187,6 +191,14 @@ export const useSettingsStore = create(
           set((state) => ({ lockedWindow: !state.lockedWindow })),
         locale: "en",
         setLocale: (locale) => set({ locale }),
+        followPlayerPosition: true,
+        toggleFollowPlayerPosition: () =>
+          set((state) => ({
+            followPlayerPosition: !state.followPlayerPosition,
+          })),
+        showTraceLine: true,
+        toggleShowTraceLine: () =>
+          set((state) => ({ showTraceLine: !state.showTraceLine })),
       };
     },
     {
@@ -196,3 +208,25 @@ export const useSettingsStore = create(
 );
 
 withStorageDOMEvents(useSettingsStore);
+
+export const useGameInfoStore = create<{
+  player: {
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    rotation: number;
+  } | null;
+  setPlayer: (player: {
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    rotation: number;
+  }) => void;
+}>((set) => ({
+  player: null,
+  setPlayer: (player) => set({ player }),
+}));

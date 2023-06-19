@@ -1,12 +1,18 @@
 import { useMap } from "@/app/components/(map)/map";
+import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import leaflet from "leaflet";
 import { useEffect, useRef } from "react";
 import { listenToGameLaunched, setFeatures } from "../lib/games";
-import PlayerMarker from "./player-marker";
+import PlayerMarker, { normalizePoint } from "./player-marker";
 
 export default function Player() {
   const map = useMap();
   const mounted = useRef(false);
+  const gameInfo = useGameInfoStore();
+  const followPlayerPosition = useSettingsStore(
+    (state) => state.followPlayerPosition
+  );
+  const marker = useRef<PlayerMarker | null>(null);
 
   useEffect(() => {
     if (mounted.current) return;
@@ -15,17 +21,16 @@ export default function Player() {
     const icon = leaflet.icon({
       iconUrl: "/icons/player.webp",
       className: "player",
-      iconSize: [32, 32],
+      iconSize: [36, 36],
     });
-    const marker = new PlayerMarker([0, 0], {
+    marker.current = new PlayerMarker([0, 0], {
       icon,
       interactive: false,
     });
-    marker.rotation = 0;
+    marker.current.rotation = 0;
+    marker.current.addTo(map);
 
-    marker.addTo(map);
-
-    let lastLocation = { x: 0, y: 0, z: 0 };
+    let lastPosition = { x: 0, y: 0, z: 0 };
     function onInfoUpdates2(event: overwolf.games.events.InfoUpdates2Event) {
       if (event.feature === "location") {
         try {
@@ -34,30 +39,26 @@ export default function Player() {
               location: string;
             };
           };
-          const location = JSON.parse(info.match_info.location) as {
-            x: number;
-            y: number;
-            z: number;
-          };
-          if (location.z < 1) {
+          const position = normalizePoint(
+            JSON.parse(info.match_info.location) as {
+              x: number;
+              y: number;
+              z: number;
+            }
+          );
+          if (position.z < 1) {
             return;
           }
           const rotation =
             (Math.atan2(
-              location.y - (lastLocation.y || location.y),
-              location.x - (lastLocation.x || location.x)
+              position.y - (lastPosition.y || position.y),
+              position.x - (lastPosition.x || position.x)
             ) *
               180) /
-              Math.PI -
-            135;
-          lastLocation = location;
+            Math.PI;
+          lastPosition = position;
 
-          marker.updatePosition({ location, rotation });
-          map.panTo(marker.getLatLng(), {
-            duration: 1,
-            easeLinearity: 1,
-            noMoveStart: true,
-          });
+          gameInfo.setPlayer({ position, rotation });
         } catch (err) {
           console.error(err);
         }
@@ -78,6 +79,21 @@ export default function Player() {
       setTimeout(setFeatures, 1000);
     });
   }, []);
+
+  useEffect(() => {
+    if (!gameInfo.player || !marker.current) {
+      return;
+    }
+    marker.current.updatePosition(gameInfo.player);
+
+    if (followPlayerPosition) {
+      map.panTo(marker.current.getLatLng(), {
+        duration: 1,
+        easeLinearity: 1,
+        noMoveStart: true,
+      });
+    }
+  }, [gameInfo.player, followPlayerPosition]);
 
   return <></>;
 }

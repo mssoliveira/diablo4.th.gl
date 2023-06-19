@@ -3,6 +3,7 @@ import { API_BASE_URI } from "@/app/lib/env";
 import { useAccountStore, useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useRef } from "react";
 import { GAME_CLASS_ID, HOTKEYS, WINDOWS } from "../lib/config";
+import { startNewGameSession } from "../lib/game-sessions";
 import { getRunningGameInfo } from "../lib/games";
 import { waitForOverwolf } from "../lib/overwolf";
 import {
@@ -24,6 +25,7 @@ export default function Init() {
       .then(() => {
         initialized.current = true;
         initController();
+        startNewGameSession();
       })
       .catch((error) => console.warn(error));
   }, []);

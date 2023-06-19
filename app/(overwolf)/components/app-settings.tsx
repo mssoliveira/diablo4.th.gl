@@ -36,6 +36,20 @@ export default function AppSettings() {
           }}
         />
       </div>
+      <div className="flex">
+        <span className="w-1/2">Follow Player position</span>
+        <Toggle
+          checked={settingsStore.followPlayerPosition}
+          onChange={settingsStore.toggleFollowPlayerPosition}
+        />
+      </div>
+      <div className="flex">
+        <span className="w-1/2">Show Trace Line</span>
+        <Toggle
+          checked={settingsStore.showTraceLine}
+          onChange={settingsStore.toggleShowTraceLine}
+        />
+      </div>
     </>
   );
 }
