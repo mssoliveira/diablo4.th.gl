@@ -63,10 +63,13 @@ export function generateMetadata({
       canonical: canonical,
       languages: alternativeLanguages,
     },
+    twitter: {
+      card: "summary_large_image",
+    },
     openGraph: {
       title: `Sanctuary | ${dict.meta.subtitle} | diablo4.th.gl`,
       description: description,
-      type: "website",
+      type: name ? "article" : "website",
       url: "https://diablo4.th.gl",
     },
   };

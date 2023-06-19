@@ -8,7 +8,7 @@ export const size = {
   height: 628,
 };
 
-export const contentType = "image/webp";
+export const contentType = "image/jpeg";
 
 export default async function Image({
   params: { name, coordinates },
@@ -19,7 +19,7 @@ export default async function Image({
   const screenshot = await takeScreenshot(url, size);
   const response = new NextResponse(screenshot, {
     headers: {
-      "Content-Type": "image/webp",
+      "Content-Type": "image/jpeg",
       "Cache-Control": "public, max-age=31536000, stale-while-revalidate",
     },
   });
