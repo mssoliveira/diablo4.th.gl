@@ -39,6 +39,9 @@ export default function Player() {
             y: number;
             z: number;
           };
+          if (location.z < 1) {
+            return;
+          }
           const rotation =
             (Math.atan2(
               location.y - (lastLocation.y || location.y),
