@@ -65,7 +65,15 @@ export default function DiscoveredNodes() {
                   return;
                 }
                 try {
-                  const discoveredNodes = JSON.parse(text);
+                  let discoveredNodes = JSON.parse(text);
+                  if (!Array.isArray(discoveredNodes)) {
+                    discoveredNodes = [];
+                  } else if (
+                    discoveredNodes.some((node) => typeof node !== "string")
+                  ) {
+                    discoveredNodes = [];
+                  }
+
                   setDiscoveredNodes(discoveredNodes);
                 } catch (error) {
                   // Do nothing

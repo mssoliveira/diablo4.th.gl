@@ -51,6 +51,19 @@ export const useDiscoveredNodesStore = create(
     }),
     {
       name: "discovered-nodes-storage",
+      onRehydrateStorage: () => {
+        return (state) => {
+          if (state?.discoveredNodes) {
+            if (!Array.isArray(state.discoveredNodes)) {
+              state.discoveredNodes = [];
+            } else if (
+              state.discoveredNodes.some((node) => typeof node !== "string")
+            ) {
+              state.discoveredNodes = [];
+            }
+          }
+        };
+      },
     }
   )
 );
