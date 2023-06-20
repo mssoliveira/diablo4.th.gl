@@ -1,16 +1,16 @@
+import { isOverwolf } from "@/app/lib/env";
 import { takeScreenshot } from "@/app/lib/screenshots";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-export const size = {
+const size = {
   width: 1200,
   height: 628,
 };
+const contentType = "image/jpeg";
 
-export const contentType = "image/jpeg";
-
-export async function GET(request: NextRequest) {
+async function _GET(request: NextRequest) {
   const url = `https://diablo4.th.gl/embed/${request.nextUrl.pathname.replace(
     "/screenshot",
     ""
@@ -24,3 +24,5 @@ export async function GET(request: NextRequest) {
   });
   return response;
 }
+
+export const GET = isOverwolf ? undefined : _GET;
