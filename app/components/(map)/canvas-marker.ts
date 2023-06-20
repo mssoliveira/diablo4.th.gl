@@ -88,6 +88,7 @@ export type CanvasMarkerOptions = {
   type: keyof typeof nodes | keyof typeof spawnNodes;
   name: string;
   attribute?: string;
+  aspect?: string;
   isTrivial?: boolean;
   isHighlighted?: boolean;
   isDiscovered?: boolean;
