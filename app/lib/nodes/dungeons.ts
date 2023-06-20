@@ -216,6 +216,13 @@ export const dungeons = [
     aspect: "Aspect Ravenous",
   },
   {
+    name: "Pallid Delve",
+    description: "Cannibals guard a dark power in the crumbling mines.",
+    x: -107.78190251351248,
+    y: 91.73210258370084,
+    aspect: "Aspect Elementalist's",
+  },
+  {
     name: "Tormented Ruins",
     description: "It's been centuries since this watchtower saw mortal use.",
     x: -102.66191307367367,
@@ -360,6 +367,13 @@ export const dungeons = [
     x: -132.243726318985,
     y: 139.7134292219348,
     aspect: "Aspect Brawler's",
+  },
+  {
+    name: "Belfry Zakara",
+    description: "The Zakarum built this Cathedral. It honors the sea, now. ",
+    x: -142.220252888186,
+    y: 151.0982698138173,
+    aspect: "Aspect of the Ursine Horror",
   },
   {
     name: "Witchwater",
@@ -839,6 +853,13 @@ export const dungeons = [
     description: "The sealed resting place of the Que-Hegan Sankekur.",
     x: -132.58392896145256,
     y: 117.60353762824742,
+  },
+  {
+    name: "Shadowed Plunge",
+    description: "Snake Cultists sacrifice the innocent.",
+    x: -148.79655690601155,
+    y: 121.04769082768982,
+    aspect: "Aspect of Branching Volleys",
   },
   {
     name: "Demon's Wake",
