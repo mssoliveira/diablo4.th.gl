@@ -22,8 +22,7 @@ export default function Nodes() {
   const params = useParams();
   const [groups, setGroups] = useState<leaflet.LayerGroup[]>([]);
   const searchParams = useSearchParams();
-  const { discoveredNodes, markDiscoveredNode, unmarkDiscoveredNode } =
-    useDiscoveredNodesStore();
+  const { discoveredNodes, toggleDiscoveredNode } = useDiscoveredNodesStore();
   const isOverwolf = "value" in router;
   const search = useMemo(() => {
     return (
@@ -115,13 +114,12 @@ export default function Nodes() {
 
         let lastDiscoveredButton: HTMLButtonElement | undefined;
         marker.on("contextmenu", () => {
+          toggleDiscoveredNode(id);
           if (isDiscovered) {
-            unmarkDiscoveredNode(id);
             if (lastDiscoveredButton) {
               lastDiscoveredButton.innerText = "Mark as discovered";
             }
           } else {
-            markDiscoveredNode(id);
             if (lastDiscoveredButton) {
               lastDiscoveredButton.innerText = "Unmark as discovered";
             }
@@ -158,13 +156,12 @@ export default function Nodes() {
             ? "Unmark as discovered"
             : "Mark as discovered";
           lastDiscoveredButton.onclick = () => {
+            toggleDiscoveredNode(id);
             if (isDiscovered) {
-              unmarkDiscoveredNode(id);
               if (lastDiscoveredButton) {
                 lastDiscoveredButton.innerText = "Mark as discovered";
               }
             } else {
-              markDiscoveredNode(id);
               if (lastDiscoveredButton) {
                 lastDiscoveredButton.innerText = "Unmark as discovered";
               }
