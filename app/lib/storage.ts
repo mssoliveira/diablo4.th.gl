@@ -86,7 +86,10 @@ export const useDiscoveredNodesStore = create(
     }),
     {
       name: "discovered-nodes-storage",
-      version: 3,
+      version: 1,
+      migrate: (persistedState: any) => {
+        return persistedState;
+      },
       merge: (persistentState: any, currentState) => {
         if (persistentState?.discoveredNodes) {
           persistentState.discoveredNodes = filterDiscoveredNodes(
