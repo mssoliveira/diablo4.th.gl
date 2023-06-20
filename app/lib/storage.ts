@@ -31,6 +31,39 @@ export const withStorageDOMEvents = (store: StoreWithPersist) => {
   };
 };
 
+function filterDiscoveredNodes(discoveredNodes: string[]) {
+  try {
+    if (!Array.isArray(discoveredNodes)) {
+      return [];
+    } else if (
+      discoveredNodes.some((node: unknown) => typeof node !== "string")
+    ) {
+      return [];
+    }
+    return discoveredNodes
+      .map((nodeId) => {
+        const [type, rest] = nodeId.split(":");
+        if (!(type in nodes)) {
+          return null;
+        }
+        const name = rest.split("-")[0];
+        if (!name) {
+          return null;
+        }
+
+        const node = (
+          nodes[type as keyof typeof nodes] as (typeof nodes)["dungeons"]
+        ).find((node) => node.name === name);
+        if (!node) {
+          return null;
+        }
+        return getID(node, type as NODE_TYPE);
+      })
+      .filter(Boolean) as string[];
+  } catch (error) {
+    return [];
+  }
+}
 export const useDiscoveredNodesStore = create(
   persist<{
     discoveredNodes: string[];
@@ -48,48 +81,18 @@ export const useDiscoveredNodesStore = create(
             (discoveredNode) => discoveredNode !== node
           ),
         }),
-      setDiscoveredNodes: (discoveredNodes) => set({ discoveredNodes }),
+      setDiscoveredNodes: (discoveredNodes) =>
+        set({ discoveredNodes: filterDiscoveredNodes(discoveredNodes) }),
     }),
     {
       name: "discovered-nodes-storage",
-      onRehydrateStorage: () => {
-        return (state) => {
-          if (state?.discoveredNodes) {
-            try {
-              if (!Array.isArray(state.discoveredNodes)) {
-                state.discoveredNodes = [];
-              } else if (
-                state.discoveredNodes.some((node) => typeof node !== "string")
-              ) {
-                state.discoveredNodes = [];
-              }
-              state.discoveredNodes = state.discoveredNodes
-                .map((nodeId: string) => {
-                  const [type, rest] = nodeId.split(":");
-                  if (!(type in nodes)) {
-                    return null;
-                  }
-                  const name = rest.split("-")[0];
-                  if (!name) {
-                    return null;
-                  }
-
-                  const node = (
-                    nodes[
-                      type as keyof typeof nodes
-                    ] as (typeof nodes)["dungeons"]
-                  ).find((node) => node.name === name);
-                  if (!node) {
-                    return null;
-                  }
-                  return getID(node, type as NODE_TYPE);
-                })
-                .filter(Boolean) as string[];
-            } catch (error) {
-              return null;
-            }
-          }
-        };
+      merge: (persistentState: any, currentState) => {
+        if (persistentState?.discoveredNodes) {
+          persistentState.discoveredNodes = filterDiscoveredNodes(
+            persistentState.discoveredNodes
+          );
+        }
+        return { ...currentState, ...persistentState };
       },
     }
   )
