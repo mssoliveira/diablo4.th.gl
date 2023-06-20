@@ -72,13 +72,15 @@ export default function Nodes() {
             item.name.toLowerCase().includes(search) ||
             dict.nodes[type].toLowerCase().includes(search) ||
             ("attribute" in item &&
-              item.attribute.toLowerCase().includes(search))
+              item.attribute.toLowerCase().includes(search)) ||
+            ("aspect" in item && item.aspect.toLowerCase().includes(search))
           );
         }
         const id = getID(item, type);
         let isDiscovered = discoveredNodes.includes(id);
 
         const attribute = "attribute" in item ? item.attribute : undefined;
+        const aspect = "aspect" in item ? item.aspect : undefined;
         const marker = new CanvasMarker([item.x, item.y], {
           id,
           type,
@@ -90,6 +92,7 @@ export default function Nodes() {
           isHighlighted,
           isDiscovered,
           interactive: !isTrivial,
+          aspect,
         });
 
         marker.on("click", () => {
@@ -135,6 +138,10 @@ export default function Nodes() {
               dict.territories[territory.id]
             }</p>`;
           }
+          if ("aspect" in item) {
+            tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2 text-lg font-bold">${item.aspect}</p>`;
+          }
+
           if ("description" in item) {
             tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2">${
               attributeColor
@@ -290,7 +297,8 @@ export default function Nodes() {
           isTrivial = !(
             marker.options.name.toLowerCase().includes(search) ||
             dict.nodes[marker.options.type].toLowerCase().includes(search) ||
-            marker.options.attribute?.toLowerCase().includes(search)
+            marker.options.attribute?.toLowerCase().includes(search) ||
+            marker.options.aspect?.toLowerCase().includes(search)
           );
           if (!isTrivial) {
             highlightedGroup.addLayer(marker);

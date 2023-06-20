@@ -1,6 +1,7 @@
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
 import { ICONS, SPAWN_ICONS } from "./icons";
+import nodes, { getID } from "./nodes";
 
 export const ALL_FILTERS = [...Object.keys(ICONS), ...Object.keys(SPAWN_ICONS)];
 
@@ -51,6 +52,31 @@ export const useDiscoveredNodesStore = create(
     }),
     {
       name: "discovered-nodes-storage",
+      version: 1,
+      migrate: (persistedState: any, version) => {
+        if (version === 0) {
+          const discoveredNodes = persistedState.discoveredNodes as string[];
+          // if the stored value is in version 0, we rename the field to the new name
+          persistedState.discoveredNodes = discoveredNodes
+            .map((node: string) => {
+              if (node.startsWith("dungeons:")) {
+                const [name] = node.replace("dungeons:", "").split("-");
+                const dungeon = nodes.dungeons.find(
+                  (dungeon) => dungeon.name === name
+                );
+                if (!dungeon) {
+                  return null;
+                }
+                return getID(dungeon, "dungeons");
+              } else {
+                return node;
+              }
+            })
+            .filter(Boolean);
+        }
+
+        return persistedState;
+      },
       onRehydrateStorage: () => {
         return (state) => {
           if (state?.discoveredNodes) {
