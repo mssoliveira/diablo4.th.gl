@@ -52,7 +52,7 @@ export const useDiscoveredNodesStore = create(
     }),
     {
       name: "discovered-nodes-storage",
-      version: 1,
+      version: 2,
       migrate: (persistedState: any, version) => {
         if (version === 0) {
           const discoveredNodes = persistedState.discoveredNodes as string[];
@@ -68,6 +68,26 @@ export const useDiscoveredNodesStore = create(
                   return null;
                 }
                 return getID(dungeon, "dungeons");
+              } else {
+                return node;
+              }
+            })
+            .filter(Boolean);
+        }
+        if (version === 1) {
+          const discoveredNodes = persistedState.discoveredNodes as string[];
+          // if the stored value is in version 0, we rename the field to the new name
+          persistedState.discoveredNodes = discoveredNodes
+            .map((node: string) => {
+              if (node.startsWith("cellars:")) {
+                const [name] = node.replace("cellars:", "").split("-");
+                const cellar = nodes.cellars.find(
+                  (cellar) => cellar.name === name
+                );
+                if (!cellar) {
+                  return null;
+                }
+                return getID(cellar, "cellars");
               } else {
                 return node;
               }
