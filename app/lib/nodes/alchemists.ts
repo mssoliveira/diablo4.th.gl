@@ -34,4 +34,4 @@ export const alchemists = [
     y: 66.65724193703119,
     name: "Jaral",
   },
-] as const;
+];

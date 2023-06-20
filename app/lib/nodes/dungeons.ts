@@ -19,18 +19,6 @@ export const dungeons = [
     y: 74.2650950508225,
   },
   {
-    name: "Icehowl Ruins",
-    description: "An unknown evil stirs within these abandoned halls.",
-    x: -102.66158030709487,
-    y: 109.81139925666119,
-  },
-  {
-    name: "Horadric Vault",
-    description: "A hall of magical study built upon ancient mage clan ruins.",
-    x: -102.74291703062838,
-    y: 133.57654415387722,
-  },
-  {
     name: "Horadric Vault",
     description: "A hall of magical study built upon ancient mage clan ruins.",
     x: -102.74291703062838,
@@ -244,12 +232,6 @@ export const dungeons = [
     aspect: "Aspect of Tempering Blows",
   },
   {
-    name: "Guulrahn",
-    description: "The blood-soaked streets where cannibals feed.",
-    x: -90.25589565730057,
-    y: 87.76760646162727,
-  },
-  {
     name: "Calibel's Mine",
     description: "The bandits that took this mine are ignorant of its secrets.",
     x: -28.895302173997777,
@@ -311,10 +293,11 @@ export const dungeons = [
     aspect: "Aspect Charged",
   },
   {
-    name: "Weeping Cairns",
-    description: "A silent resting place of Scosglen's deceased, now awoken.",
+    name: "Penitent Cairns",
+    description: "Glenfolk know to avoid grottoes the spirits hold sacred.",
     x: -38.35762657872195,
     y: 110.98926928421403,
+    aspect: "Aspect Death Wish",
   },
   {
     name: "Ferals' Den",
@@ -343,16 +326,11 @@ export const dungeons = [
     y: 99.78493831882912,
   },
   {
-    name: "Eldhaime Ruins",
-    description: "These overrun battlements should lead to the Great Hall.",
-    x: -70.75976624643462,
-    y: 98.90985885264585,
-  },
-  {
-    name: "Eldhaime Barracks",
-    description: "Astaroth's soulstone rests in the depths of Eldhaime Keep.",
+    name: "Demon's Wake",
+    description: "The keep still burns in the wake of Lilith’s attack.",
     x: -66.58561871723424,
     y: 101.11822562574503,
+    aspect: "Aspect of Uncanny Treachery",
   },
   {
     name: "Ancient Reservoir",
@@ -629,12 +607,6 @@ export const dungeons = [
     y: 140.1870202146352,
   },
   {
-    name: "Temple of The Primes",
-    description: "The seat of the Triune's power, hidden for millennia.",
-    x: -79.07088753811257,
-    y: 95.26887381236638,
-  },
-  {
     name: "Flooded Depths",
     description: "More than the waters have made claim to these shipwrecks.",
     x: -15.762086868254942,
@@ -703,13 +675,6 @@ export const dungeons = [
     aspect: "Aspect of Inner Calm",
   },
   {
-    name: "Penitent Cairns",
-    description: "Glenfolk know to avoid grottoes the spirits hold sacred.",
-    x: -38.35762657872195,
-    y: 110.98926928421403,
-    aspect: "Aspect Death Wish",
-  },
-  {
     name: "Vault of The Forsaken",
     description: "The voices in these flooded caves lure many to their demise.",
     x: -33.09042136821047,
@@ -756,10 +721,11 @@ export const dungeons = [
     y: 133.5621590286626,
   },
   {
-    name: "Slithering Dark",
-    description: "The deep winding tunnels are home to Hawezar's serpents.",
+    name: "Serpent's Lair",
+    description: "Once the seat of Mohlon's throne. They want another queen.",
     x: -139.5406886395012,
     y: 125.90005977584462,
+    aspect: "Aspect of Three Curses",
   },
   {
     name: "Oblivion",
@@ -824,13 +790,6 @@ export const dungeons = [
     aspect: "Aspect Bladedancer's",
   },
   {
-    name: "Serpent's Lair",
-    description: "Once the seat of Mohlon's throne. They want another queen.",
-    x: -139.5406886395012,
-    y: 125.90005977584462,
-    aspect: "Aspect of Three Curses",
-  },
-  {
     name: "Darkened Holt",
     description: "An arcane mist shrouds these forested paths.",
     x: -103.61732059029065,
@@ -860,13 +819,6 @@ export const dungeons = [
     x: -148.79655690601155,
     y: 121.04769082768982,
     aspect: "Aspect of Branching Volleys",
-  },
-  {
-    name: "Demon's Wake",
-    description: "The keep still burns in the wake of Lilith’s attack.",
-    x: -66.58561871723424,
-    y: 101.11822562574503,
-    aspect: "Aspect of Uncanny Treachery",
   },
   {
     name: "Broken Bulwark",
@@ -1045,18 +997,6 @@ export const dungeons = [
     description: "The cavernous, filth-strewn caves beneath Kyovashad.",
     x: -95.14575994644387,
     y: 125.27164851814366,
-  },
-  {
-    name: "Ominous Cellar",
-    description: "Kvera and Petr shelter Sister Octavia from prying eyes.",
-    x: -94.32502707712237,
-    y: 126.69649768209776,
-  },
-  {
-    name: "Ominous Cellar",
-    description: "Kvera and Petr shelter Sister Octavia from prying eyes.",
-    x: -94.32502707712237,
-    y: 126.69649768209776,
   },
   {
     name: "Ominous Cellar",

@@ -1,11 +1,10 @@
 import { useCallback } from "react";
-import { ICONS, SPAWN_ICONS } from "../lib/icons";
-import { useGlobalSettingsStore } from "../lib/storage";
+import { ALL_FILTERS, useGlobalSettingsStore } from "../lib/storage";
 
 export default function useFilters() {
   const globalSettingsStore = useGlobalSettingsStore();
   const setFilters = useCallback((newFilters: string[]) => {
-    newFilters = newFilters.filter((f) => f in ICONS || f in SPAWN_ICONS);
+    newFilters = newFilters.filter((f) => ALL_FILTERS.includes(f));
     globalSettingsStore.setFilters(newFilters);
   }, []);
 

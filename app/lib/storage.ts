@@ -1,9 +1,11 @@
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ICONS, SPAWN_ICONS } from "./icons";
-import nodes, { NODE_TYPE, getID } from "./nodes";
+import { NODE_TYPE, getID, spawnNodes, staticNodes } from "./nodes";
 
-export const ALL_FILTERS = [...Object.keys(ICONS), ...Object.keys(SPAWN_ICONS)];
+export const ALL_FILTERS = [
+  ...Object.keys(staticNodes),
+  ...Object.keys(spawnNodes),
+];
 
 type StoreWithPersist<State = any> = Mutate<
   StoreApi<State>,
@@ -45,7 +47,7 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
         discoveredNodes
           .map((nodeId) => {
             const [type, rest] = nodeId.split(":");
-            if (!(type in nodes)) {
+            if (!(type in staticNodes)) {
               return null;
             }
             const name = rest.split("-")[0];
@@ -54,7 +56,9 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
             }
 
             const node = (
-              nodes[type as keyof typeof nodes] as (typeof nodes)["dungeons"]
+              staticNodes[
+                type as keyof typeof staticNodes
+              ] as (typeof staticNodes)["dungeons"]
             ).find((node) => node.name === name);
             if (!node) {
               return null;

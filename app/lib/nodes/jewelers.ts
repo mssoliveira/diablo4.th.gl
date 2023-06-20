@@ -24,4 +24,4 @@ export const jewelers = [
     y: 65.53065754518497,
     name: "Tungal",
   },
-] as const;
+];

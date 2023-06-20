@@ -1115,4 +1115,4 @@ export const altars = [
     description: "Dexterity +2",
     attribute: "Dexterity",
   },
-] as const;
+];

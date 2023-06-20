@@ -50,7 +50,22 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       renderer: leaflet.canvas(),
     });
 
-    map.setView([-100, 100], 3);
+    const isOverwolf = "value" in router;
+    const paramsCoordinates = isOverwolf
+      ? router.value.coordinates
+      : params.coordinates;
+    const coordinates = (
+      paramsCoordinates && decodeURIComponent(paramsCoordinates)
+    )
+      ?.replace("@", "")
+      .split(",")
+      .map(Number);
+    if (coordinates) {
+      map.setView(coordinates as [number, number], 8);
+    } else {
+      map.setView([-100, 100], 3);
+    }
+
     setMap(map);
 
     map.on("click", (event) => {
