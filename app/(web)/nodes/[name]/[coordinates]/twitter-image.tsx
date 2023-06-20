@@ -19,7 +19,7 @@ export default async function Image({
   const screenshot = await takeScreenshot(url, size);
   const response = new NextResponse(screenshot, {
     headers: {
-      "Content-Type": "image/jpeg",
+      "Content-Type": contentType,
       "Cache-Control": "public, max-age=31536000, stale-while-revalidate",
     },
   });

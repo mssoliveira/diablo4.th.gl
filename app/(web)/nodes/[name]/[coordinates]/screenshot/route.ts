@@ -1,5 +1,5 @@
 import { takeScreenshot } from "@/app/lib/screenshots";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
@@ -10,12 +10,11 @@ export const size = {
 
 export const contentType = "image/jpeg";
 
-export default async function Image({
-  params: { name, coordinates },
-}: {
-  params: { name: string; coordinates: string };
-}) {
-  const url = `https://diablo4.th.gl/embed/nodes/${name}/${coordinates}`;
+export async function GET(request: NextRequest) {
+  const url = `https://diablo4.th.gl/embed/${request.nextUrl.pathname.replace(
+    "/screenshot",
+    ""
+  )}`;
   const screenshot = await takeScreenshot(url, size);
   const response = new NextResponse(screenshot, {
     headers: {
