@@ -1,6 +1,4 @@
-import { ICON, SPAWN_ICON } from "@/app/lib/icons";
-import nodes from "@/app/lib/nodes";
-import spawnNodes from "@/app/lib/spawn-nodes";
+import { ICON } from "@/app/lib/icons";
 import leaflet from "leaflet";
 
 const cachedImages: Record<string, HTMLImageElement> = {};
@@ -10,14 +8,10 @@ leaflet.Canvas.include({
       type,
       icon,
       attribute = "",
-      isTrivial,
       isHighlighted,
       isDiscovered,
     } = layer.options;
 
-    if (isTrivial && !isHighlighted) {
-      return;
-    }
     const radius = layer.getRadius();
     const imageSize = radius * 2;
     const p = layer._point.round();
@@ -85,14 +79,12 @@ const renderer = leaflet.canvas({ pane: "markerPane" }) as leaflet.Canvas & {
 
 export type CanvasMarkerOptions = {
   id: string;
-  type: keyof typeof nodes | keyof typeof spawnNodes;
-  name: string;
+  type: string;
   attribute?: string;
   aspect?: string;
-  isTrivial?: boolean;
   isHighlighted?: boolean;
   isDiscovered?: boolean;
-  icon: ICON | SPAWN_ICON;
+  icon: ICON;
 };
 
 class CanvasMarker extends leaflet.CircleMarker {

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { API_BASE_URI } from "./env";
 import { DEFAULT_LOCALE, LOCALES, loadDictionary } from "./i18n";
-import nodes from "./nodes";
+import { nodes } from "./nodes";
 import { getTerritoryByPoint } from "./territories";
 
 export function generateMetadata({
@@ -12,25 +12,15 @@ export function generateMetadata({
   const dict = loadDictionary(lang);
   const title = name ? decodeURIComponent(name) : "Sanctuary";
 
-  let node = null;
-  let type = null;
-  for (const [_type, items] of Object.entries(nodes)) {
-    type = _type as keyof typeof nodes;
-    for (const item of items) {
-      if (item.name === title) {
-        node = item;
-        break;
-      }
-    }
-    if (node) {
-      break;
-    }
-  }
+  const node = nodes.find((node) =>
+    "name" in node ? node.name : node.type === title
+  );
+  const type = node?.type;
 
   let description = dict.meta.description;
   if (node) {
     const territory = getTerritoryByPoint([node.x, node.y]);
-    description = node.name;
+    description = "name" in node ? node.name : "";
     if (type) {
       description += ` (${dict.nodes[type]})`;
     }
@@ -38,7 +28,7 @@ export function generateMetadata({
       description += ` in ${dict.territories[territory.id]}`;
     }
     if ("description" in node) {
-      description += `. ${node.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
+      description += `. ${node.description?.replace(/<\/?[^>]+(>|$)/g, "")}`;
     }
   }
 

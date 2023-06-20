@@ -1,9 +1,11 @@
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ICONS, SPAWN_ICONS } from "./icons";
-import nodes, { NODE_TYPE, getID } from "./nodes";
+import { NODE_TYPE, getID, spawnNodes, staticNodes } from "./nodes";
 
-export const ALL_FILTERS = [...Object.keys(ICONS), ...Object.keys(SPAWN_ICONS)];
+export const ALL_FILTERS = [
+  ...Object.keys(staticNodes),
+  ...Object.keys(spawnNodes),
+];
 
 type StoreWithPersist<State = any> = Mutate<
   StoreApi<State>,
@@ -40,26 +42,32 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
     ) {
       return [];
     }
-    return discoveredNodes
-      .map((nodeId) => {
-        const [type, rest] = nodeId.split(":");
-        if (!(type in nodes)) {
-          return null;
-        }
-        const name = rest.split("-")[0];
-        if (!name) {
-          return null;
-        }
+    return [
+      ...new Set(
+        discoveredNodes
+          .map((nodeId) => {
+            const [type, rest] = nodeId.split(":");
+            if (!(type in staticNodes)) {
+              return null;
+            }
+            const name = rest.split("-")[0];
+            if (!name) {
+              return null;
+            }
 
-        const node = (
-          nodes[type as keyof typeof nodes] as (typeof nodes)["dungeons"]
-        ).find((node) => node.name === name);
-        if (!node) {
-          return null;
-        }
-        return getID(node, type as NODE_TYPE);
-      })
-      .filter(Boolean) as string[];
+            const node = (
+              staticNodes[
+                type as keyof typeof staticNodes
+              ] as (typeof staticNodes)["dungeons"]
+            ).find((node) => node.name === name);
+            if (!node) {
+              return null;
+            }
+            return getID(node, type as NODE_TYPE);
+          })
+          .filter(Boolean) as string[]
+      ),
+    ];
   } catch (error) {
     return [];
   }
@@ -67,19 +75,20 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
 export const useDiscoveredNodesStore = create(
   persist<{
     discoveredNodes: string[];
-    markDiscoveredNode: (node: string) => void;
-    unmarkDiscoveredNode: (node: string) => void;
+    toggleDiscoveredNode: (node: string) => void;
     setDiscoveredNodes: (discoveredNodes: string[]) => void;
   }>(
     (set, get) => ({
       discoveredNodes: [],
-      markDiscoveredNode: (node) =>
-        set({ discoveredNodes: [...get().discoveredNodes, node] }),
-      unmarkDiscoveredNode: (node) =>
-        set({
-          discoveredNodes: get().discoveredNodes.filter(
-            (discoveredNode) => discoveredNode !== node
-          ),
+      toggleDiscoveredNode: (node) =>
+        set((state) => {
+          if (state.discoveredNodes.includes(node)) {
+            return {
+              discoveredNodes: state.discoveredNodes.filter((n) => n !== node),
+            };
+          } else {
+            return { discoveredNodes: [...state.discoveredNodes, node] };
+          }
         }),
       setDiscoveredNodes: (discoveredNodes) =>
         set({ discoveredNodes: filterDiscoveredNodes(discoveredNodes) }),

@@ -159,4 +159,4 @@ export const healers = [
     y: 64.14899542293142,
     name: "Maral",
   },
-] as const;
+];

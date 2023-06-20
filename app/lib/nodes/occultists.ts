@@ -24,4 +24,4 @@ export const occultists = [
     y: 66.77331441390338,
     name: "Nomin",
   },
-] as const;
+];
