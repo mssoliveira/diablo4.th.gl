@@ -189,6 +189,13 @@ export const dungeons = [
     aspect: "Aspect Trickster's",
   },
   {
+    name: "Guulrahn Slums",
+    description: "Cannibals still hold the streets of the city Guulrahn.",
+    x: -90.25589565730057,
+    y: 87.76760646162727,
+    aspect: "Aspect Splintering",
+  },
+  {
     name: "Whispering Vault",
     description: "Scholarly halls haunted by whispering spirits of the insane.",
     x: -89.8616690841699,
@@ -228,6 +235,12 @@ export const dungeons = [
     x: -107.9804970071792,
     y: 112.62211093609939,
     aspect: "Aspect of Tempering Blows",
+  },
+  {
+    name: "Guulrahn",
+    description: "The blood-soaked streets where cannibals feed.",
+    x: -90.25589565730057,
+    y: 87.76760646162727,
   },
   {
     name: "Calibel's Mine",
@@ -587,6 +600,13 @@ export const dungeons = [
     x: -91.32673250225844,
     y: 141.18411227315806,
     aspect: "Aspect Stormclaw's",
+  },
+  {
+    name: "Cultist Refuge",
+    description: "The last bastion of Nostrava’s cultists.",
+    x: -96.57881751191536,
+    y: 110.15194538030002,
+    aspect: "Aspect Flamewalker’s",
   },
   {
     name: "Untamed Thicket",
@@ -982,6 +1002,12 @@ export const dungeons = [
     y: 128.18135020177007,
   },
   {
+    name: "Halls of Dark Portent",
+    description: "Elias entered the dark passages underneath the Esret chapel.",
+    x: -154.7857045324103,
+    y: 105.87412884580202,
+  },
+  {
     name: "Wasting Hollow",
     description: "A bloodstained feeding ground of the cannibal horde.",
     x: -95.67756570862429,
@@ -998,6 +1024,24 @@ export const dungeons = [
     description: "The cavernous, filth-strewn caves beneath Kyovashad.",
     x: -95.14575994644387,
     y: 125.27164851814366,
+  },
+  {
+    name: "Ominous Cellar",
+    description: "Kvera and Petr shelter Sister Octavia from prying eyes.",
+    x: -94.32502707712237,
+    y: 126.69649768209776,
+  },
+  {
+    name: "Ominous Cellar",
+    description: "Kvera and Petr shelter Sister Octavia from prying eyes.",
+    x: -94.32502707712237,
+    y: 126.69649768209776,
+  },
+  {
+    name: "Ominous Cellar",
+    description: "Kvera's husband has been locked inside for his own safety.",
+    x: -94.32502707712237,
+    y: 126.69649768209776,
   },
   {
     name: "Charnel Cave",
