@@ -1,6 +1,6 @@
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
-import { NODE_TYPE, getID, spawnNodes, staticNodes } from "./nodes";
+import { NODE_TYPE, getID, nodes, spawnNodes, staticNodes } from "./nodes";
 
 export const ALL_FILTERS = [
   ...Object.keys(staticNodes),
@@ -46,7 +46,13 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
       ...new Set(
         discoveredNodes
           .map((nodeId) => {
+            if (nodes.some((node) => node.id === nodeId)) {
+              return nodeId;
+            }
             const [type, rest] = nodeId.split(":");
+            if (!rest) {
+              return null;
+            }
             if (!(type in staticNodes)) {
               return null;
             }
@@ -55,13 +61,30 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
               return null;
             }
 
-            const node = (
+            let node = (
               staticNodes[
                 type as keyof typeof staticNodes
-              ] as (typeof staticNodes)["dungeons"]
+              ] as (typeof staticNodes)[keyof typeof staticNodes]
             ).find((node) => node.name === name);
             if (!node) {
-              return null;
+              if (type === "dungeons") {
+                node = staticNodes.campaignDungeons.find(
+                  (node) => node.name === name
+                );
+                if (node) {
+                  return getID(node, "campaignDungeons");
+                }
+                node = staticNodes.sideQuestDungeons.find(
+                  (node) => node.name === name
+                );
+                if (node) {
+                  return getID(node, "sideQuestDungeons");
+                } else {
+                  return null;
+                }
+              } else {
+                return null;
+              }
             }
             return getID(node, type as NODE_TYPE);
           })
@@ -78,7 +101,7 @@ export const useDiscoveredNodesStore = create(
     toggleDiscoveredNode: (node: string) => void;
     setDiscoveredNodes: (discoveredNodes: string[]) => void;
   }>(
-    (set, get) => ({
+    (set) => ({
       discoveredNodes: [],
       toggleDiscoveredNode: (node) =>
         set((state) => {

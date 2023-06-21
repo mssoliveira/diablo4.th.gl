@@ -1,11 +1,5 @@
 export const dungeons = [
   {
-    name: "Cutthroat's Escape",
-    description: "The bandit hideout has to have Perithan, hopefully alive.",
-    x: -108.61008919040923,
-    y: 128.1814583031361,
-  },
-  {
     name: "Mournfield",
     description: "What walks here is living and dead and will rob you.",
     x: -79.72742316787901,
@@ -13,29 +7,11 @@ export const dungeons = [
     aspect: "Aspect of Berserk Ripping",
   },
   {
-    name: "Infected Delve",
-    description: "An abandoned mine now festers with maggots and disease. ",
-    x: -58.34047638456405,
-    y: 74.2650950508225,
-  },
-  {
-    name: "Horadric Vault",
-    description: "A hall of magical study built upon ancient mage clan ruins.",
-    x: -102.74291703062838,
-    y: 133.57654415387722,
-  },
-  {
     name: "Onyx Hold",
     description: "Undead wardens still patrol the halls of this prison.",
     x: -81.032014475809,
     y: 72.10431690130795,
     aspect: "Aspect Storm Swell",
-  },
-  {
-    name: "Borza's Hideout",
-    description: "Borza, the thief who left Nizaar to die, hides in the caves.",
-    x: -82.12496514768705,
-    y: 70.97666023126521,
   },
   {
     name: "Crumbling Hekma",
@@ -64,12 +40,6 @@ export const dungeons = [
     x: -68.01382994286557,
     y: 73.12989312381659,
     aspect: "Aspect of Might",
-  },
-  {
-    name: "Temple of The Primes",
-    description: "The seat of the Triune's power, hidden for millennia.",
-    x: -76.56031739060938,
-    y: 99.36408768956171,
   },
   {
     name: "Light's Watch",
@@ -191,12 +161,6 @@ export const dungeons = [
     aspect: "Aspect of Unstable Imbuements",
   },
   {
-    name: "Fallen Temple",
-    description: "One of the Triune's most formidable temples.",
-    x: -76.56028135682071,
-    y: 99.36405165577304,
-  },
-  {
     name: "Shifting City",
     description: "These ruins were once a refuge for the people of Qara-Yisu.",
     x: -103.63381587600908,
@@ -267,11 +231,6 @@ export const dungeons = [
     aspect: "Aspect Snowveiled",
   },
   {
-    name: "The Forlorn Hovel",
-    x: -64.27219980096781,
-    y: 152.72166242357085,
-  },
-  {
     name: "Hive",
     description: "An insatiable will drives these creatures to feed.",
     x: -68.28419391618777,
@@ -293,13 +252,6 @@ export const dungeons = [
     aspect: "Aspect Charged",
   },
   {
-    name: "Penitent Cairns",
-    description: "Glenfolk know to avoid grottoes the spirits hold sacred.",
-    x: -38.35762657872195,
-    y: 110.98926928421403,
-    aspect: "Aspect Death Wish",
-  },
-  {
     name: "Ferals' Den",
     description: "A lodge corrupted by the druids' hate.",
     x: -42.3475420818607,
@@ -312,25 +264,6 @@ export const dungeons = [
     x: -43.92760515265841,
     y: 134.96042399203412,
     aspect: "Aspect Shadowslicer",
-  },
-  {
-    name: "Donan's Study",
-    description: "A private office where Donan handles his many affairs.",
-    x: -61.44990626128438,
-    y: 99.82891264421575,
-  },
-  {
-    name: "Eldhaime Ruins",
-    description: "These overrun battlements should lead to the Great Hall.",
-    x: -68.68940451625144,
-    y: 99.78493831882912,
-  },
-  {
-    name: "Demon's Wake",
-    description: "The keep still burns in the wake of Lilith’s attack.",
-    x: -66.58561871723424,
-    y: 101.11822562574503,
-    aspect: "Aspect of Uncanny Treachery",
   },
   {
     name: "Ancient Reservoir",
@@ -361,28 +294,11 @@ export const dungeons = [
     aspect: "Aspect Prodigy’s",
   },
   {
-    name: "Quiet Clearing",
-    description: 'A hidden clearing Lyndon uses to stash "the good stuff."',
-    x: -148.2574149920356,
-    y: 138.73153905450332,
-  },
-  {
-    name: "Secluded Clearing",
-    description: "Only Lyndon and the Drowned know of this hidden clearing.",
-    x: -151.41221686837017,
-    y: 140.93093013842196,
-  },
-  {
     name: "Faceless Shrine",
     description: "One of Hawezar’s less secretive cults. Sinners welcome.",
     x: -154.94253013234763,
     y: 138.24646311061062,
     aspect: "Aspect Unyielding Commander's",
-  },
-  {
-    name: "Hidden Glade",
-    x: -153.72026838802262,
-    y: 141.88247330418614,
   },
   {
     name: "Ruins of Eridu",
@@ -460,12 +376,6 @@ export const dungeons = [
     x: -125.482151846824,
     y: 31.162953324103146,
     aspect: "Aspect Iron Blood",
-  },
-  {
-    name: "Tunnels Beneath The Oasis",
-    description: "Sharp acrid smells seep from the hidden caverns.",
-    x: -127.86985551038914,
-    y: 38.4721867875647,
   },
   {
     name: "Corrupted Grotto",
@@ -601,23 +511,11 @@ export const dungeons = [
     aspect: "Aspect Flamewalker’s",
   },
   {
-    name: "Untamed Thicket",
-    description: "Nafain's corrupted blood pools within.",
-    x: -48.50800416704551,
-    y: 140.1870202146352,
-  },
-  {
     name: "Flooded Depths",
     description: "More than the waters have made claim to these shipwrecks.",
     x: -15.762086868254942,
     y: 96.41642331762696,
     aspect: "Aspect of Empowering Reaper",
-  },
-  {
-    name: "The Exalted Terrace",
-    description: "A place of study where Elias shares Lilith's gifts.",
-    x: -110.18602830328572,
-    y: 93.06102379655489,
   },
   {
     name: "Underroot",
@@ -662,12 +560,6 @@ export const dungeons = [
     aspect: "Aspect Opportunist's",
   },
   {
-    name: "Condemned Mines",
-    description: "These unstable tunnels were shut down by the Cathedral.",
-    x: -100.2234705598468,
-    y: 145.88881475529845,
-  },
-  {
     name: "Raethwind Wilds",
     description: "Too many have vanished into these woods.",
     x: -47.992445821794696,
@@ -675,17 +567,18 @@ export const dungeons = [
     aspect: "Aspect of Inner Calm",
   },
   {
+    name: "Penitent Cairns",
+    description: "Glenfolk know to avoid grottoes the spirits hold sacred.",
+    x: -38.35762657872195,
+    y: 110.98926928421403,
+    aspect: "Aspect Death Wish",
+  },
+  {
     name: "Vault of The Forsaken",
     description: "The voices in these flooded caves lure many to their demise.",
     x: -33.09042136821047,
     y: 117.85736181958184,
     aspect: "Aspect Requiem",
-  },
-  {
-    name: "Foul Undercrypts",
-    description: "The sealed resting place of the Que-Hegan Sankekur.",
-    x: -132.59831190280119,
-    y: 117.58364260916359,
   },
   {
     name: "Steadfast Barracks",
@@ -707,25 +600,6 @@ export const dungeons = [
     x: -131.5381388754269,
     y: 119.21308398171706,
     aspect: "Aspect Fastblood",
-  },
-  {
-    name: "Hungering Swamp",
-    description: "A place of great occult power for the witches of Hawezar.",
-    x: -124.72761304730936,
-    y: 128.1813130760484,
-  },
-  {
-    name: "Horadric Vault",
-    description: "A hall of magical study built upon ancient mage clan ruins.",
-    x: -102.75787432872995,
-    y: 133.5621590286626,
-  },
-  {
-    name: "Serpent's Lair",
-    description: "Once the seat of Mohlon's throne. They want another queen.",
-    x: -139.5406886395012,
-    y: 125.90005977584462,
-    aspect: "Aspect of Three Curses",
   },
   {
     name: "Oblivion",
@@ -770,12 +644,6 @@ export const dungeons = [
     aspect: "Aspect Blast-Trapper's",
   },
   {
-    name: "Orbei Monastery Halls",
-    description: "An old Zakarum monastery where secret knowledge is hoarded.",
-    x: -82.53418669060743,
-    y: 64.07650417556933,
-  },
-  {
     name: "Aldurwood",
     description: "In this corrupted wood, blood runs like sap from the trees.",
     x: -51.291758477801665,
@@ -790,28 +658,11 @@ export const dungeons = [
     aspect: "Aspect Bladedancer's",
   },
   {
-    name: "Darkened Holt",
-    description: "An arcane mist shrouds these forested paths.",
-    x: -103.61732059029065,
-    y: 136.4718274083328,
-  },
-  {
-    name: "Mithering Descent",
-    description: "A hidden recess leading to the hair-lined depths.",
-    x: -20.472222808955205,
-    y: 105.280674184887,
-  },
-  {
-    name: "Cathedral of Light",
-    description: "Were you ever truly welcome here?",
-    x: -87.18335373384284,
-    y: 125.12225870888723,
-  },
-  {
-    name: "Foul Undercrypts",
-    description: "The sealed resting place of the Que-Hegan Sankekur.",
-    x: -132.58392896145256,
-    y: 117.60353762824742,
+    name: "Serpent's Lair",
+    description: "Once the seat of Mohlon's throne. They want another queen.",
+    x: -139.5406886395012,
+    y: 125.90005977584462,
+    aspect: "Aspect of Three Curses",
   },
   {
     name: "Shadowed Plunge",
@@ -819,6 +670,13 @@ export const dungeons = [
     x: -148.79655690601155,
     y: 121.04769082768982,
     aspect: "Aspect of Branching Volleys",
+  },
+  {
+    name: "Demon's Wake",
+    description: "The keep still burns in the wake of Lilith’s attack.",
+    x: -66.58561871723424,
+    y: 101.11822562574503,
+    aspect: "Aspect of Uncanny Treachery",
   },
   {
     name: "Broken Bulwark",
@@ -868,17 +726,6 @@ export const dungeons = [
     x: -50.34436684126671,
     y: 105.30117850257946,
     aspect: "Aspect Crashstone",
-  },
-  {
-    name: "Mahjoob's Safehouse",
-    description: "A place of reprieve for the Kehjistani guide.",
-    x: -121.78810623376212,
-    y: 61.09846140889381,
-  },
-  {
-    name: "Forgotten Cave",
-    x: -146.57791886523884,
-    y: 94.16794384016148,
   },
   {
     name: "Carrion Fields",
@@ -937,29 +784,11 @@ export const dungeons = [
     aspect: "Aspect Skinwalker's",
   },
   {
-    name: "Defiled Halls",
-    description: "Once a monument to faith, evil has left these halls twisted.",
-    x: -132.91801241144228,
-    y: 118.34358429311438,
-  },
-  {
     name: "Sanguine Chapel",
     description: "A snowed in abandoned Zakarum church invaded by vampires.",
     x: -90.00539530998874,
     y: 159.61573805041007,
     aspect: "Aspect Energizing",
-  },
-  {
-    name: "Saraan Caldera",
-    description: "A curse festers beneath the Ruins of Saraan.",
-    x: -102.86961756427873,
-    y: 95.42745114580343,
-  },
-  {
-    name: "Abandoned Barrow",
-    description: "Abandoned by the Druids since the time of Astaroth",
-    x: -64.22027947921055,
-    y: 124.48977317621608,
   },
   {
     name: "Immortal Emanation",
@@ -969,119 +798,10 @@ export const dungeons = [
     aspect: "Aspect Mangled",
   },
   {
-    name: "Hungering Swamp",
-    description: "Powerful ritual magic suffuses this place.",
-    x: -124.72765017303104,
-    y: 128.18135020177007,
-  },
-  {
-    name: "Halls of Dark Portent",
-    description: "Elias entered the dark passages underneath the Esret chapel.",
-    x: -154.7857045324103,
-    y: 105.87412884580202,
-  },
-  {
-    name: "Wasting Hollow",
-    description: "A bloodstained feeding ground of the cannibal horde.",
-    x: -95.67756570862429,
-    y: 73.84421166356537,
-  },
-  {
-    name: "Vizjerei Athenaeum",
-    description: "Ruins belonging to the once great Vizjerei Mage Clan.",
-    x: -116.16316712364006,
-    y: 35.631969167845014,
-  },
-  {
-    name: "Kyovashad Sewers",
-    description: "The cavernous, filth-strewn caves beneath Kyovashad.",
-    x: -95.14575994644387,
-    y: 125.27164851814366,
-  },
-  {
-    name: "Ominous Cellar",
-    description: "Kvera's husband has been locked inside for his own safety.",
-    x: -94.32502707712237,
-    y: 126.69649768209776,
-  },
-  {
-    name: "Charnel Cave",
-    description: "P:ermeated by a faint scent of desiccating remains",
-    x: -61.33065189167837,
-    y: 67.44140487857352,
-  },
-  {
-    name: "Lair of the Despoiler",
-    description: "A dark corruption has entered these halls.",
-    x: -48.80211850185714,
-    y: 80.33418090757743,
-  },
-  {
-    name: "Backwater Storage Cellar",
-    description: "A simple hole in the ground used by the people of Backwater.",
-    x: -151.36019281297882,
-    y: 146.43088741742045,
-  },
-  {
     name: "Forgotten Depths",
     description: "A shadow lies below these hallowed stones.",
     x: -81.63158832920185,
     y: 62.907915305451056,
     aspect: "Aspect of Biting Cold",
   },
-  {
-    name: "Alabaster Monastery",
-    description: "Inarius meditates in the solitude of this holy place.",
-    x: -89.54519141574978,
-    y: 158.00339634848518,
-  },
-  {
-    name: "Weeping Cairns",
-    description: "A silent resting place of Scosglen's deceased, now awoken.",
-    x: -37.80245508844792,
-    y: 112.21668276838741,
-  },
-  {
-    name: "The Hallowed Glacier",
-    description: "The Glacial Tunnels beneath the Bear Tribe encampment.",
-    x: -84.46400572560509,
-    y: 143.3008483974406,
-  },
-  {
-    name: "Offal Pits",
-    description: "These filthy caves hide a secret path into Guulrahn Palace.",
-    x: -91.52284585118787,
-    y: 85.31131411920745,
-  },
-  {
-    name: "Quest Dungeon Template: Kill Unique",
-    description:
-      "Bespoke Quest Dungeon template with objective Kill Unique Elite monster.",
-    x: -132.47696057825596,
-    y: 62.18352521939723,
-  },
-  {
-    name: "Loot Item Dungeon",
-    description: "Quest Template Dungeon",
-    x: -132.3277562952392,
-    y: 61.7413506061136,
-  },
-  {
-    name: "Quest Template Side Dungeon",
-    description: "A Side Dungeon where Side Quests can take place.",
-    x: -135.60468459792762,
-    y: 60.39764052582175,
-  },
-  {
-    name: "Template Quest Cellar",
-    description: "Eddie's private stash.",
-    x: -136.05617322900423,
-    y: 61.667048660870286,
-  },
-  {
-    name: "Cradle",
-    description: "Once home to the first humans, now overrun by demons.",
-    x: -134.78113617939053,
-    y: 75.07681401330882,
-  },
-] as const;
+];

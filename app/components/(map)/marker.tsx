@@ -34,7 +34,12 @@ const Marker = memo(function Marker({
     const icon = ICONS[type];
     const attribute = "attribute" in node ? node.attribute : undefined;
     const aspect = "aspect" in node ? node.aspect : undefined;
-    marker.current = new CanvasMarker([node.x, node.y], {
+    const latLng = [node.x, node.y] as [number, number];
+    if ("offset" in node && node.offset) {
+      latLng[0] += 0.05;
+      latLng[1] += 0.05;
+    }
+    marker.current = new CanvasMarker(latLng, {
       id,
       type,
       attribute,
@@ -89,7 +94,9 @@ const Marker = memo(function Marker({
       direction: "top",
       offset: [0, -icon.radius * iconSize],
     });
-
+    if (isDiscovered) {
+      marker.current.bringToBack();
+    }
     return () => {
       if (marker.current) {
         featureGroup.removeLayer(marker.current);
