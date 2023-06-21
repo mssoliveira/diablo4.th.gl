@@ -1,6 +1,7 @@
 import { additionalMonsters } from "./additionalMonsters";
 import { alchemists } from "./alchemists";
 import { altars } from "./altars";
+import { campaignDungeons } from "./campaignDungeons";
 import { cellars } from "./cellars";
 import { chestsAny } from "./chests_any";
 import { chestsT1 } from "./chests_t1";
@@ -12,6 +13,7 @@ import { healers } from "./healers";
 import { highValueTargets } from "./high_value_targets";
 import { jewelers } from "./jewelers";
 import { occultists } from "./occultists";
+import { sideQuestDungeons } from "./sideQuestDungeons";
 import { stableMasters } from "./stableMasters";
 import { waypoints } from "./waypoints";
 
@@ -30,6 +32,8 @@ export const staticNodes = {
   altars,
   cellars,
   dungeons,
+  campaignDungeons,
+  sideQuestDungeons,
   healers,
   jewelers,
   occultists,

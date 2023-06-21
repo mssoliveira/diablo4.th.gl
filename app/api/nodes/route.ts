@@ -19,7 +19,8 @@ async function _GET(request: NextRequest) {
     items.forEach((node) => {
       if (
         node.name.toLowerCase().includes(q) ||
-        ("attribute" in node && node.attribute?.toLowerCase().includes(q))
+        ("attribute" in node &&
+          (node.attribute as string)?.toLowerCase().includes(q))
       ) {
         result[key as NODE_TYPE].push(node);
       }

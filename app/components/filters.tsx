@@ -43,10 +43,14 @@ export default function Filters() {
                 toggleFilter(key);
               }}
             >
-              <svg viewBox="0 0 100 100" fill={icon.color} className="h-5">
+              <svg
+                viewBox="0 0 100 100"
+                fill={icon.color}
+                className="h-5 w-5 shrink-0"
+              >
                 <path d={icon.path} />
               </svg>
-              {dict.nodes[key]}
+              <span className="truncate">{dict.nodes[key]}</span>
             </button>
           );
         })}
