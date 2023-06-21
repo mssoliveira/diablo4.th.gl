@@ -844,67 +844,6 @@ export const sideQuests = [
       "I found what appears to be a traveler's protection amulet. Someone at the Yinsuk Shrine in Jirandai may be interested in this.",
   },
   {
-    x: -131.1419236193376,
-    y: 69.39331999658026,
-    name: "Template: Clone A to B",
-    description: "Transition an NPC from A to B with a Personal Clone",
-  },
-  {
-    x: -137.5662158238137,
-    y: 76.3670570487626,
-    name: "Template: Designer Variables Pt. 1",
-    description: "Honor the dead Barbarian",
-  },
-  {
-    x: -136.35293632026716,
-    y: 77.92640505880075,
-    name: "Template: Designer Variables Pt. 2",
-    description: "Speak to Ko",
-  },
-  {
-    x: -131.5241984399226,
-    y: 69.673477789876,
-    name: "Template: Escort NPC",
-    description:
-      "Creates a clone that travels from Point A to Point B. Player resets the sequence if they leave.",
-  },
-  {
-    x: -138.39030775199672,
-    y: 61.898938102294935,
-    name: "Template: Kill Collect from Unique Elite",
-    description: "Fetch an item from a unique enemy target.",
-  },
-  {
-    x: -138.34135994482241,
-    y: 62.0026872964215,
-    name: "Template: Kill Collect from Vignette Pack",
-    description: "Collect items from enemies spawned via Quest Vignette.",
-  },
-  {
-    x: -138.34135994482241,
-    y: 62.0026872964215,
-    name: "Template: Kill Unique Elite",
-    description: "Slay Big Summungus",
-  },
-  {
-    x: -137.5662158238137,
-    y: 76.3670570487626,
-    name: "Template: Place Keyhole Item",
-    description: "Take the crate into the house",
-  },
-  {
-    x: -138.34135994482241,
-    y: 62.0026872964215,
-    name: "Template: Quest Cellar",
-    description: "Complete the DSQ in a Quest Cellar",
-  },
-  {
-    x: -130.90213022096245,
-    y: 68.94270818769489,
-    name: "Template: Script Must Complete",
-    description: "Example case for the Script Must Complete flag.",
-  },
-  {
     x: -48.67402602662739,
     y: 79.3817052310395,
     name: "Tending Nature",
