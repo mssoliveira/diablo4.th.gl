@@ -73,7 +73,7 @@ const Marker = memo(function Marker({
       }
 
       if ("description" in node) {
-        tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2">${
+        tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2 max-w-md whitespace-normal">${
           attributeColor
             ? `<div class="inline-block w-2 h-2 rounded-full mr-1" style="background: ${attributeColor}"></div>`
             : ""
