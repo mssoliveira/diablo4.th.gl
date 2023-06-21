@@ -34,13 +34,15 @@
     "occultists": "Occultistes",
     "stableMasters": "Écuries",
     "waypoints": "Relais",
-    "additionalMonsters": "Additional Monsters",
-    "chestsAny": "Chests Common",
-    "chestsT1": "Chests T1",
-    "chestsT2": "Chests T2",
+    "additionalMonsters": "Monstres supplémentaires",
+    "chestsAny": "Coffres",
+    "chestsT1": "Coffres T1",
+    "chestsT2": "Coffres T2",
     "chestsT3": "Tortured Gifts of Mysteries (T3)",
     "harbingers": "Harbingers",
-    "highValueTargets": "High Value Targets"
+    "highValueTargets": "Cibles de grande valeur",
+    "sideQuests": "Quêtes secondaires",
+    "campaignQuests": "Quêtes de campagne"
   },
   "helltide": {
     "inProgress": "Vague infernale en cours",

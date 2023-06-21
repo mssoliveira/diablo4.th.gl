@@ -40,7 +40,9 @@
     "chestsT2": "Chests T2",
     "chestsT3": "Tortured Gifts of Mysteries (T3)",
     "harbingers": "Harbingers",
-    "highValueTargets": "High Value Targets"
+    "highValueTargets": "High Value Targets",
+    "sideQuests": "Misiones secundarias",
+    "campaignQuests": "Misiones de la campaña"
   },
   "helltide": {
     "inProgress": "Marea Sangrienta en progreso",
