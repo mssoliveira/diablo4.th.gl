@@ -40,7 +40,7 @@ function Layout({
   return (
     <html lang={lang}>
       <body
-        className={`${inter.className} h-screen bg-black text-white antialiased select-none  overflow-hidden`}
+        className={`${inter.className} h-screen bg-black text-white antialiased select-none overflow-hidden`}
       >
         <I18NProvider
           value={{

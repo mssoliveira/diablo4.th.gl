@@ -22,19 +22,10 @@ export default function Header() {
   useEffect(() => {
     if (!isOverlay) {
       document.body.style.opacity = "initial";
-      document.body.style.background = "black";
       return;
     }
     document.body.style.opacity = settingsStore.windowOpacity.toFixed(2);
-    document.body.style.background =
-      settingsStore.overlayMode && settingsStore.overlayTransparentMode
-        ? "transparent"
-        : "black";
-  }, [
-    settingsStore.windowOpacity,
-    settingsStore.overlayTransparentMode,
-    isOverlay,
-  ]);
+  }, [settingsStore.windowOpacity, isOverlay]);
 
   useEffect(() => {
     if (!isOverlay) {
