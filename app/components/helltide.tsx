@@ -84,7 +84,7 @@ export default function Helltide() {
     }
   };
 
-  return !timeLeft.isActive ? (
+  return timeLeft.isActive ? (
     <button
       className="text-white text-sm px-2.5 py-2.5 space-x-1  md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500"
       onClick={onClick}
