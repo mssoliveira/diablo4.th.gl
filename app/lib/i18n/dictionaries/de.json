@@ -42,7 +42,8 @@
     "harbingers": "Harbingers",
     "highValueTargets": "High Value Targets",
     "sideQuests": "Nebenquests",
-    "campaignQuests": "Kampagnenquests"
+    "campaignQuests": "Kampagnenquests",
+    "events": "Events"
   },
   "helltide": {
     "inProgress": "Helltide ist aktiv",
