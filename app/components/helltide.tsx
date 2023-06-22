@@ -86,7 +86,7 @@ export default function Helltide() {
 
   return timeLeft.isActive ? (
     <button
-      className="text-white text-sm px-2.5 py-2.5 space-x-1  md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500"
+      className="text-white text-sm px-2.5 py-2.5 space-x-1 w-full md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500"
       onClick={onClick}
     >
       <span className=" uppercase">{dict.helltide.inProgress}</span>
