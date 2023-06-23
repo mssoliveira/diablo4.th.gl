@@ -1,12 +1,12 @@
 import { useMap } from "@/app/components/(map)/map";
 import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import leaflet from "leaflet";
-import { useEffect, useRef, useState } from "react";
-import {
-  GameSession,
-  addTraceLineItem,
-  getLatestGameSession,
-} from "../lib/game-sessions";
+import { useEffect, useRef } from "react";
+// import {
+//   GameSession,
+//   addTraceLineItem,
+//   getLatestGameSession,
+// } from "../lib/game-sessions";
 
 function createCircle(position: { x: number; y: number; z: number }) {
   return leaflet.circle([position.y, position.x] as [number, number], {
@@ -18,7 +18,6 @@ function createCircle(position: { x: number; y: number; z: number }) {
 
 export default function TraceLine() {
   const map = useMap();
-  const [gameSession, setGameSession] = useState<GameSession | null>(null);
   const player = useGameInfoStore((state) => state.player);
   const lastPosition = useRef<{ x: number; y: number; z: number }>({
     x: 0,
@@ -31,24 +30,25 @@ export default function TraceLine() {
   useEffect(() => {
     layerGroup.current = new leaflet.LayerGroup();
 
-    getLatestGameSession().then(setGameSession);
+    // getLatestGameSession().then(gameSession => {
+    //    gameSession.traceLine.forEach((position) => {
+    //   const circle = createCircle(position);
+    //   circle.addTo(layerGroup.current!);
+    // });
+    // });
   }, []);
 
   useEffect(() => {
-    if (!gameSession || !layerGroup.current || !settingsStore.showTraceLine) {
+    if (!layerGroup.current || !settingsStore.showTraceLine) {
       return;
     }
 
     layerGroup.current.addTo(map);
-    gameSession.traceLine.forEach((position) => {
-      const circle = createCircle(position);
-      circle.addTo(layerGroup.current!);
-    });
 
     return () => {
-      layerGroup.current!.removeFrom(map);
+      layerGroup.current?.removeFrom(map);
     };
-  }, [gameSession, settingsStore.showTraceLine]);
+  }, [settingsStore.showTraceLine]);
 
   useEffect(() => {
     if (!player?.position) {
@@ -62,7 +62,7 @@ export default function TraceLine() {
       const circle = createCircle(player.position);
       circle.addTo(layerGroup.current!);
       lastPosition.current = player.position;
-      addTraceLineItem(player.position);
+      // addTraceLineItem(player.position);
     }
   }, [player?.position]);
 
