@@ -103,3 +103,15 @@ export function setFeatures() {
     }
   });
 }
+
+export function getGameInfo(): Promise<any> {
+  return new Promise((resolve, reject) => {
+    overwolf.games.events.getInfo((info) => {
+      if (info.success) {
+        resolve(info.res);
+      } else {
+        reject(info);
+      }
+    });
+  });
+}

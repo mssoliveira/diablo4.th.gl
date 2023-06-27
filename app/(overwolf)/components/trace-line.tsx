@@ -25,10 +25,12 @@ export default function TraceLine() {
     z: 0,
   });
   const layerGroup = useRef<leaflet.LayerGroup | null>(null);
+  const unknownLayerGroup = useRef<leaflet.LayerGroup | null>(null);
   const settingsStore = useSettingsStore();
 
   useEffect(() => {
     layerGroup.current = new leaflet.LayerGroup();
+    unknownLayerGroup.current = new leaflet.LayerGroup();
 
     // getLatestGameSession().then(gameSession => {
     //    gameSession.traceLine.forEach((position) => {
@@ -39,28 +41,38 @@ export default function TraceLine() {
   }, []);
 
   useEffect(() => {
-    if (!layerGroup.current || !settingsStore.showTraceLine) {
+    if (!settingsStore.showTraceLine) {
       return;
     }
+    const targetLayerGroup =
+      player?.territory === -1
+        ? unknownLayerGroup.current!
+        : layerGroup.current!;
 
-    layerGroup.current.addTo(map);
+    targetLayerGroup.addTo(map);
 
     return () => {
-      layerGroup.current?.removeFrom(map);
+      targetLayerGroup.removeFrom(map);
+      if (player?.territory === -1) {
+        targetLayerGroup.clearLayers();
+      }
     };
-  }, [settingsStore.showTraceLine]);
+  }, [settingsStore.showTraceLine, player?.territory]);
 
   useEffect(() => {
     if (!player?.position) {
       return;
     }
-
+    const targetLayerGroup =
+      player.territory === -1
+        ? unknownLayerGroup.current!
+        : layerGroup.current!;
     if (
       Math.abs(player.position.x - lastPosition.current.x) > 0.05 ||
       Math.abs(player.position.y - lastPosition.current.y) > 0.05
     ) {
       const circle = createCircle(player.position);
-      circle.addTo(layerGroup.current!);
+      circle.addTo(targetLayerGroup);
       lastPosition.current = player.position;
       // addTraceLineItem(player.position);
     }

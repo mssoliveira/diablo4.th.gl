@@ -8,7 +8,7 @@ import Menu from "@/app/components/menu";
 import Search from "@/app/components/search";
 import SearchParams from "@/app/components/search-params";
 import { DEFAULT_LOCALE, LOCALES, loadDictionary } from "@/app/lib/i18n";
-import { useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useState } from "react";
 import Ads from "../components/ads";
 import Header from "../components/header";
@@ -21,7 +21,8 @@ export default function App() {
   const [ready, setReady] = useState(false);
   const locale = useSettingsStore((state) => state.locale);
   const dict = loadDictionary(locale);
-
+  const territory = useGameInfoStore((state) => state.player?.territory);
+  const isWorldTerritory = territory !== -1;
   useEffect(() => {
     waitForOverwolf().then(() => setReady(true));
   }, []);
@@ -42,9 +43,13 @@ export default function App() {
       <Header />
       <ResizeBorders />
       <Map>
-        <Tiles />
-        <Territories />
-        <Nodes />
+        {isWorldTerritory && (
+          <>
+            <Tiles />
+            <Territories />
+            <Nodes />
+          </>
+        )}
         <Player />
         <TraceLine />
         <Search />

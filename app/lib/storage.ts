@@ -283,6 +283,8 @@ export const useGameInfoStore = create<{
       z: number;
     };
     rotation: number;
+    area: number;
+    territory: number;
   } | null;
   setPlayer: (player: {
     position: {
@@ -291,6 +293,8 @@ export const useGameInfoStore = create<{
       z: number;
     };
     rotation: number;
+    area: number;
+    territory: number;
   }) => void;
 }>((set) => ({
   player: null,

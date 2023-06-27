@@ -2,7 +2,7 @@ import { useMap } from "@/app/components/(map)/map";
 import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import leaflet from "leaflet";
 import { useEffect, useRef } from "react";
-import { listenToGameLaunched, setFeatures } from "../lib/games";
+import { getGameInfo, listenToGameLaunched, setFeatures } from "../lib/games";
 import PlayerMarker, { normalizePoint } from "./player-marker";
 
 export default function Player() {
@@ -30,52 +30,68 @@ export default function Player() {
     marker.current.rotation = 0;
     marker.current.addTo(map);
 
+    let isActive = false;
     let lastPosition = { x: 0, y: 0, z: 0 };
-    function onInfoUpdates2(event: overwolf.games.events.InfoUpdates2Event) {
-      if (event.feature === "location") {
-        try {
-          const info = event.info as {
-            match_info: {
-              location: string;
-            };
-          };
+    let lastTerritory = 0;
+    async function updateMatchInfo() {
+      try {
+        const latestGameInfo = await getGameInfo();
+        if (latestGameInfo?.match_info) {
           const position = normalizePoint(
-            JSON.parse(info.match_info.location) as {
+            JSON.parse(latestGameInfo.match_info.location) as {
               x: number;
               y: number;
               z: number;
             }
           );
-          if (position.z < 1) {
-            return;
+          let map = {
+            area: 0,
+            territory: 0,
+          };
+          try {
+            map = JSON.parse(latestGameInfo.match_info.map) as {
+              area: number;
+              territory: number;
+            };
+          } catch (err) {
+            //
           }
-          const rotation =
-            (Math.atan2(
-              position.y - (lastPosition.y || position.y),
-              position.x - (lastPosition.x || position.x)
-            ) *
-              180) /
-            Math.PI;
-          lastPosition = position;
+          if (
+            lastPosition.x !== position.x ||
+            lastPosition.y !== position.y ||
+            lastTerritory !== map.territory
+          ) {
+            const rotation =
+              (Math.atan2(
+                position.y - (lastPosition.y || position.y),
+                position.x - (lastPosition.x || position.x)
+              ) *
+                180) /
+              Math.PI;
+            lastPosition = position;
+            lastTerritory = map.territory;
 
-          gameInfo.setPlayer({ position, rotation });
-        } catch (err) {
-          console.error(err);
+            gameInfo.setPlayer({
+              position,
+              rotation,
+              area: map.area,
+              territory: map.territory,
+            });
+          }
         }
+      } catch (err) {
+        // console.error(err);
+      } finally {
+        setTimeout(updateMatchInfo, 50);
       }
     }
 
-    function registerEvents() {
-      overwolf.games.events.onInfoUpdates2.addListener(onInfoUpdates2);
-    }
-
-    function unregisterEvents() {
-      overwolf.games.events.onInfoUpdates2.removeListener(onInfoUpdates2);
-    }
-
     listenToGameLaunched(() => {
-      unregisterEvents();
-      registerEvents();
+      if (!isActive) {
+        isActive = false;
+        updateMatchInfo();
+      }
+
       setTimeout(setFeatures, 1000);
     });
   }, []);
