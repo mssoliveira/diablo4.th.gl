@@ -12,6 +12,8 @@ export function generateMetadata(): Metadata {
       default: "Sanctuary | Diablo 4 Map",
       template: "%s | Diablo 4 Map",
     },
+    twitter: {},
+    openGraph: {},
   };
 }
 
