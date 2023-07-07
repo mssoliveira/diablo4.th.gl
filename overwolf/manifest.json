@@ -34,7 +34,6 @@
         "override_on_update": true,
         "desktop_only": true,
         "transparent": true,
-        "native_window": true,
         "size": {
           "width": 1200,
           "height": 800

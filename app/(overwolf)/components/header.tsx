@@ -78,61 +78,63 @@ export default function Header() {
       >
         <h1 className="font-mono ml-2">Diablo 4 Map v{version}</h1>
 
-        {isOverlay && (
-          <button
-            className="h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 absolute left-1/2 -translate-x-1/2"
-            title="Lock window control"
-            onClick={settingsStore.toggleLockedWindow}
-          >
-            <svg>
-              <use xlinkHref="#icon-lock" />
-            </svg>
-          </button>
-        )}
+        <button
+          className="h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 absolute left-1/2 -translate-x-1/2"
+          title="Lock window control"
+          onClick={() =>
+            isOverlay
+              ? settingsStore.toggleLockedWindow
+              : alert("Window can only be locked in overlay mode")
+          }
+        >
+          <svg>
+            <use xlinkHref="#icon-lock" />
+          </svg>
+        </button>
 
         <div className="flex ml-auto">
-          {isOverlay && (
-            <>
-              <div className="flex items-center">
-                <span className="text-xs font-mono">Transparent</span>
-                <label
-                  className={`ml-2 relative w-8 block overflow-hidden h-5 rounded-full  cursor-pointer ${
-                    settingsStore.overlayTransparentMode
-                      ? "bg-green-400"
-                      : "bg-neutral-500"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    className={`absolute block w-5 h-5 rounded-full appearance-none cursor-pointer bg-white ${
-                      settingsStore.overlayTransparentMode ? "right-0" : ""
-                    }`}
-                    checked={settingsStore.overlayTransparentMode}
-                    onChange={(event) =>
-                      settingsStore.setOverlayTransparentMode(
+          <div className="flex items-center">
+            <span className="text-xs font-mono">Transparent</span>
+            <label
+              className={`ml-2 relative w-8 block overflow-hidden h-5 rounded-full  cursor-pointer ${
+                settingsStore.overlayTransparentMode
+                  ? "bg-green-400"
+                  : "bg-neutral-500"
+              }`}
+            >
+              <input
+                type="checkbox"
+                className={`absolute block w-5 h-5 rounded-full appearance-none cursor-pointer bg-white ${
+                  settingsStore.overlayTransparentMode ? "right-0" : ""
+                }`}
+                checked={settingsStore.overlayTransparentMode}
+                onChange={(event) =>
+                  isOverlay
+                    ? settingsStore.setOverlayTransparentMode(
                         event.target.checked
                       )
-                    }
-                  />
-                </label>
-              </div>
-              <label className="flex items-center ml-2">
-                <span className="text-xs font-mono">Opacity</span>
-                <input
-                  className="ml-2 w-16"
-                  onMouseDown={(event) => event.stopPropagation()}
-                  type="range"
-                  step={0.05}
-                  min={0.45}
-                  max={1}
-                  value={settingsStore.windowOpacity}
-                  onChange={(event) =>
-                    settingsStore.setWindowOpacity(+event.target.value)
-                  }
-                />
-              </label>
-            </>
-          )}
+                    : alert("Window can only be transparent in overlay mode")
+                }
+              />
+            </label>
+          </div>
+          <label className="flex items-center ml-2">
+            <span className="text-xs font-mono">Opacity</span>
+            <input
+              className="ml-2 w-16"
+              onMouseDown={(event) => event.stopPropagation()}
+              type="range"
+              step={0.05}
+              min={0.45}
+              max={1}
+              value={settingsStore.windowOpacity}
+              onChange={(event) =>
+                isOverlay
+                  ? settingsStore.setWindowOpacity(+event.target.value)
+                  : alert("Window can only be transparent in overlay mode")
+              }
+            />
+          </label>
           <a
             href="https://discord.com/invite/NTZu8Px"
             target="_blank"
