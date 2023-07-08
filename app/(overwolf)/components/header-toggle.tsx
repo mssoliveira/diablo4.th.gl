@@ -11,7 +11,7 @@ export default function HeaderToggle({
 }) {
   return (
     <div className="flex items-center">
-      <span className="text-xs font-mono">{label}</span>
+      <span className="text-xs font-mono truncate">{label}</span>
       <label
         className={`ml-2 relative w-8 block overflow-hidden h-5 rounded-full cursor-pointer ${
           checked ? "bg-green-400" : "bg-neutral-500"

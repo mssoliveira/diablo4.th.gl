@@ -54,7 +54,7 @@ export default function Header() {
             : overwolf.windows.maximize(currentWindow!.id)
         }
       >
-        <h1 className="font-mono ml-2">Diablo 4 Map v{version}</h1>
+        <h1 className="font-mono ml-2 truncate">Diablo 4 Map v{version}</h1>
 
         <div className="flex ml-auto">
           <div className="flex space-x-2">
@@ -87,7 +87,7 @@ export default function Header() {
               />
             </label>
             <button
-              className="flex items-center  px-1 hover:bg-neutral-700"
+              className="flex items-center px-1 hover:bg-neutral-700"
               title="Lock window control"
               onClick={settingsStore.toggleLockedWindow}
             >

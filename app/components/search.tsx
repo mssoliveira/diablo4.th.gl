@@ -40,9 +40,7 @@ export default function Search() {
         <div
           className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
             globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
-          } ${
-            "value" in router ? "md:top-[42px]" : "md:top-3"
-          } overflow-hidden`}
+          } ${"value" in router ? "md:top-[42px]" : "md:top-3"}`}
         >
           <button
             className="menu flex absolute inset-y-0 left-0 items-center pl-2 text-gray-400 hover:text-gray-200"

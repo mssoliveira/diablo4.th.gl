@@ -239,6 +239,8 @@ export const useSettingsStore = create(
     toggleFollowPlayerPosition: () => void;
     showTraceLine: boolean;
     toggleShowTraceLine: () => void;
+    adTransform: string;
+    setAdTransform: (adTransform: string) => void;
   }>(
     (set) => {
       return {
@@ -265,6 +267,8 @@ export const useSettingsStore = create(
         showTraceLine: true,
         toggleShowTraceLine: () =>
           set((state) => ({ showTraceLine: !state.showTraceLine })),
+        adTransform: "",
+        setAdTransform: (adTransform) => set({ adTransform }),
       };
     },
     {
