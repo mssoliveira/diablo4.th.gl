@@ -27,7 +27,7 @@ function Ads() {
     if (isPatron) {
       return;
     }
-    moveableRef.current!.moveable.request(
+    moveableRef.current?.moveable.request(
       "draggable",
       { deltaX: 0, deltaY: 0 },
       true
@@ -35,7 +35,7 @@ function Ads() {
 
     const onResize = () => {
       // @ts-ignore
-      moveableRef.current!.moveable.request(
+      moveableRef.current?.moveable.request(
         "draggable",
         { deltaX: 0, deltaY: 0 },
         true

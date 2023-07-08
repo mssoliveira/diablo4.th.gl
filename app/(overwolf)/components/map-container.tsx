@@ -27,7 +27,7 @@ export default function MapContainer({
     if (!isOverlay) {
       return;
     }
-    moveableRef.current!.moveable.request(
+    moveableRef.current?.moveable.request(
       "draggable",
       { deltaX: 0, deltaY: 0 },
       true
@@ -35,7 +35,7 @@ export default function MapContainer({
 
     const onResize = () => {
       // @ts-ignore
-      moveableRef.current!.moveable.request(
+      moveableRef.current?.moveable.request(
         "draggable",
         { deltaX: 0, deltaY: 0 },
         true
