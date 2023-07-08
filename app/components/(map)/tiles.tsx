@@ -19,7 +19,7 @@ export default function Tiles() {
   const isOverlay = useGameInfoStore((state) => state.isOverlay);
 
   useEffect(() => {
-    if (!isOverlay || settingsStore.overlayTransparentMode) {
+    if (isOverlay && settingsStore.overlayTransparentMode) {
       return;
     }
     const canvasLayer = createCanvasLayer("/map_tiles/{z}/{y}/{x}.webp", {
