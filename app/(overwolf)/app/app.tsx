@@ -11,6 +11,7 @@ import { DEFAULT_LOCALE, LOCALES, loadDictionary } from "@/app/lib/i18n";
 import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useState } from "react";
 import Ads from "../components/ads";
+import AppContainer from "../components/app-container";
 import Header from "../components/header";
 import Player from "../components/player";
 import ResizeBorders from "../components/resize-borders";
@@ -40,22 +41,24 @@ export default function App() {
         locales: LOCALES,
       }}
     >
-      <Header />
+      <AppContainer>
+        <Header />
+        <Map>
+          {isWorldTerritory && (
+            <>
+              <Tiles />
+              <Territories />
+              <Nodes />
+            </>
+          )}
+          <Player />
+          <TraceLine />
+          <Search />
+        </Map>
+        <Menu />
+        <SearchParams />
+      </AppContainer>
       <ResizeBorders />
-      <Map>
-        {isWorldTerritory && (
-          <>
-            <Tiles />
-            <Territories />
-            <Nodes />
-          </>
-        )}
-        <Player />
-        <TraceLine />
-        <Search />
-      </Map>
-      <Menu />
-      <SearchParams />
       <Ads />
     </I18NProvider>
   );

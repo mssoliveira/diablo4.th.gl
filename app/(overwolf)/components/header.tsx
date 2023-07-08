@@ -1,8 +1,7 @@
 "use client";
 import { useSettingsStore } from "@/app/lib/storage";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { WINDOWS } from "../lib/config";
-import { setInputPassThrough, useCurrentWindow } from "../lib/windows";
+import { useLayoutEffect, useState } from "react";
+import { useCurrentWindow } from "../lib/windows";
 import SVGIcons from "./svg-icons";
 
 export default function Header() {
@@ -10,7 +9,6 @@ export default function Header() {
   const [version, setVersion] = useState("");
   const settingsStore = useSettingsStore();
 
-  const isOverlay = currentWindow?.name === WINDOWS.OVERLAY;
   const isMaximized = currentWindow?.stateEx === "maximized";
 
   useLayoutEffect(() => {
@@ -19,28 +17,7 @@ export default function Header() {
     });
   }, []);
 
-  useEffect(() => {
-    if (!isOverlay) {
-      document.body.style.opacity = "initial";
-      return;
-    }
-    document.body.style.opacity = settingsStore.windowOpacity.toFixed(2);
-  }, [settingsStore.windowOpacity, isOverlay]);
-
-  useEffect(() => {
-    if (!isOverlay) {
-      document.body.classList.remove("locked");
-      return;
-    }
-    setInputPassThrough(settingsStore.lockedWindow);
-    if (settingsStore.lockedWindow) {
-      document.body.classList.add("locked");
-    } else {
-      document.body.classList.remove("locked");
-    }
-  }, [settingsStore.lockedWindow, isOverlay]);
-
-  if (isOverlay && settingsStore.lockedWindow) {
+  if (settingsStore.lockedWindow) {
     return (
       <>
         <SVGIcons />
@@ -81,11 +58,7 @@ export default function Header() {
         <button
           className="h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 absolute left-1/2 -translate-x-1/2"
           title="Lock window control"
-          onClick={() =>
-            isOverlay
-              ? settingsStore.toggleLockedWindow
-              : alert("Window can only be locked in overlay mode")
-          }
+          onClick={settingsStore.toggleLockedWindow}
         >
           <svg>
             <use xlinkHref="#icon-lock" />
@@ -109,11 +82,7 @@ export default function Header() {
                 }`}
                 checked={settingsStore.overlayTransparentMode}
                 onChange={(event) =>
-                  isOverlay
-                    ? settingsStore.setOverlayTransparentMode(
-                        event.target.checked
-                      )
-                    : alert("Window can only be transparent in overlay mode")
+                  settingsStore.setOverlayTransparentMode(event.target.checked)
                 }
               />
             </label>
@@ -129,9 +98,7 @@ export default function Header() {
               max={1}
               value={settingsStore.windowOpacity}
               onChange={(event) =>
-                isOverlay
-                  ? settingsStore.setWindowOpacity(+event.target.value)
-                  : alert("Window can only be transparent in overlay mode")
+                settingsStore.setWindowOpacity(+event.target.value)
               }
             />
           </label>
