@@ -2,7 +2,11 @@
 import { useDict } from "@/app/components/(i18n)/i18n-provider";
 import Modal from "@/app/components/modal";
 import { API_BASE_URI } from "@/app/lib/env";
-import { useAccountStore, useSettingsStore } from "@/app/lib/storage";
+import {
+  useAccountStore,
+  useGameInfoStore,
+  useSettingsStore,
+} from "@/app/lib/storage";
 import type { OwAd } from "@overwolf/types/owads";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
@@ -22,6 +26,7 @@ function Ads() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dict = useDict();
   const moveableRef = useRef<Moveable>(null);
+  const isOverlay = useGameInfoStore((state) => state.isOverlay);
 
   useEffect(() => {
     if (isPatron) {
@@ -74,7 +79,7 @@ function Ads() {
           transform: settingsStore.adTransform,
         }}
       >
-        {!settingsStore.lockedWindow && (
+        {(!settingsStore.lockedWindow || !isOverlay) && (
           <div className="flex w-fit rounded-t-lg bg-opacity-50 bg-neutral-800 ml-auto text-neutral-300">
             <div className="cursor-move flex items-center p-1">
               <svg className="w-[16px] h-[16px]">

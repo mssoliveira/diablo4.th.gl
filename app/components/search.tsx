@@ -6,6 +6,7 @@ import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { useUpdateSearchParams } from "../lib/search-params";
 import {
   ALL_FILTERS,
+  useGameInfoStore,
   useGlobalSettingsStore,
   useSettingsStore,
 } from "../lib/storage";
@@ -23,6 +24,7 @@ export default function Search() {
   const [filters] = useFilters();
   const settingsStore = useSettingsStore();
   const globalSettingsStore = useGlobalSettingsStore();
+  const isOverlay = useGameInfoStore((state) => state.isOverlay);
 
   useEffect(() => {
     const handle = setTimeout(() => {
@@ -36,7 +38,7 @@ export default function Search() {
   }, [search]);
   return (
     <>
-      {!settingsStore.lockedWindow ? (
+      {!settingsStore.lockedWindow || !isOverlay ? (
         <div
           className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
             globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
