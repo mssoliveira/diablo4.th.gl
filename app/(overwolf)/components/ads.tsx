@@ -17,7 +17,6 @@ declare global {
 function Ads() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const adRef = useRef<HTMLDivElement | null>(null);
-  const moveRef = useRef<HTMLDivElement | null>(null);
   const isPatron = useAccountStore((state) => state.isPatron);
   const settingsStore = useSettingsStore();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -66,23 +65,25 @@ function Ads() {
           transform: settingsStore.adTransform,
         }}
       >
-        <div className="flex w-fit rounded-t-lg bg-opacity-50 bg-neutral-800 ml-auto text-neutral-300">
-          <div ref={moveRef} className="cursor-move flex items-center p-1">
-            <svg className="w-[16px] h-[16px]">
-              <use xlinkHref="#icon-move" />
-            </svg>
+        {!settingsStore.lockedWindow && (
+          <div className="flex w-fit rounded-t-lg bg-opacity-50 bg-neutral-800 ml-auto text-neutral-300">
+            <div className="cursor-move flex items-center p-1">
+              <svg className="w-[16px] h-[16px]">
+                <use xlinkHref="#icon-move" />
+              </svg>
+            </div>
+            <button
+              className="flex items-center p-1"
+              onClick={() =>
+                setIsModalVisible((isModalVisible) => !isModalVisible)
+              }
+            >
+              <svg className="w-[16px] h-[16px]">
+                <use xlinkHref="#icon-close" />
+              </svg>
+            </button>
           </div>
-          <button
-            className="flex items-center p-1"
-            onClick={() =>
-              setIsModalVisible((isModalVisible) => !isModalVisible)
-            }
-          >
-            <svg className="w-[16px] h-[16px]">
-              <use xlinkHref="#icon-close" />
-            </svg>
-          </button>
-        </div>
+        )}
         <div
           ref={adRef}
           className={`w-[400px] h-[300px] bg-opacity-50 bg-neutral-800`}

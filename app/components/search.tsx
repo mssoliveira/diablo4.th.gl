@@ -36,7 +36,7 @@ export default function Search() {
   }, [search]);
   return (
     <>
-      {!settingsStore.lockedWindow && (
+      {!settingsStore.lockedWindow ? (
         <div
           className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
             globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
@@ -137,6 +137,10 @@ export default function Search() {
           >
             {globalSettingsStore.showFilters && <Filters />}
           </div>
+        </div>
+      ) : (
+        <div className="absolute top-[40px] left-[10px] z-[400] flex">
+          {globalSettingsStore.showTimers && <Helltide />}
         </div>
       )}
     </>

@@ -21,8 +21,7 @@ export const MAX_BOUNDS: LatLngBoundsExpression = [
 ];
 
 export function useMap() {
-  const map = useMapStore((store) => store.map);
-  if (!map) throw new Error("MapContext not found");
+  const map = useMapStore((store) => store.map)!;
   return map;
 }
 
