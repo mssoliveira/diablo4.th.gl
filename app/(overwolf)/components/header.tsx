@@ -1,7 +1,8 @@
 "use client";
 import { useSettingsStore } from "@/app/lib/storage";
 import { useLayoutEffect, useState } from "react";
-import { useCurrentWindow } from "../lib/windows";
+import { togglePreferedWindow, useCurrentWindow } from "../lib/windows";
+import HeaderToggle from "./header-toggle";
 import SVGIcons from "./svg-icons";
 
 export default function Header() {
@@ -39,7 +40,7 @@ export default function Header() {
     <>
       <SVGIcons />
       <header
-        className={`flex items-center h-[30px] relative bg-neutral-800 ${
+        className={`hidden md:flex items-center h-[30px] relative bg-neutral-800 ${
           settingsStore.overlayMode && settingsStore.overlayTransparentMode
             ? "bg-opacity-5"
             : ""
@@ -55,53 +56,47 @@ export default function Header() {
       >
         <h1 className="font-mono ml-2">Diablo 4 Map v{version}</h1>
 
-        <button
-          className="h-[30px] w-[30px] p-1 flex items-center hover:bg-neutral-700 absolute left-1/2 -translate-x-1/2"
-          title="Lock window control"
-          onClick={settingsStore.toggleLockedWindow}
-        >
-          <svg>
-            <use xlinkHref="#icon-lock" />
-          </svg>
-        </button>
-
         <div className="flex ml-auto">
-          <div className="flex items-center">
-            <span className="text-xs font-mono">Transparent</span>
-            <label
-              className={`ml-2 relative w-8 block overflow-hidden h-5 rounded-full  cursor-pointer ${
-                settingsStore.overlayTransparentMode
-                  ? "bg-green-400"
-                  : "bg-neutral-500"
-              }`}
-            >
+          <div className="flex space-x-2">
+            <HeaderToggle
+              label="2nd Screen"
+              checked={!settingsStore.overlayMode}
+              onChange={(checked) => {
+                settingsStore.setOverlayMode(!checked);
+                togglePreferedWindow();
+              }}
+            />
+            <HeaderToggle
+              label="Transparent"
+              checked={settingsStore.overlayTransparentMode}
+              onChange={settingsStore.setOverlayTransparentMode}
+            />
+            <label className="flex items-center">
+              <span className="text-xs font-mono">Opacity</span>
               <input
-                type="checkbox"
-                className={`absolute block w-5 h-5 rounded-full appearance-none cursor-pointer bg-white ${
-                  settingsStore.overlayTransparentMode ? "right-0" : ""
-                }`}
-                checked={settingsStore.overlayTransparentMode}
+                className="ml-2 w-16"
+                onMouseDown={(event) => event.stopPropagation()}
+                type="range"
+                step={0.05}
+                min={0.45}
+                max={1}
+                value={settingsStore.windowOpacity}
                 onChange={(event) =>
-                  settingsStore.setOverlayTransparentMode(event.target.checked)
+                  settingsStore.setWindowOpacity(+event.target.value)
                 }
               />
             </label>
+            <button
+              className="flex items-center  px-1 hover:bg-neutral-700"
+              title="Lock window control"
+              onClick={settingsStore.toggleLockedWindow}
+            >
+              <span className="text-xs font-mono">Lock Window</span>
+              <svg className="h-[28px] w-[28px] p-1">
+                <use xlinkHref="#icon-lock" />
+              </svg>
+            </button>
           </div>
-          <label className="flex items-center ml-2">
-            <span className="text-xs font-mono">Opacity</span>
-            <input
-              className="ml-2 w-16"
-              onMouseDown={(event) => event.stopPropagation()}
-              type="range"
-              step={0.05}
-              min={0.45}
-              max={1}
-              value={settingsStore.windowOpacity}
-              onChange={(event) =>
-                settingsStore.setWindowOpacity(+event.target.value)
-              }
-            />
-          </label>
           <a
             href="https://discord.com/invite/NTZu8Px"
             target="_blank"

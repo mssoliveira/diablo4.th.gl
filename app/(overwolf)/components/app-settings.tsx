@@ -2,7 +2,6 @@
 import Toggle from "@/app/components/toggle";
 import { useSettingsStore } from "@/app/lib/storage";
 import { HOTKEYS } from "../lib/config";
-import { togglePreferedWindow } from "../lib/windows";
 import Hotkey from "./hotkey";
 
 export default function AppSettings() {
@@ -25,16 +24,6 @@ export default function AppSettings() {
       <div className="flex">
         <span className="w-1/2">Lock/Unlock app</span>
         <Hotkey name={HOTKEYS.TOGGLE_LOCK_APP} />
-      </div>
-      <div className="flex">
-        <span className="w-1/2">Overlay Mode</span>
-        <Toggle
-          checked={!!settingsStore.overlayMode}
-          onChange={(checked) => {
-            settingsStore.setOverlayMode(checked);
-            togglePreferedWindow();
-          }}
-        />
       </div>
       <div className="flex">
         <span className="w-1/2">Follow Player position</span>

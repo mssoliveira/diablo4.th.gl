@@ -13,7 +13,7 @@ export default function AppContainer({ children }: { children: ReactNode }) {
     <div
       className={`h-screen flex flex-col text-white app antialiased select-none overflow-hidden ${
         settingsStore.lockedWindow ? "locked" : ""
-      }}`}
+      }`}
       style={{
         willChange: "opacity",
         opacity: settingsStore.windowOpacity.toFixed(2),
