@@ -4,7 +4,7 @@
   "meta": {
     "name": "Diablo 4 Map-DEV",
     "author": "Leon Machens",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "minimum-overwolf-version": "0.218.0",
     "description": "Diablo 4 Map",
     "dock_button_title": "Diablo 4 Map",
@@ -34,7 +34,7 @@
         "override_on_update": true,
         "desktop_only": true,
         "transparent": true,
-        "native_window": false,
+        "native_window": true,
         "size": {
           "width": 1200,
           "height": 800
