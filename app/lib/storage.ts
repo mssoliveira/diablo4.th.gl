@@ -244,6 +244,7 @@ export const useSettingsStore = create(
     setAdTransform: (adTransform: string) => void;
     mapTransform: Record<string, string>;
     setMapTransform: (mapTransform: Record<string, string>) => void;
+    resetTransform: () => void;
   }>(
     (set) => {
       return {
@@ -278,6 +279,16 @@ export const useSettingsStore = create(
           height: "330px",
         },
         setMapTransform: (mapTransform) => set({ mapTransform }),
+        resetTransform: () => {
+          set({
+            adTransform: "",
+            mapTransform: {
+              transform: "translate(7px, 70px)",
+              width: "500px",
+              height: "330px",
+            },
+          });
+        },
       };
     },
     {

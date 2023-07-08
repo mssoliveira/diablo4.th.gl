@@ -39,6 +39,16 @@ export default function AppSettings() {
           onChange={settingsStore.toggleShowTraceLine}
         />
       </div>
+      <div className="flex">
+        <span className="w-1/2">Reset UI positions</span>
+
+        <button
+          className="py-1 px-2 text-sm uppercase text-white bg-neutral-800 hover:bg-neutral-700"
+          onClick={settingsStore.resetTransform}
+        >
+          Reset
+        </button>
+      </div>
     </>
   );
 }
