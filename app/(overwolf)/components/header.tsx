@@ -51,7 +51,7 @@ export default function Header() {
       <header
         className={`hidden md:flex items-center h-[30px] relative bg-neutral-800 ${
           isOverlay ? "bg-opacity-50 w-fit" : ""
-        } ${settingsStore.overlayTransparentMode ? "bg-opacity-5" : ""}`}
+        }`}
         onMouseDown={() =>
           isMaximized ? null : overwolf.windows.dragMove(currentWindow!.id)
         }

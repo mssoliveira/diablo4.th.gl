@@ -24,6 +24,15 @@ function Ads() {
   const moveableRef = useRef<Moveable>(null);
 
   useEffect(() => {
+    if (isPatron) {
+      return;
+    }
+    moveableRef.current!.moveable.request(
+      "draggable",
+      { deltaX: 0, deltaY: 0 },
+      true
+    );
+
     const onResize = () => {
       // @ts-ignore
       moveableRef.current!.moveable.request(

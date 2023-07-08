@@ -1,5 +1,5 @@
 "use client";
-import { useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import { LatLngBoundsExpression } from "leaflet";
 import { useEffect } from "react";
 import { createCanvasLayer } from "./canvas-layer";
@@ -16,9 +16,10 @@ export const TILE_SIZE = 512;
 export default function Tiles() {
   const map = useMap();
   const settingsStore = useSettingsStore();
+  const isOverlay = useGameInfoStore((state) => state.isOverlay);
 
   useEffect(() => {
-    if (settingsStore.overlayTransparentMode) {
+    if (!isOverlay || settingsStore.overlayTransparentMode) {
       return;
     }
     const canvasLayer = createCanvasLayer("/map_tiles/{z}/{y}/{x}.webp", {
