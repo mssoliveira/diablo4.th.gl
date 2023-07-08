@@ -21,8 +21,7 @@ export const MAX_BOUNDS: LatLngBoundsExpression = [
 ];
 
 export function useMap() {
-  const map = useMapStore((store) => store.map);
-  if (!map) throw new Error("MapContext not found");
+  const map = useMapStore((store) => store.map)!;
   return map;
 }
 
@@ -42,8 +41,8 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       attributionControl: false,
       minZoom: 0,
       maxZoom: 8,
-      zoomSnap: 0.5,
-      zoomDelta: 0.5,
+      zoomSnap: 0,
+      zoomDelta: 0.4,
       wheelPxPerZoomLevel: 120,
       crs: worldCRS,
       maxBounds: MAX_BOUNDS,

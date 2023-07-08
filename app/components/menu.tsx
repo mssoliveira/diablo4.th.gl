@@ -65,11 +65,7 @@ export default function Menu() {
         {!isOverwolf && <NitroPay />}
         <div
           className={`p-2 overflow-auto grow flex flex-col gap-2 ${
-            isOverwolf
-              ? !accountStore.isPatron
-                ? "mb-[330px]"
-                : "mb-[30px]"
-              : ""
+            isOverwolf ? "mb-[30px]" : ""
           }`}
         >
           {!accountStore.isPatron && (

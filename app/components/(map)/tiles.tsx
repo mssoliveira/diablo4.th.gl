@@ -1,6 +1,4 @@
 "use client";
-import { WINDOWS } from "@/app/(overwolf)/lib/config";
-import { useCurrentWindow } from "@/app/(overwolf)/lib/windows";
 import { useSettingsStore } from "@/app/lib/storage";
 import { LatLngBoundsExpression } from "leaflet";
 import { useEffect } from "react";
@@ -16,13 +14,11 @@ export const MAX_NATIVE_ZOOM = 6;
 export const TILE_SIZE = 512;
 
 export default function Tiles() {
-  const currentWindow = useCurrentWindow();
   const map = useMap();
   const settingsStore = useSettingsStore();
-  const isOverlay = currentWindow?.name === WINDOWS.OVERLAY;
 
   useEffect(() => {
-    if (isOverlay && settingsStore.overlayTransparentMode) {
+    if (settingsStore.overlayTransparentMode) {
       return;
     }
     const canvasLayer = createCanvasLayer("/map_tiles/{z}/{y}/{x}.webp", {
@@ -39,7 +35,7 @@ export default function Tiles() {
     return () => {
       canvasLayer.remove();
     };
-  }, [isOverlay, settingsStore.overlayTransparentMode, map]);
+  }, [settingsStore.overlayTransparentMode, map]);
 
   return <></>;
 }

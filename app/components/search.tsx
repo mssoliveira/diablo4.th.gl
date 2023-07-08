@@ -3,8 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
-import { WINDOWS } from "../(overwolf)/lib/config";
-import { useCurrentWindow } from "../(overwolf)/lib/windows";
 import { useUpdateSearchParams } from "../lib/search-params";
 import {
   ALL_FILTERS,
@@ -25,8 +23,6 @@ export default function Search() {
   const [filters] = useFilters();
   const settingsStore = useSettingsStore();
   const globalSettingsStore = useGlobalSettingsStore();
-  const currentWindow = useCurrentWindow();
-  const isOverlay = currentWindow?.name === WINDOWS.OVERLAY;
 
   useEffect(() => {
     const handle = setTimeout(() => {
@@ -40,7 +36,7 @@ export default function Search() {
   }, [search]);
   return (
     <>
-      {(!settingsStore.lockedWindow || !isOverlay) && (
+      {!settingsStore.lockedWindow ? (
         <div
           className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
             globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
@@ -141,6 +137,10 @@ export default function Search() {
           >
             {globalSettingsStore.showFilters && <Filters />}
           </div>
+        </div>
+      ) : (
+        <div className="absolute top-[40px] left-[10px] z-[400] flex">
+          {globalSettingsStore.showTimers && <Helltide />}
         </div>
       )}
     </>

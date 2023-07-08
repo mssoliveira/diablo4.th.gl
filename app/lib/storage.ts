@@ -199,7 +199,8 @@ export const useGlobalSettingsStore = create(
           set((state) => ({ showTimers: !state.showTimers })),
         showSidebar:
           typeof document !== "undefined"
-            ? document.body.clientWidth >= 768
+            ? document.body.clientWidth >= 768 &&
+              typeof overwolf === "undefined"
             : false,
         toggleShowSidebar: () =>
           set((state) => ({
@@ -225,7 +226,7 @@ export const useGlobalSettingsStore = create(
 // App only
 export const useSettingsStore = create(
   persist<{
-    overlayMode: boolean | null;
+    overlayMode: boolean;
     setOverlayMode: (overlayMode: boolean) => void;
     overlayTransparentMode: boolean;
     setOverlayTransparentMode: (overlayTransparentMode: boolean) => void;
@@ -239,10 +240,14 @@ export const useSettingsStore = create(
     toggleFollowPlayerPosition: () => void;
     showTraceLine: boolean;
     toggleShowTraceLine: () => void;
+    adTransform: string;
+    setAdTransform: (adTransform: string) => void;
+    mapTransform: Record<string, string>;
+    setMapTransform: (mapTransform: Record<string, string>) => void;
   }>(
     (set) => {
       return {
-        overlayMode: null,
+        overlayMode: true,
         setOverlayMode: (overlayMode) =>
           set({
             overlayMode,
@@ -265,6 +270,14 @@ export const useSettingsStore = create(
         showTraceLine: true,
         toggleShowTraceLine: () =>
           set((state) => ({ showTraceLine: !state.showTraceLine })),
+        adTransform: "",
+        setAdTransform: (adTransform) => set({ adTransform }),
+        mapTransform: {
+          transform: "translate(7px, 70px)",
+          width: "500px",
+          height: "330px",
+        },
+        setMapTransform: (mapTransform) => set({ mapTransform }),
       };
     },
     {
@@ -276,6 +289,8 @@ export const useSettingsStore = create(
 withStorageDOMEvents(useSettingsStore);
 
 export const useGameInfoStore = create<{
+  isOverlay: boolean;
+  setIsOverlay: (isOverlay: boolean) => void;
   player: {
     position: {
       x: number;
@@ -297,6 +312,8 @@ export const useGameInfoStore = create<{
     territory: number;
   }) => void;
 }>((set) => ({
+  isOverlay: false,
+  setIsOverlay: (isOverlay) => set({ isOverlay }),
   player: null,
   setPlayer: (player) => set({ player }),
 }));

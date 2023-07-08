@@ -191,3 +191,9 @@ export async function setInputPassThrough(inputPassThrough: boolean) {
     }
   });
 }
+
+export async function maximizeWindow(id: string) {
+  return new Promise((resolve) => {
+    overwolf.windows.maximize(id, resolve);
+  });
+}

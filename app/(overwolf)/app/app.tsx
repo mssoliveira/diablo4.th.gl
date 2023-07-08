@@ -11,11 +11,15 @@ import { DEFAULT_LOCALE, LOCALES, loadDictionary } from "@/app/lib/i18n";
 import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
 import { useEffect, useState } from "react";
 import Ads from "../components/ads";
+import AppContainer from "../components/app-container";
 import Header from "../components/header";
+import MapContainer from "../components/map-container";
 import Player from "../components/player";
 import ResizeBorders from "../components/resize-borders";
 import TraceLine from "../components/trace-line";
+import { WINDOWS } from "../lib/config";
 import { waitForOverwolf } from "../lib/overwolf";
+import { getCurrentWindow } from "../lib/windows";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -23,8 +27,15 @@ export default function App() {
   const dict = loadDictionary(locale);
   const territory = useGameInfoStore((state) => state.player?.territory);
   const isWorldTerritory = territory !== -1;
+  const setIsOverlay = useGameInfoStore((state) => state.setIsOverlay);
+
   useEffect(() => {
-    waitForOverwolf().then(() => setReady(true));
+    waitForOverwolf().then(() => {
+      getCurrentWindow().then((currentWindow) => {
+        setIsOverlay(currentWindow.name === WINDOWS.OVERLAY);
+        setReady(true);
+      });
+    });
   }, []);
 
   if (!ready) {
@@ -40,22 +51,26 @@ export default function App() {
         locales: LOCALES,
       }}
     >
-      <Header />
-      <ResizeBorders />
-      <Map>
-        {isWorldTerritory && (
-          <>
-            <Tiles />
-            <Territories />
-            <Nodes />
-          </>
-        )}
-        <Player />
-        <TraceLine />
+      <AppContainer>
+        <Header />
+        <MapContainer>
+          <Map>
+            {isWorldTerritory && (
+              <>
+                <Tiles />
+                <Territories />
+                <Nodes />
+              </>
+            )}
+            <Player />
+            <TraceLine />
+          </Map>
+        </MapContainer>
         <Search />
-      </Map>
-      <Menu />
-      <SearchParams />
+        <Menu />
+        <SearchParams />
+      </AppContainer>
+      <ResizeBorders />
       <Ads />
     </I18NProvider>
   );
