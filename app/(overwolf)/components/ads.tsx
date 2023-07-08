@@ -5,9 +5,8 @@ import { API_BASE_URI } from "@/app/lib/env";
 import { useAccountStore, useSettingsStore } from "@/app/lib/storage";
 import type { OwAd } from "@overwolf/types/owads";
 import Script from "next/script";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Moveable from "react-moveable";
-import { debounce } from "ts-debounce";
 
 declare global {
   interface Window {
@@ -24,11 +23,6 @@ function Ads() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dict = useDict();
   const moveableRef = useRef<Moveable>(null);
-
-  const debouncedSetAdTransform = useCallback(
-    debounce(settingsStore.setAdTransform, 1000),
-    []
-  );
 
   useEffect(() => {
     const onResize = () => {
@@ -111,7 +105,9 @@ function Ads() {
         snappable
         onDrag={(e) => {
           e.target.style.transform = e.transform;
-          debouncedSetAdTransform(e.transform);
+        }}
+        onDragEnd={(e) => {
+          settingsStore.setAdTransform(e.target.style.transform);
         }}
       />
       {isModalVisible && (

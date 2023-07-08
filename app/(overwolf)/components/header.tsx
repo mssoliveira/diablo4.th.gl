@@ -72,13 +72,13 @@ export default function Header() {
               onChange={settingsStore.setOverlayTransparentMode}
             />
             <label className="flex items-center">
-              <span className="text-xs font-mono">Opacity</span>
+              <span className="text-xs font-mono truncate">Opacity</span>
               <input
                 className="ml-2 w-16"
                 onMouseDown={(event) => event.stopPropagation()}
                 type="range"
                 step={0.05}
-                min={0.45}
+                min={0.25}
                 max={1}
                 value={settingsStore.windowOpacity}
                 onChange={(event) =>
@@ -87,7 +87,7 @@ export default function Header() {
               />
             </label>
             <button
-              className="flex items-center px-1 hover:bg-neutral-700"
+              className="flex items-center px-1 hover:bg-neutral-700 truncate"
               title="Lock window control"
               onClick={settingsStore.toggleLockedWindow}
             >
