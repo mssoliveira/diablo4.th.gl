@@ -85,11 +85,7 @@ function Ads() {
         </div>
         <div
           ref={adRef}
-          className={`w-[400px] h-[300px] ${
-            settingsStore.overlayTransparentMode
-              ? ""
-              : "bg-opacity-50 bg-neutral-800"
-          }`}
+          className={`w-[400px] h-[300px] bg-opacity-50 bg-neutral-800`}
         />
         <div className="flex flex-col items-center justify-center absolute -z-10 inset-[100px] text-center text-white mt-6">
           {dict.menu.patronInfo}
