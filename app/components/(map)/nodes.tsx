@@ -104,7 +104,9 @@ export default function Nodes() {
             dict.nodes[node.type].toLowerCase().includes(search) ||
             ("attribute" in node &&
               node.attribute?.toLowerCase().includes(search)) ||
-            ("aspect" in node && node.aspect.toLowerCase().includes(search))
+            ("aspect" in node && node.aspect.toLowerCase().includes(search)) ||
+            ("className" in node &&
+              node.className.toLowerCase().includes(search))
           );
         }
 
