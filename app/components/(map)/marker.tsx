@@ -69,7 +69,7 @@ const Marker = memo(function Marker({
         }</p>`;
       }
       if ("aspect" in node) {
-        tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2 text-lg font-bold">${node.aspect}</p>`;
+        tooltipContent += `<p class="border-t border-t-gray-700 mt-2 pt-2 text-base font-bold">${node.aspect}</p><p class="text-orange-500 text-lg">${node.className}</p>`;
       }
 
       if ("description" in node) {
