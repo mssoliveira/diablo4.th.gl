@@ -37,13 +37,6 @@ export const sideQuests = [
       "I should bring the broken totem piece that I found to Artair in Wraithstead, so that he can safeguard it until it is destroyed.",
   },
   {
-    id: "QST_Kehj_Oasis_LonelyWolf_04",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "A Moment of Peace",
-    description: "A moment of peace, but not without cost.",
-  },
-  {
     id: "QST_Scos_Estate_Breadcrumb",
     x: -62.499166510353305,
     y: 99.41475556417907,
@@ -71,21 +64,6 @@ export const sideQuests = [
     y: 116.39143632039743,
     name: "A Question of Self",
     description: "Taissa's tower sits strangely empty.",
-  },
-  {
-    id: "QST_Hawe_Verge_Taissa_03",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "A Series of Steps",
-    description:
-      "Taissa makes a desperate, final attempt to purge Andariel's whispers from her mind.",
-  },
-  {
-    id: "QST_Scos_Crone_03",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "A Sliver of Light",
-    description: "Complete the ritual to cleanse the Dark Thicket.",
   },
   {
     id: "QST_Scos_Coast_ASoddenPact",
@@ -147,13 +125,6 @@ export const sideQuests = [
     description: "Track Elias' dark path through the marshes of Hawezar.",
   },
   {
-    id: "QST_Step_South_AuguryofBones",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Augury of Bones",
-    description: "The dead still have answers for those willing to inquire.",
-  },
-  {
     id: "QST_Hawe_Coast_BadBlood",
     x: -155.9931858717782,
     y: 130.62937661145307,
@@ -166,14 +137,6 @@ export const sideQuests = [
     y: 148.11028035654962,
     name: "Bait the Trap",
     description: "Lyndon has a foolproof plan to find the rat in Backwater.",
-  },
-  {
-    id: "QST_Class_Barb_Technique",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Barbarian: Masters of Battle",
-    description:
-      "My presence has been requested by the Forgemaster of Ked Bardu.",
   },
   {
     id: "QST_Frac_TaigaE_DropGift_Zalan01",
@@ -279,13 +242,6 @@ export const sideQuests = [
     name: "Chained Zakarum Repository",
     description:
       "I must prove myself worthy of this repository by slaying the Fallen that gather here and banishing their essence.",
-  },
-  {
-    id: "QST_Scos_Highlands_ChasingEmbers",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Chasing Embers",
-    description: "A trail of death rekindles the Days of Ash.",
   },
   {
     id: "QST_Scos_Lowlands_OldWays",
@@ -460,14 +416,6 @@ export const sideQuests = [
       "I found an interesting flower while gathering herbs. Jaral, the alchemist in Ked Bardu, may want to see this.",
   },
   {
-    id: "QST_WorldTier4_UberLilith",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Echo of Hatred",
-    description:
-      "Lilith's presence still lingers within your mind.\r\n\r\nSeek the end by way of the beginning.",
-  },
-  {
     id: "QST_Kehj_GeaKul_FetchMinor_07",
     x: -143.68846817085108,
     y: 28.831141342581088,
@@ -481,13 +429,6 @@ export const sideQuests = [
     y: 119.54949215704322,
     name: "Ever Faithful",
     description: "A grieving mother wants revenge for her daughter's killer.",
-  },
-  {
-    id: "QST_Example_TeamSwap",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Example Quest: AI Toggling and Team Toggling",
-    description: "Enter volumes to change NPC State",
   },
   {
     id: "QST_Step_Coast_ExhumingFaith",
@@ -526,14 +467,6 @@ export const sideQuests = [
     y: 113.09333898580873,
     name: "Feral Moon",
     description: "Help Edan ward off the strange call.",
-  },
-  {
-    id: "QST_Tutorial_PvP",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Fields of Hatred",
-    description:
-      "This land is steeped in the essence of Hatred.\r\n\r\nSeek out the local priest in Alzuuda to learn more about Fields of Hatred.",
   },
   {
     id: "QST_Scos_Blycroft_01",
@@ -593,13 +526,6 @@ export const sideQuests = [
     y: 109.37095361689903,
     name: "Fungal Remedies",
     description: "Assist Yolonda in healing those afflicted with the gut rot. ",
-  },
-  {
-    id: "QST_Step_South_FuryAgainstFate",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Fury Against Fate",
-    description: "The future is only certain for those who do not fear it.",
   },
   {
     id: "QST_Craft_Jeweler_01",
@@ -701,13 +627,6 @@ export const sideQuests = [
       "I have the sorrowful task of finding someone in town who knew this boy and returning his dagger to them.",
   },
   {
-    id: "QST_Step_Central_HubrisSmilesBack",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Hubris Smiles Back",
-    description: "The Grinning One's gifts always earn a smile.",
-  },
-  {
     id: "QST_Step_Grassland_HungerforaNewLife",
     x: -63.13015527587797,
     y: 80.77581757324877,
@@ -722,14 +641,6 @@ export const sideQuests = [
     name: "Hungering Bone Cache",
     description:
       "I found a cache sealed by powerful magic. To open it, I must slay werewolves in this area and feed their death motes to its hungering lock.",
-  },
-  {
-    id: "QST_Hawe_Fens_Motes_Snakes",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Hungering Necrolyte's Cache",
-    description:
-      "I found a cache sealed by powerful death magic. To open it, I must slay Nangari in this area and feed their death anima to its hungering lock.",
   },
   {
     id: "QST_Step_Eastern_FiendSoFamiliar_02",
@@ -803,14 +714,6 @@ export const sideQuests = [
     name: "Kith and Kin",
     description:
       "An old woman seeks mementos from those who have died of an ancient curse.",
-  },
-  {
-    id: "QST_Kehj_LowDesert_DropGift_Innkeeper01",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Late Shipment",
-    description:
-      "I found a shipment addressed to the Innkeeper in Gea Kul. I should bring it to her.",
   },
   {
     id: "QST_Hawe_Vyeresz_FetchMinor_01",
@@ -933,27 +836,11 @@ export const sideQuests = [
       "Donan has offered to call in a favor with the stable master in Kyovashad to provide me with a horse.",
   },
   {
-    id: "QST_Class_Necro_Golem",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Necromancer: Call of the Underworld",
-    description:
-      "The Necromancer Maltorius would teach me to craft a Golem. I must gather bones to form its body.",
-  },
-  {
     id: "QST_Hawe_Coast_NecroticResearch",
     x: -155.9931858717782,
     y: 130.62937661145307,
     name: "Necrotic Research",
     description: "Help Gulyas with her Nangari research.",
-  },
-  {
-    id: "QST_NightmareSigil_Tutorial",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Nightmare Dungeons",
-    description:
-      "Use the Nightmare Sigil in the Consumables bag of your inventory to transform a dungeon into a Nightmare Dungeon.",
   },
   {
     id: "QST_Step_NoDeedUnpunished",
@@ -969,13 +856,6 @@ export const sideQuests = [
     y: 132.45017268896413,
     name: "Of Pests and Pestilence",
     description: "Fly swarms are infecting the Moors.",
-  },
-  {
-    id: "QST_Kehj_Oasis_KIA",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "On the Hunt",
-    description: "A rogue Iron Wolf hunts an elusive mark.",
   },
   {
     id: "QST_Hawe_Marsh_DropGift_Timue01",
@@ -1043,13 +923,6 @@ export const sideQuests = [
     y: 129.13783327238252,
     name: "Pyre of Ash",
     description: "Embers rise again from fires extinguished long ago.",
-  },
-  {
-    id: "QST_Step_South_RaisingSpears",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Raising Spears",
-    description: "Glory of the dead returns spirit to the living.",
   },
   {
     id: "QST_Frac_Tutorial_Emote",
@@ -1132,14 +1005,6 @@ export const sideQuests = [
     y: 60.2519313496925,
     name: "Road to Ruin",
     description: 'Mahjoob\'s "simple bite" has festered into something more.',
-  },
-  {
-    id: "QST_Class_Rogue_InnerSight",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Rogue: True Potential",
-    description:
-      "Help Leyrana locate her missing comrade and unlock your true potential.",
   },
   {
     id: "QST_Step_South_SaltBegetsSalt",
@@ -1262,14 +1127,6 @@ export const sideQuests = [
       "Zurke must kill the sweet sickness he has so lovingly cultivated.",
   },
   {
-    id: "QST_Class_Sorc",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Sorcerer: Legacy of the Magi",
-    description:
-      "I feel something, a voice on the astral wind, calling out dimly, somewhere in the mountains. Is this call meant for me? I should investigate.",
-  },
-  {
     id: "QST_Kehj_LowDesert_RareHarvest_Herb",
     x: -94.57746123776009,
     y: 123.66928926761638,
@@ -1291,14 +1148,6 @@ export const sideQuests = [
     y: 106.53198789835277,
     name: "Stolen Artifice",
     description: "A seemingly petty theft has put innocent lives at risk.",
-  },
-  {
-    id: "QST_Step_CentralCanyon_RareHarvest_Ore",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Strange Ore Sample",
-    description:
-      "I found some strange ore while mining in the Dry Steppes. The Oxen Tribe Forgemaster, Gerti, in Ked Bardu may be interested in this.",
   },
   {
     id: "QST_Kehj_Oasis_FetchMinor_02",
@@ -1404,34 +1253,12 @@ export const sideQuests = [
     description: "Recover Backwater's stolen property from the bandits.",
   },
   {
-    id: "QST_UberSubzone_Tutorial_Quest",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "The Helltide Rises",
-    description: "Hell is coming.\r\n\r\nSeek out Doomsayer Pira in Kyovashad.",
-  },
-  {
-    id: "UberSubzone_PlayerQuest",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "The Helltide Rises",
-    description:
-      "Slay foes and complete activities to collect Aberrant Cinders used to unlock Tortured Gifts",
-  },
-  {
     id: "QST_Hawe_Zarbinzet_TheHeretic",
     x: -145.41465917407987,
     y: 90.11469676955004,
     name: "The Heretic",
     description:
       "A spate of grisly deaths terrifies a group of villagers who fear a dark power is at work.",
-  },
-  {
-    id: "QST_Hawe_TheHeretic_Hidden",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "The Heretic Hidden",
-    description: "Controls ash statues in Crossway",
   },
   {
     id: "QST_Scos_Crone_02",
@@ -1552,21 +1379,6 @@ export const sideQuests = [
       "The people starve as bandits plunder food from caravans bound for Ked Bardu.",
   },
   {
-    id: "QST_Scos_Coast_ThreadsofEnvy",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Threads of Envy",
-    description: "More than a monster waits in the deep.",
-  },
-  {
-    id: "QST_Kehj_Oasis_DropGift_Innkeeper02",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Timely Correspondence",
-    description:
-      "I found a letter addressed to the innkeeper in Gea Kul. I should bring it to her.",
-  },
-  {
     id: "QST_Hawe_Marsh_DropGift_Timue02",
     x: -148.3973920659321,
     y: 133.95656850056915,
@@ -1646,21 +1458,6 @@ export const sideQuests = [
     y: 43.69122847177218,
     name: "Unsafe Travels",
     description: "A Kehjistani guide is plagued by troubles.",
-  },
-  {
-    id: "QST_Scos_Coast_UntanglingTruths",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Untangling Truths",
-    description: "Painful memories never remain submerged.",
-  },
-  {
-    id: "QST_Kehj_Oasis_RareHarvest_Ore",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "Unusual Ore",
-    description:
-      "I found a strange chunk of ore. A blacksmith among the Iron Wolves may know more about this.",
   },
   {
     id: "QST_Frac_TaigaE_DropGift_Zalan02",
@@ -1756,22 +1553,6 @@ export const sideQuests = [
     y: 119.57321549319114,
     name: "With Fangs Bared",
     description: "Entrap Una and break the curse.",
-  },
-  {
-    id: "QST_WorldTier3_Unlock",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "World Tier 3: Nightmare",
-    description:
-      "Complete the Cathedral of Light Capstone Dungeon in World Tier 2: Veteran to unlock World Tier 3: Nightmare.\r\n\r\nIn Nightmare, monsters give 100% increased Experience.\r\n\r\nSacred items, Unique items, Helltides, and Nightmare Sigils, used to unseal Nightmare Dungeons, become available in Nightmare and above.",
-  },
-  {
-    id: "QST_WorldTier4_Unlock",
-    x: -137.81818181818184,
-    y: 68.60606060606061,
-    name: "World Tier 4: Torment",
-    description:
-      "Complete the Fallen Temple Capstone Dungeon in World Tier 3: Nightmare to unlock World Tier 4: Torment.\r\n\r\nIn Torment, monsters give 200% increased Experience.\r\n\r\nAncestral items and new Unique items become available in Torment.",
   },
   {
     id: "QST_Step_South_WorthyOfArreat",
