@@ -117,7 +117,8 @@
       "matches": [
         "https://*.patreon.com",
         "https://diablo4.th.gl",
-        "http://localhost:3666"
+        "http://localhost:3666",
+        "https://d4armory.io"
       ]
     },
     "url_protocol": {

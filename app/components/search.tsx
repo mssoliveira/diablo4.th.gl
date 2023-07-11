@@ -12,7 +12,7 @@ import {
 } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Filters from "./filters";
-import Helltide from "./helltide";
+import Timers from "./timers";
 import useFilters from "./use-filters";
 
 export default function Search() {
@@ -38,11 +38,20 @@ export default function Search() {
   }, [search]);
   return (
     <>
-      {!settingsStore.lockedWindow || !isOverlay ? (
+      <div
+        className={`absolute z-[400] w-full md:w-auto bg-black md:bg-transparent flex md:gap-1 transition-all duration-500 ${
+          globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
+        } ${
+          "value" in router ? "top-[42px]" : "top-0 md:top-3"
+        } left-0 right-0 md:right-1 overflow-auto`}
+      >
+        {globalSettingsStore.showTimers && <Timers />}
+      </div>
+      {(!settingsStore.lockedWindow || !isOverlay) && (
         <div
           className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
             globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
-          } ${"value" in router ? "md:top-[42px]" : "md:top-3"}`}
+          } ${"value" in router ? "top-[92px]" : "top-[37px] md:top-[57px]"}`}
         >
           <button
             className="menu flex absolute inset-y-0 left-0 items-center pl-2 text-gray-400 hover:text-gray-200"
@@ -131,18 +140,11 @@ export default function Search() {
               <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" />
             </svg>
           </button>
-          <div className="absolute top-full w-full md:w-fit md:top-0 md:left-full md:ml-2">
-            {globalSettingsStore.showTimers && <Helltide />}
-          </div>
           <div
             className={`absolute top-full text-sm w-full md:mt-1 md:space-y-2`}
           >
             {globalSettingsStore.showFilters && <Filters />}
           </div>
-        </div>
-      ) : (
-        <div className="absolute top-[40px] left-[10px] z-[400] flex">
-          {globalSettingsStore.showTimers && <Helltide />}
         </div>
       )}
     </>
