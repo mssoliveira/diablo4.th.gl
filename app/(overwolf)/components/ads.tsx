@@ -81,6 +81,7 @@ function Ads() {
       >
         {(!settingsStore.lockedWindow || !isOverlay) && (
           <div className="flex w-fit rounded-t-lg bg-opacity-50 bg-neutral-800 ml-auto text-neutral-300">
+            <p className="px-1.5 font-xs font-mono">Diablo 4 Map</p>
             <div className="cursor-move flex items-center p-1">
               <svg className="w-[16px] h-[16px]">
                 <use xlinkHref="#icon-move" />
@@ -106,21 +107,23 @@ function Ads() {
           {dict.menu.patronInfo}
         </div>
       </div>
-      <Moveable
-        ref={moveableRef}
-        target={containerRef}
-        draggable
-        bounds={{ left: 0, top: 30, right: 0, bottom: 0, position: "css" }}
-        origin={false}
-        hideDefaultLines
-        snappable
-        onDrag={(e) => {
-          e.target.style.transform = e.transform;
-        }}
-        onDragEnd={(e) => {
-          settingsStore.setAdTransform(e.target.style.transform);
-        }}
-      />
+      {!settingsStore.lockedWindow && (
+        <Moveable
+          ref={moveableRef}
+          target={containerRef}
+          draggable
+          bounds={{ left: 0, top: 30, right: 0, bottom: 0, position: "css" }}
+          origin={false}
+          hideDefaultLines
+          snappable
+          onDrag={(e) => {
+            e.target.style.transform = e.transform;
+          }}
+          onDragEnd={(e) => {
+            settingsStore.setAdTransform(e.target.style.transform);
+          }}
+        />
+      )}
       {isModalVisible && (
         <Modal onClose={() => setIsModalVisible(false)}>
           <p className="italic text-md text-center">{dict.menu.patronInfo}</p>
