@@ -12,6 +12,7 @@ import {
 } from "../lib/storage";
 import { useDict } from "./(i18n)/i18n-provider";
 import Filters from "./filters";
+import Routes from "./routes";
 import Timers from "./timers";
 import useFilters from "./use-filters";
 
@@ -84,7 +85,7 @@ export default function Search() {
           />
           {search ? (
             <button
-              className="flex absolute inset-y-0 right-6 items-center pr-2 text-gray-400 hover:text-gray-200"
+              className="flex absolute inset-y-0 right-12 items-center pr-2 text-gray-400 hover:text-gray-200"
               onClick={() => setSearch("")}
             >
               <svg
@@ -101,7 +102,7 @@ export default function Search() {
               <div className="h-3/6 w-px bg-gray-600 mx-1.5" />
             </button>
           ) : (
-            <div className="flex absolute inset-y-0 right-6 items-center pr-2 text-gray-400">
+            <div className="flex absolute inset-y-0 right-12 items-center pr-2 text-gray-400">
               <svg
                 className="block w-5"
                 fill="none"
@@ -120,7 +121,7 @@ export default function Search() {
             </div>
           )}
           <button
-            className={`flex absolute inset-y-0 right-0 items-center pr-2 text-gray-400 hover:text-gray-200 ${
+            className={`flex absolute inset-y-0 right-6 items-center pr-2 text-gray-400 hover:text-gray-200 ${
               globalSettingsStore.showFilters ? "text-white" : ""
             }`}
             onClick={globalSettingsStore.toggleShowFilters}
@@ -140,10 +141,32 @@ export default function Search() {
               <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" />
             </svg>
           </button>
+          <button
+            className={`flex absolute inset-y-0 right-0 items-center pr-2 text-gray-400 hover:text-gray-200 ${
+              globalSettingsStore.showRoutes ? "text-white" : ""
+            }`}
+            onClick={globalSettingsStore.toggleShowRoutes}
+          >
+            <svg
+              className="block w-5 h-5"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+              <path d="M7 19h3a2 2 0 0 0 2 -2v-8a2 2 0 0 1 2 -2h7"></path>
+              <path d="M18 4l3 3l-3 3"></path>
+            </svg>
+          </button>
           <div
             className={`absolute top-full text-sm w-full md:mt-1 md:space-y-2`}
           >
             {globalSettingsStore.showFilters && <Filters />}
+            {globalSettingsStore.showRoutes && <Routes />}
           </div>
         </div>
       )}

@@ -7,6 +7,11 @@ import { useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { create } from "zustand";
 
+import "@geoman-io/leaflet-geoman-free";
+import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
+
+leaflet.PM.setOptIn(true);
+
 export const useMapStore = create<{
   map: leaflet.Map | null;
   setMap: (map: leaflet.Map | null) => void;
@@ -47,6 +52,7 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       crs: worldCRS,
       maxBounds: MAX_BOUNDS,
       renderer: leaflet.canvas(),
+      pmIgnore: false,
     });
 
     const isOverwolf = "value" in router;
