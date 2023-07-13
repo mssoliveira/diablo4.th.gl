@@ -34,7 +34,7 @@ export default function DiscoveredNodes() {
               );
             }}
           >
-            Export
+            Backup
           </button>
         ) : (
           <a
@@ -44,7 +44,7 @@ export default function DiscoveredNodes() {
             download="diablo_4_map_discovered_nodes.json"
             className="p-1 uppercase hover:text-white"
           >
-            Export
+            Backup
           </a>
         )}
         <label className="p-1 uppercase hover:text-white cursor-pointer">
@@ -83,7 +83,7 @@ export default function DiscoveredNodes() {
               reader.readAsText(file);
             }}
           />
-          Import
+          Restore
         </label>
         <button
           className="p-1 uppercase hover:text-white"
