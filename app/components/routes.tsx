@@ -1,7 +1,9 @@
 import { nodes } from "@/app/lib/nodes";
 import leaflet, { Polyline } from "leaflet";
+import { nanoid } from "nanoid";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { ROUTE, useRoutesStore } from "../lib/storage";
 import { useMap } from "./(map)/map";
 import RouteTypes from "./route-types";
@@ -17,6 +19,7 @@ export default function Routes() {
   const map = useMap();
   const routes = useRoutesStore();
   const [tempRoute, setTempRoute] = useState<ROUTE>(EMPTY_ROUTE);
+  const router = useOverwolfRouter();
 
   const setRoutePositions = useCallback((workingLayers: leaflet.Polyline[]) => {
     const types: ROUTE["types"] = [];
@@ -69,13 +72,25 @@ export default function Routes() {
     }
 
     const workingLayers: leaflet.Polyline[] = [];
+    tempRoute.positions.forEach((layerPositions) => {
+      const workingLayer = leaflet.polyline(
+        layerPositions.map(({ position }) => position)
+      );
+      workingLayer.options.pmIgnore = false;
+      leaflet.PM.reInitLayer(workingLayer);
+      workingLayer.on("pm:edit", () => {
+        setRoutePositions([workingLayer]);
+      });
+      workingLayers.push(workingLayer);
+      workingLayer.addTo(map);
+    });
+
     map.on("pm:drawstart", ({ workingLayer, shape }) => {
       if (shape !== "Line") {
         return;
       }
       workingLayers.push(workingLayer as Polyline);
       workingLayer.on("pm:change", () => {
-        console.log("change");
         setRoutePositions(workingLayers);
       });
     });
@@ -86,7 +101,6 @@ export default function Routes() {
       workingLayers.push(e.layer as Polyline);
 
       e.layer.on("pm:edit", () => {
-        console.log("edit");
         setRoutePositions(workingLayers);
       });
     });
@@ -104,6 +118,33 @@ export default function Routes() {
       setTempRoute(EMPTY_ROUTE);
     };
   }, [routes.isCreating]);
+
+  useEffect(() => {
+    if (routes.isCreating) {
+      return;
+    }
+    const layers: leaflet.Polyline[] = [];
+    routes.activeRoutes.forEach((activeRoute) => {
+      const route = routes.routes.find(({ id }) => id === activeRoute);
+      if (!route) {
+        return;
+      }
+
+      route.positions.forEach((layerPositions) => {
+        const layer = leaflet.polyline(
+          layerPositions.map(({ position }) => position)
+        );
+        layers.push(layer);
+        layer.addTo(map);
+      });
+    });
+
+    return () => {
+      layers.forEach((layer) => {
+        layer.remove();
+      });
+    };
+  }, [routes.isCreating, routes.activeRoutes]);
 
   if (routes.isCreating) {
     return (
@@ -152,12 +193,18 @@ export default function Routes() {
             Cancel
           </button>
           <button
-            className="p-2 uppercase hover:text-white w-1/2"
+            className={`p-2 uppercase w-1/2 ${
+              tempRoute.name.length === 0 ? "text-gray-500" : "hover:text-white"
+            }`}
             onClick={() => {
-              routes.addRoute({
-                ...tempRoute,
-                id: `${tempRoute.name}_${Date.now()}`,
-              });
+              if (tempRoute.id.length === 0) {
+                routes.addRoute({
+                  ...tempRoute,
+                  id: nanoid(),
+                });
+              } else {
+                routes.editRoute(tempRoute.id, tempRoute);
+              }
               routes.setIsCreating(false);
             }}
             disabled={tempRoute.name.length === 0}
@@ -179,14 +226,47 @@ export default function Routes() {
         >
           Create
         </button>
-        <button
-          className="p-2 uppercase hover:text-white w-1/2"
-          onClick={() => {
-            // setFilters([]);
-          }}
-        >
+        <label className="p-2 uppercase hover:text-white w-1/2 text-center">
+          <input
+            type="file"
+            accept=".json"
+            style={{ display: "none" }}
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (!file) {
+                return;
+              }
+              const reader = new FileReader();
+              reader.addEventListener("load", (loadEvent) => {
+                const text = loadEvent.target?.result;
+                if (!text || typeof text !== "string") {
+                  return;
+                }
+                try {
+                  const route = JSON.parse(text);
+                  if (
+                    !Array.isArray(route.types) ||
+                    !Array.isArray(route.positions) ||
+                    typeof route.name !== "string" ||
+                    typeof route.id !== "string"
+                  ) {
+                    throw new Error("Invalid route");
+                  }
+                  if (routes.routes.some(({ id }) => id === route.id)) {
+                    routes.editRoute(route.id, route);
+                  } else {
+                    routes.addRoute(route);
+                  }
+                } catch (error) {
+                  // Do nothing
+                }
+                event.target.value = "";
+              });
+              reader.readAsText(file);
+            }}
+          />
           Import
-        </button>
+        </label>
       </div>
       <p className="text-xs text-neutral-400 p-2">
         Join the{" "}
@@ -200,19 +280,76 @@ export default function Routes() {
         to explore and share routes with other players. You can also import and
         export routes here.
       </p>
-      <div className="flex flex-wrap">
-        {routes.routes.length === 0 && <div>No routes created</div>}
+      <div className="overflow-auto max-h-full">
+        {routes.routes.length === 0 && (
+          <div className="p-2">No routes created</div>
+        )}
         {routes.routes.map((route) => (
-          <article key={route.id} className={`p-2`}>
-            <Toggle
-              checked={routes.activeRoutes.includes(route.id)}
-              onChange={(checked) =>
-                checked
-                  ? routes.addActiveRoute(route.id)
-                  : routes.removeActiveRoute(route.id)
-              }
-              small
-            />
+          <article key={route.id} className={`p-2 space-y-1`}>
+            <div className="flex justify-between">
+              <Toggle
+                checked={routes.activeRoutes.includes(route.id)}
+                onChange={(checked) =>
+                  checked
+                    ? routes.addActiveRoute(route.id)
+                    : routes.removeActiveRoute(route.id)
+                }
+                small
+              />
+              <div className="space-x-3">
+                {"update" in router ? (
+                  <button
+                    className="hover:text-white"
+                    onClick={() => {
+                      overwolf.io.writeFileContents(
+                        `${overwolf.io.paths.documents}\\Diablo 4 Map\\route_${route.id}.json`,
+                        JSON.stringify(route),
+                        "UTF8" as overwolf.io.enums.eEncoding.UTF8,
+                        true,
+                        () => console.log
+                      );
+                      overwolf.utils.openWindowsExplorer(
+                        `${overwolf.io.paths.documents}\\Diablo 4 Map`,
+                        console.log
+                      );
+                    }}
+                  >
+                    Export
+                  </button>
+                ) : (
+                  <a
+                    href={`data:text/json;charset=utf-8,${encodeURIComponent(
+                      JSON.stringify(route)
+                    )}`}
+                    download={`route_${route.id}.json`}
+                    className="hover:text-white"
+                  >
+                    Export
+                  </a>
+                )}
+                <button
+                  className="hover:text-white"
+                  onClick={() => {
+                    setTempRoute(route);
+                    routes.setIsCreating(true);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="hover:text-white"
+                  onClick={() => {
+                    if (
+                      confirm("Are you sure you want to delete this route?")
+                    ) {
+                      routes.removeRoute(route.id);
+                    }
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
             <div className="truncate text-base">{route.name}</div>
             <RouteTypes route={route} />
           </article>

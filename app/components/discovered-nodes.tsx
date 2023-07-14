@@ -50,7 +50,6 @@ export default function DiscoveredNodes() {
         <label className="p-1 uppercase hover:text-white cursor-pointer">
           <input
             type="file"
-            name="discoveredNodes"
             accept=".json"
             style={{ display: "none" }}
             onChange={(event) => {
