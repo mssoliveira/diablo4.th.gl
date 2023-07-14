@@ -131,33 +131,6 @@ export default function Routes() {
     };
   }, [routes.isCreating, map]);
 
-  useEffect(() => {
-    if (routes.isCreating || !map) {
-      return;
-    }
-    const layers: leaflet.Polyline[] = [];
-    routes.activeRoutes.forEach((activeRoute) => {
-      const route = routes.routes.find(({ id }) => id === activeRoute);
-      if (!route) {
-        return;
-      }
-
-      route.positions.forEach((layerPositions) => {
-        const layer = leaflet.polyline(
-          layerPositions.map(({ position }) => position)
-        );
-        layers.push(layer);
-        layer.addTo(map);
-      });
-    });
-
-    return () => {
-      layers.forEach((layer) => {
-        layer.remove();
-      });
-    };
-  }, [routes.isCreating, routes.activeRoutes, map]);
-
   if (routes.isCreating) {
     return (
       <div className="divide-y divide-neutral-700 border-t border-t-neutral-600 bg-neutral-900 text-gray-200 text-sm w-full md:border md:border-gray-600 md:rounded-lg">

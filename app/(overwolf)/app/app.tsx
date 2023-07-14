@@ -1,5 +1,6 @@
 "use client";
 import { I18NProvider } from "@/app/components/(i18n)/i18n-provider";
+import ActiveRoutes from "@/app/components/(map)/active-routes";
 import Map from "@/app/components/(map)/map";
 import Nodes from "@/app/components/(map)/nodes";
 import Territories from "@/app/components/(map)/territories";
@@ -61,6 +62,7 @@ export default function App() {
                 <Tiles />
                 <Territories />
                 <Nodes />
+                <ActiveRoutes />
               </>
             )}
             <Player />
