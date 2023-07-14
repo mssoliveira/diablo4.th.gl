@@ -1,6 +1,6 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { useAccountStore } from "../lib/storage";
+import { useAccountStore } from "../lib/storage/account";
 
 type NitroAds = {
   // eslint-disable-next-line no-unused-vars

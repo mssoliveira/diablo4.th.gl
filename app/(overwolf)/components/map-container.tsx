@@ -1,6 +1,7 @@
 "use client";
 import { useMap } from "@/app/components/(map)/map";
-import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { useEffect, useRef, useState } from "react";
 import Moveable from "react-moveable";
 import { shallow } from "zustand/shallow";

@@ -1,7 +1,7 @@
 "use client";
 import { ICONS } from "../lib/icons";
 import { spawnNodes, staticNodes } from "../lib/nodes";
-import { ALL_FILTERS } from "../lib/storage";
+import { ALL_FILTERS } from "../lib/storage/global-settings";
 import { useDict } from "./(i18n)/i18n-provider";
 import useFilters from "./use-filters";
 

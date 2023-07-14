@@ -1,5 +1,6 @@
 import { useMap } from "@/app/components/(map)/map";
-import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import leaflet from "leaflet";
 import { useEffect, useRef } from "react";
 import { getGameInfo, listenToGameLaunched, setFeatures } from "../lib/games";

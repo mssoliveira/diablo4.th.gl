@@ -1,4 +1,4 @@
-import { useGlobalSettingsStore } from "../lib/storage";
+import { useGlobalSettingsStore } from "../lib/storage/global-settings";
 import Toggle from "./toggle";
 
 export default function Settings() {

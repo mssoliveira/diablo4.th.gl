@@ -1,6 +1,7 @@
 "use client";
 import { API_BASE_URI } from "@/app/lib/env";
-import { useAccountStore, useSettingsStore } from "@/app/lib/storage";
+import { useAccountStore } from "@/app/lib/storage/account";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { useEffect, useRef } from "react";
 import { GAME_CLASS_ID, HOTKEYS, WINDOWS } from "../lib/config";
 import { startNewGameSession } from "../lib/game-sessions";

@@ -1,6 +1,6 @@
 "use client";
 import Toggle from "@/app/components/toggle";
-import { useSettingsStore } from "@/app/lib/storage";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { HOTKEYS } from "../lib/config";
 import Hotkey from "./hotkey";
 

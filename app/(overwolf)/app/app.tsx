@@ -1,5 +1,6 @@
 "use client";
 import { I18NProvider } from "@/app/components/(i18n)/i18n-provider";
+import ActiveRoutes from "@/app/components/(map)/active-routes";
 import Map from "@/app/components/(map)/map";
 import Nodes from "@/app/components/(map)/nodes";
 import Territories from "@/app/components/(map)/territories";
@@ -8,7 +9,8 @@ import Menu from "@/app/components/menu";
 import Search from "@/app/components/search";
 import SearchParams from "@/app/components/search-params";
 import { DEFAULT_LOCALE, LOCALES, loadDictionary } from "@/app/lib/i18n";
-import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { useEffect, useState } from "react";
 import Ads from "../components/ads";
 import AppContainer from "../components/app-container";
@@ -60,6 +62,7 @@ export default function App() {
                 <Tiles />
                 <Territories />
                 <Nodes />
+                <ActiveRoutes />
               </>
             )}
             <Player />

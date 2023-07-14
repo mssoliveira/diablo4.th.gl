@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { I18NProvider } from "../components/(i18n)/i18n-provider";
+import ActiveRoutes from "../components/(map)/active-routes";
 import Nodes from "../components/(map)/nodes";
 import Territories from "../components/(map)/territories";
 import Tiles from "../components/(map)/tiles";
@@ -54,6 +55,7 @@ function Layout({
             <Tiles />
             <Territories />
             <Nodes />
+            <ActiveRoutes />
             <Search />
             <Menu />
           </Map>

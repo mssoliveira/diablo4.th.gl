@@ -1,4 +1,5 @@
-import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { ReactNode, useEffect } from "react";
 import { setInputPassThrough } from "../lib/windows";
 

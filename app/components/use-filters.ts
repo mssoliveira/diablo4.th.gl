@@ -1,5 +1,8 @@
 import { useCallback } from "react";
-import { ALL_FILTERS, useGlobalSettingsStore } from "../lib/storage";
+import {
+  ALL_FILTERS,
+  useGlobalSettingsStore,
+} from "../lib/storage/global-settings";
 
 export default function useFilters() {
   const globalSettingsStore = useGlobalSettingsStore();

@@ -1,5 +1,6 @@
 "use client";
-import { useGameInfoStore, useSettingsStore } from "@/app/lib/storage";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { useLayoutEffect, useState } from "react";
 import {
   maximizeWindow,

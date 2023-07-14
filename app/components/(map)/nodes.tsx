@@ -1,10 +1,8 @@
 "use client";
 import { useOverwolfRouter } from "@/app/(overwolf)/components/overwolf-router";
 import { NODE, nodes } from "@/app/lib/nodes";
-import {
-  useDiscoveredNodesStore,
-  useGlobalSettingsStore,
-} from "@/app/lib/storage";
+import { useDiscoveredNodesStore } from "@/app/lib/storage/discovered-nodes";
+import { useGlobalSettingsStore } from "@/app/lib/storage/global-settings";
 import leaflet from "leaflet";
 import { useParams, useSearchParams } from "next/navigation";
 import { Fragment, useCallback, useEffect, useMemo } from "react";
