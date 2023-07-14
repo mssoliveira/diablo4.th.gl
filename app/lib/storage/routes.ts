@@ -14,10 +14,19 @@ export type ROUTE = {
     nodeType?: string;
   }[][];
 };
+const EMPTY_ROUTE: ROUTE = {
+  id: "",
+  name: "",
+  types: [],
+  positions: [],
+};
 export const useRoutesStore = create(
   persist<{
     isCreating: boolean;
     setIsCreating: (isCreating: boolean) => void;
+    tempRoute: ROUTE;
+    updateTempRoute: (tempRoute: Partial<ROUTE>) => void;
+    resetTempRoute: () => void;
     routes: ROUTE[];
     addRoute: (route: ROUTE) => void;
     removeRoute: (routeId: string) => void;
@@ -29,6 +38,10 @@ export const useRoutesStore = create(
     (set) => ({
       isCreating: false,
       setIsCreating: (isCreating) => set({ isCreating }),
+      tempRoute: EMPTY_ROUTE,
+      updateTempRoute: (tempRoute) =>
+        set((state) => ({ tempRoute: { ...state.tempRoute, ...tempRoute } })),
+      resetTempRoute: () => set({ tempRoute: EMPTY_ROUTE }),
       routes: [],
       addRoute: (route) =>
         set((state) => ({

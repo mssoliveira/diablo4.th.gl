@@ -2,54 +2,57 @@ import { nodes } from "@/app/lib/nodes";
 import leaflet, { Polyline } from "leaflet";
 import { nanoid } from "nanoid";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { ROUTE, useRoutesStore } from "../lib/storage/routes";
 import { useMap } from "./(map)/map";
 import RouteTypes from "./route-types";
 import Toggle from "./toggle";
 
-const EMPTY_ROUTE: ROUTE = {
-  id: "",
-  name: "",
-  types: [],
-  positions: [],
-};
 export default function Routes() {
   const map = useMap();
   const routes = useRoutesStore();
-  const [tempRoute, setTempRoute] = useState<ROUTE>(EMPTY_ROUTE);
   const router = useOverwolfRouter();
+
+  const nodeLatLngs = useMemo(() => {
+    return nodes.reduce((acc, cur) => {
+      acc[`${cur.x}-${cur.y}`] = { type: cur.type, id: cur.id };
+      return acc;
+    }, {} as Record<string, { id: string; type: string }>);
+  }, []);
 
   const setRoutePositions = useCallback((workingLayers: leaflet.Polyline[]) => {
     const types: ROUTE["types"] = [];
     const positions: ROUTE["positions"] = [];
-
+    const visitedPositions: string[] = [];
     workingLayers.forEach((workingLayer) => {
       const latLngs = workingLayer.getLatLngs() as leaflet.LatLng[];
       if (latLngs.length === 0) {
         return;
       }
       const layerPositions = latLngs.map((latLng) => {
-        const snappedNode = nodes.find((node) =>
-          latLng.equals([node.x, node.y])
-        );
+        const position = `${latLng.lat}-${latLng.lng}`;
+        const snappedNode = nodeLatLngs[position];
         if (snappedNode) {
-          const existingType = types.find(
-            ({ type }) => type === snappedNode.type
-          );
-          if (existingType) {
-            existingType.count++;
-          } else {
-            types.push({
-              type: snappedNode.type as string,
-              count: 1,
-            });
+          if (!visitedPositions.includes(position)) {
+            visitedPositions.push(position);
+
+            const existingType = types.find(
+              ({ type }) => type === snappedNode.type
+            );
+            if (existingType) {
+              existingType.count++;
+            } else {
+              types.push({
+                type: snappedNode.type,
+                count: 1,
+              });
+            }
           }
           return {
             position: [latLng.lat, latLng.lng] as [number, number],
             nodeId: snappedNode.id,
-            nodeType: snappedNode.type as string,
+            nodeType: snappedNode.type,
           };
         }
         return {
@@ -58,12 +61,10 @@ export default function Routes() {
       });
       positions.push(layerPositions);
     });
-
-    setTempRoute((tempRoute) => ({
-      ...tempRoute,
+    routes.updateTempRoute({
       types,
       positions,
-    }));
+    });
   }, []);
 
   useEffect(() => {
@@ -72,14 +73,14 @@ export default function Routes() {
     }
 
     const workingLayers: leaflet.Polyline[] = [];
-    tempRoute.positions.forEach((layerPositions) => {
+    routes.tempRoute.positions.forEach((layerPositions) => {
       const workingLayer = leaflet.polyline(
         layerPositions.map(({ position }) => position)
       );
       workingLayer.options.pmIgnore = false;
       leaflet.PM.reInitLayer(workingLayer);
       workingLayer.on("pm:edit", () => {
-        setRoutePositions([workingLayer]);
+        setRoutePositions(workingLayers);
       });
       workingLayers.push(workingLayer);
       workingLayer.addTo(map);
@@ -90,7 +91,18 @@ export default function Routes() {
         return;
       }
       workingLayers.push(workingLayer as Polyline);
-      workingLayer.on("pm:change", () => {
+      workingLayer.on("pm:vertexadded", (e) => {
+        if (nodes.some((node) => e.latlng.equals([node.x, node.y]))) {
+          setRoutePositions(workingLayers);
+        }
+      });
+      workingLayer.on("pm:vertexremoved", (e) => {
+        setRoutePositions(workingLayers);
+      });
+      workingLayer.on("pm:markerdragend", (e) => {
+        setRoutePositions(workingLayers);
+      });
+      workingLayer.on("pm:edit", () => {
         setRoutePositions(workingLayers);
       });
     });
@@ -115,7 +127,7 @@ export default function Routes() {
       workingLayers.forEach((layer) => {
         layer.remove();
       });
-      setTempRoute(EMPTY_ROUTE);
+      routes.resetTempRoute();
     };
   }, [routes.isCreating, map]);
 
@@ -172,12 +184,12 @@ export default function Routes() {
             placeholder="Give this route an explanatory name"
             required
             autoFocus
-            value={tempRoute.name}
+            value={routes.tempRoute.name}
             onChange={(event) =>
-              setTempRoute({ ...tempRoute, name: event.target.value })
+              routes.updateTempRoute({ name: event.target.value })
             }
           />
-          <RouteTypes route={tempRoute} />
+          <RouteTypes route={routes.tempRoute} />
           <p className="text-xs text-neutral-400">
             You can add multiple lines and connect every node on the map.
             Right-click in edit mode removes a vertex.
@@ -194,20 +206,22 @@ export default function Routes() {
           </button>
           <button
             className={`p-2 uppercase w-1/2 ${
-              tempRoute.name.length === 0 ? "text-gray-500" : "hover:text-white"
+              routes.tempRoute.name.length === 0
+                ? "text-gray-500"
+                : "hover:text-white"
             }`}
             onClick={() => {
-              if (tempRoute.id.length === 0) {
+              if (routes.tempRoute.id.length === 0) {
                 routes.addRoute({
-                  ...tempRoute,
+                  ...routes.tempRoute,
                   id: nanoid(),
                 });
               } else {
-                routes.editRoute(tempRoute.id, tempRoute);
+                routes.editRoute(routes.tempRoute.id, routes.tempRoute);
               }
               routes.setIsCreating(false);
             }}
-            disabled={tempRoute.name.length === 0}
+            disabled={routes.tempRoute.name.length === 0}
           >
             Save
           </button>
@@ -330,7 +344,7 @@ export default function Routes() {
                 <button
                   className="hover:text-white"
                   onClick={() => {
-                    setTempRoute(route);
+                    routes.updateTempRoute(route);
                     routes.setIsCreating(true);
                   }}
                 >
