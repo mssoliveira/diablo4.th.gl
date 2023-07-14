@@ -120,7 +120,7 @@ export default function Routes() {
   }, [routes.isCreating, map]);
 
   useEffect(() => {
-    if (routes.isCreating) {
+    if (routes.isCreating || !map) {
       return;
     }
     const layers: leaflet.Polyline[] = [];
@@ -144,7 +144,7 @@ export default function Routes() {
         layer.remove();
       });
     };
-  }, [routes.isCreating, routes.activeRoutes]);
+  }, [routes.isCreating, routes.activeRoutes, map]);
 
   if (routes.isCreating) {
     return (
