@@ -208,9 +208,10 @@ export default function Routes() {
               checked={routes.activeRoutes.includes(route.id)}
               onChange={(checked) =>
                 checked
-                  ? routes.removeActiveRoute(route.id)
-                  : routes.addActiveRoute(route.id)
+                  ? routes.addActiveRoute(route.id)
+                  : routes.removeActiveRoute(route.id)
               }
+              small
             />
             <div className="truncate text-base">{route.name}</div>
             <RouteTypes route={route} />
