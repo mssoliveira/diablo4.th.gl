@@ -1,6 +1,6 @@
 import { ICONS } from "../lib/icons";
 import { NODE_TYPE } from "../lib/nodes";
-import { ROUTE } from "../lib/storage";
+import { ROUTE } from "../lib/storage/routes";
 
 export default function RouteTypes({ route }: { route: ROUTE }) {
   return (

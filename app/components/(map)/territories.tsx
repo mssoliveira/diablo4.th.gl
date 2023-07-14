@@ -1,5 +1,5 @@
 "use client";
-import { useGlobalSettingsStore } from "@/app/lib/storage";
+import { useGlobalSettingsStore } from "@/app/lib/storage/global-settings";
 import { territories } from "@/app/lib/territories";
 import leaflet from "leaflet";
 import { useEffect } from "react";

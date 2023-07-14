@@ -1,7 +1,7 @@
 "use client";
 import { ICONS } from "@/app/lib/icons";
 import { NODE, NODE_TYPE } from "@/app/lib/nodes";
-import { useRoutesStore } from "@/app/lib/storage";
+import { useRoutesStore } from "@/app/lib/storage/routes";
 import { getTerritoryByPoint } from "@/app/lib/territories";
 import leaflet from "leaflet";
 import { memo, useEffect, useRef } from "react";

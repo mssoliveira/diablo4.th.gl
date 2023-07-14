@@ -1,4 +1,4 @@
-import { useSettingsStore } from "@/app/lib/storage";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import { useEffect, useState } from "react";
 import { GAME_CLASS_ID, WINDOWS } from "./config";
 import { getRunningGameInfo } from "./games";

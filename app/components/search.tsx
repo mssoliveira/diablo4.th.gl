@@ -4,12 +4,12 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { useUpdateSearchParams } from "../lib/search-params";
+import { useGameInfoStore } from "../lib/storage/game-info";
 import {
   ALL_FILTERS,
-  useGameInfoStore,
   useGlobalSettingsStore,
-  useSettingsStore,
-} from "../lib/storage";
+} from "../lib/storage/global-settings";
+import { useSettingsStore } from "../lib/storage/settings";
 import { useDict } from "./(i18n)/i18n-provider";
 import Filters from "./filters";
 import Routes from "./routes";

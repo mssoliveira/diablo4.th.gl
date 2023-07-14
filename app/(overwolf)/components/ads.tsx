@@ -2,11 +2,9 @@
 import { useDict } from "@/app/components/(i18n)/i18n-provider";
 import Modal from "@/app/components/modal";
 import { API_BASE_URI } from "@/app/lib/env";
-import {
-  useAccountStore,
-  useGameInfoStore,
-  useSettingsStore,
-} from "@/app/lib/storage";
+import { useAccountStore } from "@/app/lib/storage/account";
+import { useGameInfoStore } from "@/app/lib/storage/game-info";
+import { useSettingsStore } from "@/app/lib/storage/settings";
 import type { OwAd } from "@overwolf/types/owads";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";

@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
-import { ROUTE, useRoutesStore } from "../lib/storage";
+import { ROUTE, useRoutesStore } from "../lib/storage/routes";
 import { useMap } from "./(map)/map";
 import RouteTypes from "./route-types";
 import Toggle from "./toggle";
@@ -67,7 +67,7 @@ export default function Routes() {
   }, []);
 
   useEffect(() => {
-    if (!routes.isCreating) {
+    if (!routes.isCreating || !map) {
       return;
     }
 
@@ -117,7 +117,7 @@ export default function Routes() {
       });
       setTempRoute(EMPTY_ROUTE);
     };
-  }, [routes.isCreating]);
+  }, [routes.isCreating, map]);
 
   useEffect(() => {
     if (routes.isCreating) {

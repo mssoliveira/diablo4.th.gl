@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { API_BASE_URI } from "../lib/env";
 import { useUpdateSearchParams } from "../lib/search-params";
-import { ALL_FILTERS, useAccountStore } from "../lib/storage";
+import { useAccountStore } from "../lib/storage/account";
+import { ALL_FILTERS } from "../lib/storage/global-settings";
 import useFilters from "./use-filters";
 
 export default function SearchParams() {

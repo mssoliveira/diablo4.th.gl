@@ -2,7 +2,7 @@
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { ICONS } from "../lib/icons";
 import { staticNodes } from "../lib/nodes";
-import { useDiscoveredNodesStore } from "../lib/storage";
+import { useDiscoveredNodesStore } from "../lib/storage/discovered-nodes";
 import { useDict } from "./(i18n)/i18n-provider";
 import useFilters from "./use-filters";
 
