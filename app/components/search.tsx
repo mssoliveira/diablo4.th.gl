@@ -17,7 +17,7 @@ import Timers from "./timers";
 import useFilters from "./use-filters";
 
 export default function Search() {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   const router = useOverwolfRouter();
   const [search, setSearch] = useState(() => searchParams.get("search") ?? "");
   const dict = useDict();

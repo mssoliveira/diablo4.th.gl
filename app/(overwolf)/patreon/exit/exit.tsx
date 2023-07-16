@@ -3,7 +3,7 @@ import { OVERWOLF_APP_UID } from "@/app/lib/env";
 import { useSearchParams } from "next/navigation";
 
 export default function Exit() {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   const code = searchParams.get("code");
 
   if (!code) {

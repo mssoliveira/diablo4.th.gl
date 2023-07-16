@@ -10,7 +10,7 @@ import { ALL_FILTERS } from "../lib/storage/global-settings";
 import useFilters from "./use-filters";
 
 export default function SearchParams() {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   const updateSearchParams = useUpdateSearchParams();
   const router = useOverwolfRouter();
   const [filters] = useFilters();

@@ -3,7 +3,7 @@ import { useCallback } from "react";
 
 export function useUpdateSearchParams() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   const router = useRouter();
 
   const updateSearchParams = useCallback(

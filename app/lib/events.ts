@@ -1,3 +1,5 @@
+import { API_BASE_URI } from "./env";
+
 export type RECENT_EVENTS = {
   boss: {
     name: string;
@@ -24,7 +26,11 @@ export type RECENT_EVENTS = {
 };
 
 export async function getRecentEvents() {
-  const response = await fetch(`https://d4armory.io/api/events/recent`);
+  const response = await fetch(
+    location.origin.startsWith("overwolf")
+      ? "https://d4armory.io/api/events/recent"
+      : `${API_BASE_URI}/api/events`
+  );
   const data = (await response.json()) as RECENT_EVENTS;
   return data;
 }

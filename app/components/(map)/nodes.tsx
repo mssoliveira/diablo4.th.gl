@@ -20,8 +20,8 @@ export default function Nodes() {
   }, []);
 
   const router = useOverwolfRouter();
-  const params = useParams();
-  const searchParams = useSearchParams();
+  const params = useParams()!;
+  const searchParams = useSearchParams()!;
   const { discoveredNodes, toggleDiscoveredNode } = useDiscoveredNodesStore();
   const isOverwolf = "value" in router;
   const search = useMemo(() => {
@@ -39,12 +39,12 @@ export default function Nodes() {
   const [filters] = useFilters();
 
   const selectedName = useMemo(
-    () => paramsName && decodeURIComponent(paramsName),
+    () => paramsName && decodeURIComponent(paramsName as string),
     [paramsName]
   );
   const coordinates = useMemo(
     () =>
-      (paramsCoordinates && decodeURIComponent(paramsCoordinates))
+      (paramsCoordinates && decodeURIComponent(paramsCoordinates as string))
         ?.replace("@", "")
         .split(",")
         .map(Number) ?? [],

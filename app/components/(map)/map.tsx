@@ -34,7 +34,7 @@ export default function Map({ children }: { children?: React.ReactNode }) {
   const mapRef = useRef<HTMLDivElement>(null);
   const { map, setMap } = useMapStore();
   const router = useOverwolfRouter();
-  const params = useParams();
+  const params = useParams()!;
 
   useEffect(() => {
     const worldCRS = leaflet.extend({}, leaflet.CRS.Simple, {
@@ -60,7 +60,7 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       ? router.value.coordinates
       : params.coordinates;
     const coordinates = (
-      paramsCoordinates && decodeURIComponent(paramsCoordinates)
+      paramsCoordinates && decodeURIComponent(paramsCoordinates as string)
     )
       ?.replace("@", "")
       .split(",")
