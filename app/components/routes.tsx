@@ -107,6 +107,10 @@ export default function Routes() {
       });
     });
 
+    map.on("pm:drawend", () => {
+      setRoutePositions(workingLayers);
+    });
+
     map.on("pm:create", (e) => {
       e.layer.options.pmIgnore = false;
       leaflet.PM.reInitLayer(e.layer);
