@@ -66,7 +66,7 @@ export default function Helltide({
       className="text-white text-sm px-2.5 py-2 space-x-1 md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500"
       onClick={onClick}
     >
-      <span className=" uppercase">{dict.helltide.inProgress}</span>
+      <span className="uppercase">{dict.helltide.inProgress}</span>
       <span className="font-mono">{timeLeft.value}</span>
     </button>
   ) : (

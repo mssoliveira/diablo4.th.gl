@@ -11,6 +11,7 @@ import {
 } from "../lib/storage/global-settings";
 import { useSettingsStore } from "../lib/storage/settings";
 import { useDict } from "./(i18n)/i18n-provider";
+import AppDownload from "./app-download";
 import Filters from "./filters";
 import Routes from "./routes";
 import Timers from "./timers";
@@ -46,6 +47,7 @@ export default function Search() {
           "value" in router ? "top-[42px]" : "top-0 md:top-3"
         } left-0 right-0 md:right-1 overflow-auto`}
       >
+        {!("value" in router) && <AppDownload />}
         {globalSettingsStore.showTimers && <Timers />}
       </div>
       {(!settingsStore.lockedWindow || !isOverlay) && (
