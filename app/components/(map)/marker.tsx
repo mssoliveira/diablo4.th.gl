@@ -114,15 +114,7 @@ const Marker = memo(function Marker({
         marker.current = null;
       }
     };
-  }, [type, isHighlighted, isDiscovered]);
-
-  useEffect(() => {
-    if (!marker.current) {
-      return;
-    }
-    const icon = ICONS[type];
-    marker.current.setRadius(icon.radius * iconSize);
-  }, [iconSize]);
+  }, [type, isHighlighted, isDiscovered, iconSize]);
 
   return <></>;
 });
