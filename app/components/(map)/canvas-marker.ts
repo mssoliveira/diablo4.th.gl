@@ -19,9 +19,12 @@ leaflet.Canvas.include({
     const dy = p.y - radius;
 
     const layerContext = this._ctx as CanvasRenderingContext2D;
-    layerContext.globalAlpha = isDiscovered ? 0.3 : 1;
+    layerContext.globalAlpha = 1;
 
-    const key = `${type}-${attribute}-${isHighlighted}-${radius}`;
+    const isWaypoint = type === "waypoints";
+    layerContext.globalAlpha = isDiscovered && !isWaypoint ? 0.5 : 1;
+
+    const key = `${type}-${attribute}-${isHighlighted}-${radius}-${isDiscovered}`;
     if (cachedImages[key]) {
       if (cachedImages[key].complete) {
         layerContext.drawImage(cachedImages[key], dx, dy);
@@ -38,22 +41,34 @@ leaflet.Canvas.include({
     canvas.height = imageSize;
     const ctx = canvas.getContext("2d")!;
 
-    const scale = imageSize / 100;
-
-    ctx.scale(scale, scale);
     const path2D = new Path2D(icon.path);
-
     ctx.strokeStyle = "strokeColor" in icon ? icon.strokeColor : "black";
     ctx.lineWidth = icon.lineWidth;
-    ctx.fillStyle = icon.color;
+    ctx.fillStyle = isDiscovered && !isWaypoint ? "#5f5d57" : icon.color;
+
+    const scale = imageSize / 100;
+    ctx.scale(scale, scale);
 
     if (isHighlighted) {
       ctx.fillStyle = icon.heighlightColor;
       ctx.shadowBlur = 5;
       ctx.shadowColor = "#999999";
     }
+
     ctx.fill(path2D);
     ctx.stroke(path2D);
+
+    if (isDiscovered && isWaypoint) {
+      const checkMarkPath = new Path2D("m5 12 5 5L20 7");
+      ctx.scale(1.5, 1.5);
+      ctx.translate(radius * 1.7, radius * 0.3);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "#000";
+      ctx.stroke(checkMarkPath);
+      ctx.strokeStyle = "#23ff80";
+      ctx.lineWidth = 4;
+      ctx.stroke(checkMarkPath);
+    }
 
     if ("attribute" in icon && attribute) {
       const attributeColor = icon.attribute(attribute);
