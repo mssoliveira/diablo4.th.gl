@@ -19,27 +19,20 @@ leaflet.Canvas.include({
     const dy = p.y - radius;
 
     const layerContext = this._ctx as CanvasRenderingContext2D;
-    layerContext.globalAlpha = 1;
-
-    const isWaypoint = type === "waypoints";
-    layerContext.globalAlpha = isDiscovered && !isWaypoint ? 0.5 : 1;
-
     const key = `${type}-${attribute}-${isHighlighted}-${radius}-${isDiscovered}`;
     if (cachedImages[key]) {
-      if (cachedImages[key].complete) {
-        layerContext.drawImage(cachedImages[key], dx, dy);
-      } else {
-        cachedImages[key].addEventListener("load", () => {
-          layerContext.drawImage(cachedImages[key], dx, dy);
-        });
-      }
+      layerContext.drawImage(cachedImages[key], dx, dy);
       return;
     }
+    const img = new Image(imageSize, imageSize);
+    cachedImages[key] = img;
 
+    const isWaypoint = type === "waypoints";
     const canvas = document.createElement("canvas");
     canvas.width = imageSize;
     canvas.height = imageSize;
     const ctx = canvas.getContext("2d")!;
+    ctx.globalAlpha = isDiscovered && !isWaypoint ? 0.5 : 1;
 
     const path2D = new Path2D(icon.path);
     ctx.strokeStyle = "strokeColor" in icon ? icon.strokeColor : "black";
@@ -80,12 +73,8 @@ leaflet.Canvas.include({
         ctx.stroke();
       }
     }
-    const img = new Image(imageSize, imageSize);
     img.src = ctx.canvas.toDataURL("image/webp");
-    cachedImages[key] = img;
-    img.addEventListener("load", () => {
-      this._ctx.drawImage(img, dx, dy);
-    });
+    this._ctx.drawImage(img, dx, dy);
   },
 });
 const renderer = leaflet.canvas({ pane: "markerPane" }) as leaflet.Canvas & {
@@ -117,17 +106,10 @@ class CanvasMarker extends leaflet.CircleMarker {
   }
 
   update() {
-    // const highlightedRadius = this.options.icon.radius * 1.25;
-    // if (this.options.isHighlighted && this.getRadius() !== highlightedRadius) {
-    //   this.setRadius(highlightedRadius);
-    // } else if (this.getRadius() !== this.options.icon.radius) {
-    //   this.setRadius(this.options.icon.radius);
-    // }
-
-    this.redraw();
     if (this.options.isHighlighted) {
       this.bringToFront();
     }
+    this.redraw();
   }
 
   _updatePath() {
