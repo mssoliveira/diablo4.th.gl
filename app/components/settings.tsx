@@ -7,10 +7,17 @@ export default function Settings() {
   return (
     <>
       <div className="flex">
-        <span className="w-1/2">Show Helltide Timer</span>
+        <span className="w-1/2">Show Event Timers</span>
         <Toggle
           checked={!!globalSettingsStore.showTimers}
           onChange={globalSettingsStore.toggleShowTimers}
+        />
+      </div>
+      <div className="flex">
+        <span className="w-1/2">Stack Event Timers</span>
+        <Toggle
+          checked={!!globalSettingsStore.stackTimers}
+          onChange={globalSettingsStore.toggleStackTimers}
         />
       </div>
       <div className="flex">

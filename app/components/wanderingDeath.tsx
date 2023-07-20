@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { RECENT_EVENTS } from "../lib/events";
+import { useGlobalSettingsStore } from "../lib/storage/global-settings";
 
 function formatTimeLeft(timeLeft: number) {
   // timeLeft is in miliseconds
@@ -27,6 +28,8 @@ export default function WanderingDeath({
   onRefreshRecentEvents: () => Promise<RECENT_EVENTS | undefined>;
   time: number;
 }) {
+  const stackTimers = useGlobalSettingsStore((state) => state.stackTimers);
+
   const timeLeft = recentEvents
     ? Math.max(0, recentEvents.boss.timestamp * 1000 - time) ||
       Math.max(0, recentEvents.boss.expected * 1000 - time)
@@ -42,7 +45,11 @@ export default function WanderingDeath({
   }, [timeLeft]);
 
   return (
-    <div className="text-gray-200 text-sm px-2.5 py-2 space-x-1 text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap pointer-events-none">
+    <div
+      className={`text-gray-200 text-sm px-2.5 py-1.5 flex gap-1 ${
+        stackTimers ? "flex-row-reverse" : ""
+      } text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap`}
+    >
       <span className="text-orange-400 uppercase">
         {recentEvents?.boss.name}
       </span>
