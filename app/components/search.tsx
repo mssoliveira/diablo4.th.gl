@@ -39,23 +39,25 @@ export default function Search() {
     return () => clearTimeout(handle);
   }, [search]);
   return (
-    <>
+    <div
+      className={`absolute pointer-events-none ${
+        "value" in router ? "top-[42px]" : "top-0 md:top-3"
+      }  md:right-1 w-full z-[400] transition-all duration-500 ${
+        globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
+      } md:space-y-1`}
+    >
       <div
-        className={`absolute z-[400] w-full md:w-auto bg-black md:bg-transparent flex md:gap-1 transition-all duration-500 ${
-          globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
-        } ${
-          "value" in router ? "top-[42px]" : "top-0 md:top-3"
-        } left-0 right-0 md:right-1 overflow-auto`}
+        className={`bg-black md:bg-transparent flex overflow-auto md:gap-1 ${
+          globalSettingsStore.stackTimers
+            ? "md:flex-col text-left items-start"
+            : ""
+        }`}
       >
         {!("value" in router) && <AppDownload />}
         {globalSettingsStore.showTimers && <Timers />}
       </div>
       {(!settingsStore.lockedWindow || !isOverlay) && (
-        <div
-          className={`absolute top-0 z-[400] flex w-full md:w-auto transition-all duration-500 ${
-            globalSettingsStore.showSidebar ? "md:left-[412px]" : "md:left-3"
-          } ${"value" in router ? "top-[92px]" : "top-[37px] md:top-[57px]"}`}
-        >
+        <div className={`relative pointer-events-auto flex md:w-fit`}>
           <button
             className="menu flex absolute inset-y-0 left-0 items-center pl-2 text-gray-400 hover:text-gray-200"
             onClick={globalSettingsStore.toggleShowSidebar}
@@ -172,6 +174,6 @@ export default function Search() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

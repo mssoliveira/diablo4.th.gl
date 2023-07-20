@@ -2,6 +2,7 @@
 
 import { RECENT_EVENTS } from "../lib/events";
 import { chestsT3 } from "../lib/nodes/chests_t3";
+import { useGlobalSettingsStore } from "../lib/storage/global-settings";
 import { useDict } from "./(i18n)/i18n-provider";
 import { useMap } from "./(map)/map";
 
@@ -45,6 +46,7 @@ export default function Helltide({
 }) {
   const dict = useDict();
   const map = useMap();
+  const stackTimers = useGlobalSettingsStore((state) => state.stackTimers);
 
   const timeLeft = calculateTimeLeft(time);
 
@@ -63,14 +65,20 @@ export default function Helltide({
 
   return timeLeft.isActive ? (
     <button
-      className="text-white text-sm px-2.5 py-2 space-x-1 md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500"
+      className={`pointer-events-auto text-white text-sm px-2.5 py-1.5 flex gap-1 ${
+        stackTimers ? "flex-row-reverse" : ""
+      } md:rounded-lg whitespace-nowrap bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500`}
       onClick={onClick}
     >
       <span className="uppercase">{dict.helltide.inProgress}</span>
       <span className="font-mono">{timeLeft.value}</span>
     </button>
   ) : (
-    <div className="text-gray-200 text-sm px-2.5 py-2 space-x-1 text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap pointer-events-none">
+    <div
+      className={`text-gray-200 text-sm px-2.5 py-1.5 flex gap-1 ${
+        stackTimers ? "flex-row-reverse" : ""
+      } text-shadow bg-black bg-opacity-50 md:rounded-lg whitespace-nowrap`}
+    >
       <span className="text-orange-400 uppercase">
         {dict.helltide.startsIn}
       </span>

@@ -24,6 +24,8 @@ export const useGlobalSettingsStore = create(
     toggleShowTimers: () => void;
     showSidebar: boolean;
     toggleShowSidebar: () => void;
+    stackTimers: boolean;
+    toggleStackTimers: () => void;
   }>(
     (set) => {
       let filters = ALL_FILTERS;
@@ -64,6 +66,9 @@ export const useGlobalSettingsStore = create(
           set((state) => ({
             showSidebar: !state.showSidebar,
           })),
+        stackTimers: false,
+        toggleStackTimers: () =>
+          set((state) => ({ stackTimers: !state.stackTimers })),
       };
     },
     {
