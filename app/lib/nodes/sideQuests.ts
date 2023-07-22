@@ -37,6 +37,22 @@ export const sideQuests = [
       "I should bring the broken totem piece that I found to Artair in Wraithstead, so that he can safeguard it until it is destroyed.",
   },
   {
+    id: "QST_S01_Main_04_Frac_02",
+    x: -84.95809666826598,
+    y: 136.22093396514444,
+    name: "A Merciful Fate",
+    description:
+      "Varshan’s corruption is captured. His life is ended, but will the Malignant die with him? I should find Cormond by his wagon.",
+  },
+  {
+    id: "QST_S01_Main_02_Step_01",
+    x: -76.34860468698008,
+    y: 59.728392066215385,
+    name: "A Plague of Hatred",
+    description:
+      "Cormond is heading to the ruins of Orbei Monastery in the Dry Steppes. He claims a cure for the Malignant may lie within. We shall see. ",
+  },
+  {
     id: "QST_Scos_Estate_Breadcrumb",
     x: -62.499166510353305,
     y: 99.41475556417907,
@@ -49,6 +65,14 @@ export const sideQuests = [
     y: 70.26276754538267,
     name: "A Pound of Flesh",
     description: "A man in a gibbet pleads for freedom.",
+  },
+  {
+    id: "QST_S01_Main_03_Hawe_01",
+    x: -144.66742103853858,
+    y: 93.38495964028222,
+    name: "A Prayer for Salvation",
+    description:
+      "Cormond confessed that he created the Malignant during his attempt to cleanse his mentor, Varshan. Cormond remains determined to find a cure somewhere in Hawezar. He can't do it alone. ",
   },
   {
     id: "QST_Hawe_Zarbinzet_APriceToPay",
@@ -116,6 +140,21 @@ export const sideQuests = [
     y: 54.99188212203315,
     name: "An Unlawful Order",
     description: "Edgar's former captain must be stopped.",
+  },
+  {
+    id: "QST_S01_Main_02_Step_03",
+    x: -78.7372714354427,
+    y: 59.73308082647586,
+    name: "Answers in the Ashes",
+    description:
+      "I returned to the wagon but Cormond and his horse have gone. It seems he’s left me a note... ",
+  },
+  {
+    id: "QST_S01_Main_02_Step_Hidden",
+    x: -76.34860468698008,
+    y: 59.728392066215385,
+    name: "Answers in the Ashes",
+    description: "Find Cormond in Orbei",
   },
   {
     id: "QST_Hawe_Wetland_AtAnyCost",
@@ -203,6 +242,14 @@ export const sideQuests = [
     name: "Brought to Heel",
     description:
       "Help Lumir get back at Glin by making them sick with swamp mushrooms.",
+  },
+  {
+    id: "QST_S01_Main_01_Frac",
+    x: -93.22928597048754,
+    y: 123.91120429179173,
+    name: "Burning from Within",
+    description:
+      'I overheard a villager in Kyovashad raving about "corruption.” I should ask him what happened. ',
   },
   {
     id: "QST_Kehj_Zakarum_FetchMinor_01",
@@ -333,8 +380,8 @@ export const sideQuests = [
   },
   {
     id: "QST_Scos_DeepForest_DaughterOak",
-    x: -55.2065741056644,
-    y: 108.49672913424719,
+    x: -55.22897401902805,
+    y: 108.48048335521705,
     name: "Daughter of the Oak",
     description: "Vasily's Tree is weakening and needs help.",
   },
@@ -405,7 +452,7 @@ export const sideQuests = [
     y: 80.53991855388362,
     name: "Druid: Spirits of the Lost Grove",
     description:
-      "The Druid Ardreth of Tur Dulra has asked for aid in finding the ancient spirit Gathlen before the lesser spirits of the perish. \r\n\r\nI have recovered Gathlen's skull. I should return to Tur Dulra and speak with Ardreth. ",
+      "The Druid Ardreth of Túr Dúlra has asked for aid in finding the ancient spirit Gathlen before the lesser spirits of the perish. \r\n\r\nI have recovered Gathlen's skull. I should return to Túr Dúlra and speak with Ardreth. ",
   },
   {
     id: "QST_Step_Grassland_RareHarvest_Herb",
@@ -420,8 +467,7 @@ export const sideQuests = [
     x: -143.68846817085108,
     y: 28.831141342581088,
     name: "Endless Fortune",
-    description:
-      "A treasure goblin dropped a journal belonging to Ostaf. I believe there is a vendor with that name in Gea Kul. I should return it to him. ",
+    description: "Return the journal to Ostaf",
   },
   {
     id: "QST_Scos_Downs_EverFaithful",
@@ -532,7 +578,8 @@ export const sideQuests = [
     x: -92.59865863478268,
     y: 122.96999627178103,
     name: "Gem Crafting",
-    description: "Craft a Gem",
+    description:
+      "Jewelers can craft or unsocket gems, add sockets to items, and upgrade jewelry.\r\n\r\nSeek out Kratia in Kyovashad and craft a gem.",
   },
   {
     id: "QST_Hawe_Soulrot_01",
@@ -546,8 +593,7 @@ export const sideQuests = [
     x: -145.01760394853775,
     y: 90.52076917772631,
     name: "Glittering Abundance",
-    description:
-      "I found a gem-laden geode in Hawezar. \r\n\r\nI should speak with Tungal the Jeweler in Ked Bardu to find out how to open it without breaking the gems inside.",
+    description: "Open the geode with Mislan's tools",
   },
   {
     id: "QST_Frac_GoldWellSpent",
@@ -625,6 +671,22 @@ export const sideQuests = [
     name: "Heart's Burden",
     description:
       "I have the sorrowful task of finding someone in town who knew this boy and returning his dagger to them.",
+  },
+  {
+    id: "QST_S01_Main_02_Step_02",
+    x: -76.34860468698008,
+    y: 59.728392066215385,
+    name: "Holding Back the Flood",
+    description:
+      "I have cleared the Malignant tunnels in Dry Steppes for now.Cormond’s search for a cure continues. \r\n\r\nI should continue fighting the Malignant and build strength for whatever comes next. ",
+  },
+  {
+    id: "QST_S01_Main_03_Hawe_01_LB",
+    x: -144.66742103853858,
+    y: 93.38495964028222,
+    name: "Hope’s Guardian",
+    description:
+      "I have given the documents to Cormond but he needs time to study them. I should fend off the Malignant until he can find where the cages were made.",
   },
   {
     id: "QST_Step_Grassland_HungerforaNewLife",
@@ -789,6 +851,13 @@ export const sideQuests = [
       "A tradesman has been recruiting help to rebuild a ruined town.",
   },
   {
+    id: "QST_Step_Coast_MalignDevotion_hidden",
+    x: -69.46175929443632,
+    y: 63.07654906874582,
+    name: "Malign Devotion",
+    description: "Intro hidden quest for malign devotion",
+  },
+  {
     id: "QST_Frac_Menestad_Coffers",
     x: -93.25122345022979,
     y: 123.25402059979552,
@@ -801,8 +870,7 @@ export const sideQuests = [
     x: -43.03466712241828,
     y: 127.9340022650013,
     name: "Message in a Bottle",
-    description:
-      "I've discovered Padrig is alive in Corbach. I should let him know about the items I found from his father.",
+    description: "Speak with Padrig",
   },
   {
     id: "QST_Kehj_HighDesert_Mirage",
@@ -900,7 +968,7 @@ export const sideQuests = [
     x: -106.28318162591324,
     y: 87.69303890368404,
     name: "Phases of the Moon",
-    description: "Workers need talisman to ward off curses in Qara Yisu.",
+    description: "Workers need talismans to ward off curses in Qara Yisu.",
   },
   {
     id: "QST_Kehj_GaeKul_PinchofPoison",
@@ -970,6 +1038,14 @@ export const sideQuests = [
     description: "A trampled note with a message of defiance.",
   },
   {
+    id: "QST_Hawe_Zarbinzet_Carthas_02",
+    x: -142.72851384526237,
+    y: 88.21751015196841,
+    name: "Remembering the Fallen",
+    description:
+      "Ksenia returns to Zarbinzet to ensure the Paladins' sacrifice is remembered.",
+  },
+  {
     id: "QST_Scos_Highlands_SignoftheTimes",
     x: -62.58969157701722,
     y: 129.10430819974687,
@@ -981,7 +1057,8 @@ export const sideQuests = [
     x: -133.21201973682088,
     y: 45.185388628254046,
     name: "Remnants",
-    description: "Investigate passageway",
+    description:
+      "Hidden under rubble was an alternative entrance to where Hader has fled. I should follow after. ",
   },
   {
     id: "QST_Hawe_Wetlands_FailedCrusader_01",
@@ -1005,6 +1082,14 @@ export const sideQuests = [
     y: 60.2519313496925,
     name: "Road to Ruin",
     description: 'Mahjoob\'s "simple bite" has festered into something more.',
+  },
+  {
+    id: "QST_S01_Main_03_Hawe_02",
+    x: -132.89027949735387,
+    y: 140.0816093714806,
+    name: "Ruins of the Faith",
+    description:
+      "Cormond should have learned something from the documents by now. I should check on him near Zarbinzet. ",
   },
   {
     id: "QST_Step_South_SaltBegetsSalt",
@@ -1107,8 +1192,7 @@ export const sideQuests = [
     x: -92.89588688949948,
     y: 122.40849348104582,
     name: "Sigil Crafting",
-    description:
-      "Occultists are masters of the mystical arts, and can assist in crafting Nightmare Sigils.\r\n\r\nSeek out Demyan in Kyovashad and craft a Nightmare Sigil.",
+    description: "Craft a Nightmare Sigil",
   },
   {
     id: "QST_Scos_LochRaeth_FanningTheFlames",
@@ -1223,6 +1307,14 @@ export const sideQuests = [
     y: 121.34860681309824,
     name: "The Cleansing Flame",
     description: "Light a ritual brazier to ward evil away from Margrave.",
+  },
+  {
+    id: "QST_S01_Main_04_Frac_01",
+    x: -85.30985523757022,
+    y: 136.09008435911412,
+    name: "The Cold Hard Truth",
+    description:
+      "We have what we need to capture Varshan. It will stop the Malignant but it will end Varshan's life. I should meet Cormond at Velkhova to begin the final confrontation.",
   },
   {
     id: "QST_Scos_TheDiviner",
@@ -1449,8 +1541,7 @@ export const sideQuests = [
     x: -93.8566276798245,
     y: 125.2484247413388,
     name: "Unlocking Waypoints",
-    description:
-      "Travel to the Waypoint in Kyovashad to unlock the ability to travel quickly throughout Sanctuary.  ",
+    description: "Activate the Waypoint in Kyovashad",
   },
   {
     id: "QST_Kehj_HighDesert_Infection_01",
