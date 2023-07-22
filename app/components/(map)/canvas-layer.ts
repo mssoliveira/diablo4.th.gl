@@ -18,7 +18,43 @@ const CanvasLayer = leaflet.TileLayer.extend({
     const img = new Image();
     img.onload = () => {
       try {
-        ctx.drawImage(img, 0, 0);
+        if (
+          this.options.filter === "greyscale" ||
+          this.options.filter === "colorful"
+        ) {
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const context = canvas.getContext("2d")!;
+          context.drawImage(img, 0, 0);
+          const imageData = context.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+          const pixels = imageData.data;
+          for (let i = 0; i < pixels.length; i += 4) {
+            const r = pixels[i];
+            const g = pixels[i + 1];
+            const b = pixels[i + 2];
+            const gray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            if (gray >= 127) {
+              // Make grey
+              if (this.options.filter === "greyscale") {
+                pixels[i] = pixels[i + 1] = pixels[i + 2] = 100;
+              }
+              pixels[i + 3] = 180;
+            } else {
+              // Make transparent
+              pixels[i + 3] = 0;
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+        } else {
+          ctx.drawImage(img, 0, 0);
+        }
         tile.complete = true;
       } catch (e) {
         err = e;
@@ -70,7 +106,7 @@ const CanvasLayer = leaflet.TileLayer.extend({
 
 export const createCanvasLayer = function (
   url: string,
-  options: TileLayerOptions
+  options: TileLayerOptions & { filter: string }
 ) {
   return new CanvasLayer(url, options);
 };

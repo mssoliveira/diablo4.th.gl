@@ -7,6 +7,7 @@ import {
   togglePreferedWindow,
   useCurrentWindow,
 } from "../lib/windows";
+import HeaderSelect from "./header-select";
 import HeaderToggle from "./header-toggle";
 import SVGIcons from "./svg-icons";
 
@@ -86,10 +87,16 @@ export default function Header() {
             />
             {isOverlay && (
               <>
-                <HeaderToggle
-                  label="Transparent"
-                  checked={settingsStore.overlayTransparentMode}
-                  onChange={settingsStore.setOverlayTransparentMode}
+                <HeaderSelect
+                  label="Transparency"
+                  options={[
+                    { label: "None", value: "none" },
+                    { label: "Greyscale", value: "greyscale" },
+                    { label: "Colorful", value: "colorful" },
+                    { label: "Full", value: "full" },
+                  ]}
+                  value={settingsStore.mapFilter}
+                  onChange={settingsStore.setMapFilter}
                 />
                 <label className="flex items-center">
                   <span className="text-xs font-mono truncate">Opacity</span>
