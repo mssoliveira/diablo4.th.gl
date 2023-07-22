@@ -14,6 +14,7 @@ const Marker = memo(function Marker({
   isHighlighted,
   isDiscovered,
   iconSize,
+  isAlternativeDiscoveredStyle,
   onClick,
   onContextMenu,
   featureGroup,
@@ -24,6 +25,7 @@ const Marker = memo(function Marker({
   isHighlighted: boolean;
   isDiscovered: boolean;
   iconSize: number;
+  isAlternativeDiscoveredStyle?: boolean;
   onClick: (node: NODE) => void;
   onContextMenu: (id: string) => void;
   featureGroup: leaflet.FeatureGroup;
@@ -48,6 +50,7 @@ const Marker = memo(function Marker({
       radius: icon.radius * iconSize,
       isHighlighted,
       isDiscovered,
+      isAlternativeDiscoveredStyle,
       aspect,
       pmIgnore: true,
       snapIgnore: false,
@@ -111,10 +114,17 @@ const Marker = memo(function Marker({
     return () => {
       if (marker.current) {
         featureGroup.removeLayer(marker.current);
+        marker.current.remove();
         marker.current = null;
       }
     };
-  }, [type, isHighlighted, isDiscovered, iconSize]);
+  }, [
+    type,
+    isHighlighted,
+    isDiscovered,
+    iconSize,
+    isAlternativeDiscoveredStyle,
+  ]);
 
   return <></>;
 });

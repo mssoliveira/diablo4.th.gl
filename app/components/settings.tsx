@@ -28,6 +28,13 @@ export default function Settings() {
         />
       </div>
       <div className="flex">
+        <span className="w-1/2">Alternative Discovered Waypoints Icon</span>
+        <Toggle
+          checked={!!globalSettingsStore.isAlternativeDiscoveredStyle}
+          onChange={globalSettingsStore.toggleIsAlternativeDiscoveredStyle}
+        />
+      </div>
+      <div className="flex">
         <span className="w-1/2">Icon Size</span>
         <input
           className="w-5/12"

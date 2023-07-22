@@ -31,6 +31,9 @@ export default function Nodes() {
   }, [searchParams, isOverwolf && router.value.search]);
   const dict = useDict();
   const iconSize = useGlobalSettingsStore((state) => state.iconSize);
+  const isAlternativeDiscoveredStyle = useGlobalSettingsStore(
+    (state) => state.isAlternativeDiscoveredStyle
+  );
 
   const paramsName = isOverwolf ? router.value.name : params.name;
   const paramsCoordinates = isOverwolf
@@ -120,6 +123,9 @@ export default function Nodes() {
             isHighlighted={isHighlighted}
             isDiscovered={discoveredNodes.includes(node.id)}
             iconSize={iconSize}
+            isAlternativeDiscoveredStyle={
+              node.type === "waypoints" && isAlternativeDiscoveredStyle
+            }
             onClick={onMarkerClick}
             onContextMenu={toggleDiscoveredNode}
             featureGroup={featureGroup}
