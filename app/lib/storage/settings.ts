@@ -6,8 +6,8 @@ export const useSettingsStore = create(
   persist<{
     overlayMode: boolean;
     setOverlayMode: (overlayMode: boolean) => void;
-    overlayTransparentMode: boolean;
-    setOverlayTransparentMode: (overlayTransparentMode: boolean) => void;
+    mapFilter: string;
+    setMapFilter: (mapFilter: string) => void;
     windowOpacity: number;
     setWindowOpacity: (windowOpacity: number) => void;
     lockedWindow: boolean;
@@ -31,9 +31,8 @@ export const useSettingsStore = create(
           set({
             overlayMode,
           }),
-        overlayTransparentMode: false,
-        setOverlayTransparentMode: (overlayTransparentMode) =>
-          set({ overlayTransparentMode }),
+        mapFilter: "none",
+        setMapFilter: (mapFilter) => set({ mapFilter }),
         windowOpacity: 1,
         setWindowOpacity: (windowOpacity) => set({ windowOpacity }),
         lockedWindow: false,

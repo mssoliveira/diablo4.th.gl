@@ -16,11 +16,11 @@ export const TILE_SIZE = 512;
 
 export default function Tiles() {
   const map = useMap();
-  const settingsStore = useSettingsStore();
+  const mapFilter = useSettingsStore((state) => state.mapFilter);
   const isOverlay = useGameInfoStore((state) => state.isOverlay);
 
   useEffect(() => {
-    if (isOverlay && settingsStore.overlayTransparentMode) {
+    if (isOverlay && mapFilter === "full") {
       return;
     }
     const canvasLayer = createCanvasLayer("/map_tiles/{z}/{y}/{x}.webp", {
@@ -32,12 +32,13 @@ export default function Tiles() {
       tileSize: TILE_SIZE,
       updateInterval: 100,
       keepBuffer: 8,
+      filter: mapFilter,
     }).addTo(map);
 
     return () => {
       canvasLayer.remove();
     };
-  }, [settingsStore.overlayTransparentMode, map]);
+  }, [mapFilter, map]);
 
   return <></>;
 }
