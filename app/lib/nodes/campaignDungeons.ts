@@ -23,7 +23,6 @@ export const campaignDungeons = [
     description: "The blood-soaked streets where cannibals feed.",
     x: -90.25589565730057,
     y: 87.76760646162727,
-    offset: true,
   },
   {
     name: "Weeping Cairns",

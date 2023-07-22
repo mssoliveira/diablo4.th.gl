@@ -168,14 +168,6 @@ export const dungeons = [
     aspect: "Aspect Trickster's",
   },
   {
-    name: "Guulrahn Slums",
-    description: "Cannibals still hold the streets of the city Guulrahn.",
-    x: -90.25589565730057,
-    y: 87.76760646162727,
-    className: "Necromancer",
-    aspect: "Aspect Splintering",
-  },
-  {
     name: "Whispering Vault",
     description: "Scholarly halls haunted by whispering spirits of the insane.",
     x: -89.8616690841699,

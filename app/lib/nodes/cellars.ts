@@ -240,6 +240,11 @@ export const cellars = [
     y: 140.18427373018127,
   },
   {
+    name: "The Forlorn Hovel",
+    x: -64.27219980096781,
+    y: 152.72166242357085,
+  },
+  {
     name: "Nefarious Hollow",
     x: -68.1129829180526,
     y: 147.34611179999322,
@@ -689,8 +694,8 @@ export const cellars = [
   },
   {
     name: "Lost Monument Crypt",
-    x: -90.14404568530199,
-    y: 36.98926425945282,
+    x: -90.16841326191422,
+    y: 36.96704560696556,
   },
   {
     name: "Strange Refuge",
@@ -747,5 +752,65 @@ export const cellars = [
     description: "A cellar owned by a local family, long since abandoned.",
     x: -78.43574942722464,
     y: 52.77724929146898,
+  },
+  {
+    name: "The Boiling Wound",
+    description: "Craft a Devious Invoker to clear the outgrowths within.",
+    x: -96.67459006730176,
+    y: 148.45266249726586,
+  },
+  {
+    name: "Dindai Hollow",
+    description: "Craft a Brutal Invoker to clear the outgrowths within.",
+    x: -82.89653591798486,
+    y: 51.65549779503796,
+  },
+  {
+    name: "Fissure of Malice",
+    description: "Craft a Devious Invoker to clear the outgrowths within.",
+    x: -101.73154733404463,
+    y: 105.66542271141579,
+  },
+  {
+    name: "Forest Clearing",
+    description: "Demons chased a survivor into these woods.",
+    x: -83.70585317385897,
+    y: 116.74570032994798,
+  },
+  {
+    name: "Velkhova Church Undercroft",
+    description: "The frozen cellar where Cormond tried to save his mentor.",
+    x: -84.88346031854438,
+    y: 138.71962551961232,
+  },
+  {
+    name: "Karamat's Reach",
+    description: "A remote outpost of old Zakarum, buried and forgotten.",
+    x: -132.8455211640802,
+    y: 139.72698666194276,
+  },
+  {
+    name: "Crypts of Orbei",
+    description: "The monastery lies in ruin but its lower passages remain. ",
+    x: -83.23058224225292,
+    y: 63.169435440501324,
+  },
+  {
+    name: "Den of the Blighted",
+    description: "Craft a Vicious Invoker to clear the outgrowths within.",
+    x: -131.3374830852577,
+    y: 113.36305080215246,
+  },
+  {
+    name: "Bedeviled Grotto",
+    description: "Craft a Vicious Invoker to clear the outgrowths within.",
+    x: -148.91262938288372,
+    y: 141.0496844027184,
+  },
+  {
+    name: "Ravening Pit",
+    description: "Craft a Brutal Invoker to clear the outgrowths within.",
+    x: -102.74935834333834,
+    y: 79.37529995211821,
   },
 ];
