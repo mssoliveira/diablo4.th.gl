@@ -10,6 +10,7 @@ leaflet.Canvas.include({
       attribute = "",
       isHighlighted,
       isDiscovered,
+      isAlternativeDiscoveredStyle,
     } = layer.options;
 
     const radius = layer.getRadius();
@@ -19,7 +20,7 @@ leaflet.Canvas.include({
     const dy = p.y - radius;
 
     const layerContext = this._ctx as CanvasRenderingContext2D;
-    const key = `${type}-${attribute}-${isHighlighted}-${radius}-${isDiscovered}`;
+    const key = `${type}-${attribute}-${isHighlighted}-${radius}-${isDiscovered}-${isAlternativeDiscoveredStyle}`;
     if (cachedImages[key]) {
       layerContext.drawImage(cachedImages[key], dx, dy);
       return;
@@ -27,17 +28,17 @@ leaflet.Canvas.include({
     const img = new Image(imageSize, imageSize);
     cachedImages[key] = img;
 
-    const isWaypoint = type === "waypoints";
     const canvas = document.createElement("canvas");
     canvas.width = imageSize;
     canvas.height = imageSize;
     const ctx = canvas.getContext("2d")!;
-    ctx.globalAlpha = isDiscovered && !isWaypoint ? 0.5 : 1;
+    ctx.globalAlpha = isDiscovered && !isAlternativeDiscoveredStyle ? 0.5 : 1;
 
     const path2D = new Path2D(icon.path);
     ctx.strokeStyle = "strokeColor" in icon ? icon.strokeColor : "black";
     ctx.lineWidth = icon.lineWidth;
-    ctx.fillStyle = isDiscovered && !isWaypoint ? "#5f5d57" : icon.color;
+    ctx.fillStyle =
+      isDiscovered && !isAlternativeDiscoveredStyle ? "#5f5d57" : icon.color;
 
     const scale = imageSize / 100;
     ctx.scale(scale, scale);
@@ -51,7 +52,7 @@ leaflet.Canvas.include({
     ctx.fill(path2D);
     ctx.stroke(path2D);
 
-    if (isDiscovered && isWaypoint) {
+    if (isDiscovered && isAlternativeDiscoveredStyle) {
       const checkMarkPath = new Path2D("m5 12 5 5L20 7");
       ctx.scale(1.5, 1.5);
       ctx.translate(radius * 1.7, radius * 0.3);
@@ -88,6 +89,7 @@ export type CanvasMarkerOptions = {
   aspect?: string;
   isHighlighted?: boolean;
   isDiscovered?: boolean;
+  isAlternativeDiscoveredStyle?: boolean;
   icon: ICON;
 };
 
