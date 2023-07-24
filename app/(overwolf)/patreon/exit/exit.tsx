@@ -14,7 +14,7 @@ export default function Exit() {
     );
   }
   return (
-    <div className="h-screen text-center pt-4 bg-black">
+    <div className="h-screen text-center pt-4 bg-black text-white">
       {code ? (
         <>
           <p className="my-2 mx-auto max-w-xl text-center">
