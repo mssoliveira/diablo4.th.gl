@@ -32,7 +32,7 @@ export default function Tiles() {
       tileSize: TILE_SIZE,
       updateInterval: 100,
       keepBuffer: 8,
-      filter: mapFilter,
+      filter: isOverlay ? mapFilter : "none",
     }).addTo(map);
 
     return () => {
