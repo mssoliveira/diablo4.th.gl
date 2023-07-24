@@ -18,7 +18,7 @@ async function _GET(request: NextRequest) {
   Object.entries(staticNodes).forEach(([key, items]) => {
     items.forEach((node) => {
       if (
-        node.name.toLowerCase().includes(q) ||
+        ("name" in node && (node.name as string).toLowerCase().includes(q)) ||
         ("attribute" in node &&
           (node.attribute as string)?.toLowerCase().includes(q))
       ) {

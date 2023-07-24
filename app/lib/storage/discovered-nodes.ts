@@ -35,7 +35,9 @@ function filterDiscoveredNodes(discoveredNodes: string[]) {
               staticNodes[
                 type as keyof typeof staticNodes
               ] as (typeof staticNodes)[keyof typeof staticNodes]
-            ).find((node) => node.name === name);
+            ).find(
+              (node) => ("name" in node && (node.name as string)) === name
+            );
             if (!node) {
               if (type === "dungeons") {
                 node = staticNodes.campaignDungeons.find(
