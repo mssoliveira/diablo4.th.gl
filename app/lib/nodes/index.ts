@@ -18,6 +18,7 @@ import { occultists } from "./occultists";
 import { sideQuestDungeons } from "./sideQuestDungeons";
 import { sideQuests } from "./sideQuests";
 import { stableMasters } from "./stableMasters";
+import { strongholds } from "./strongholds";
 import { waypoints } from "./waypoints";
 
 export const spawnNodes = {
@@ -45,6 +46,7 @@ export const staticNodes = {
   campaignQuests,
   sideQuests,
   events,
+  strongholds,
 } as const;
 
 export type NODE_TYPE = keyof typeof staticNodes | keyof typeof spawnNodes;
