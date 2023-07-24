@@ -100,6 +100,8 @@ export function setFeatures() {
   overwolf.games.events.setRequiredFeatures(INTERESTED_IN_FEATURES, (info) => {
     if (info.error) {
       window.setTimeout(setFeatures, 2000);
+    } else {
+      console.log("Successfully registered to required features.");
     }
   });
 }

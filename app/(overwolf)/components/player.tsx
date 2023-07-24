@@ -91,6 +91,7 @@ export default function Player() {
       if (!isActive) {
         isActive = false;
         updateMatchInfo();
+        console.log("Game launched -> start updating player position");
       }
 
       setTimeout(setFeatures, 1000);
