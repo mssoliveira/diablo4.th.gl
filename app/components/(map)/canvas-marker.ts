@@ -35,7 +35,6 @@ leaflet.Canvas.include({
     ctx.globalAlpha = isDiscovered && !isAlternativeDiscoveredStyle ? 0.5 : 1;
 
     const path2D = new Path2D(icon.path);
-    ctx.strokeStyle = "strokeColor" in icon ? icon.strokeColor : "black";
     ctx.lineWidth = icon.lineWidth;
     ctx.fillStyle =
       isDiscovered && !isAlternativeDiscoveredStyle ? "#5f5d57" : icon.color;
@@ -50,6 +49,11 @@ leaflet.Canvas.include({
     }
 
     ctx.fill(path2D);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = icon.lineWidth + 1;
+    ctx.stroke(path2D);
+    ctx.strokeStyle = "strokeColor" in icon ? icon.strokeColor : "black";
+    ctx.lineWidth = icon.lineWidth;
     ctx.stroke(path2D);
 
     if (isDiscovered && isAlternativeDiscoveredStyle) {
