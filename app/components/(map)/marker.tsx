@@ -110,6 +110,8 @@ const Marker = memo(function Marker({
     });
     if (isDiscovered) {
       marker.current.bringToBack();
+    } else if (isHighlighted) {
+      marker.current.bringToFront();
     }
     return () => {
       if (marker.current) {

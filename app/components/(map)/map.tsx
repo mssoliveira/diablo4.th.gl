@@ -9,7 +9,6 @@ import { create } from "zustand";
 
 import "@geoman-io/leaflet-geoman-free";
 import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
-import { BOUNDS } from "./tiles";
 
 leaflet.PM.setOptIn(true);
 
@@ -66,10 +65,9 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       ?.replace("@", "")
       .split(",")
       .map(Number);
-    if (location.search.includes("screenshot=true")) {
-      map.fitBounds(BOUNDS);
-    } else if (coordinates) {
-      map.setView(coordinates as [number, number], 8);
+    if (coordinates) {
+      const isScreenshot = location.search.includes("screenshot=true");
+      map.setView(coordinates as [number, number], isScreenshot ? 3 : 7);
     } else {
       map.setView([-100, 100], 3);
     }

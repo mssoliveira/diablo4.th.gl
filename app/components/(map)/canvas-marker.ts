@@ -13,7 +13,10 @@ leaflet.Canvas.include({
       isAlternativeDiscoveredStyle,
     } = layer.options;
 
-    const radius = layer.getRadius();
+    let radius = layer.getRadius();
+    if (isHighlighted) {
+      radius += 5;
+    }
     const imageSize = radius * 2;
     const p = layer._point.round();
     const dx = p.x - radius;
@@ -36,18 +39,17 @@ leaflet.Canvas.include({
 
     const path2D = new Path2D(icon.path);
     ctx.lineWidth = icon.lineWidth;
-    ctx.fillStyle =
-      isDiscovered && !isAlternativeDiscoveredStyle ? "#5f5d57" : icon.color;
 
     const scale = imageSize / 100;
     ctx.scale(scale, scale);
 
     if (isHighlighted) {
-      ctx.fillStyle = icon.heighlightColor;
-      ctx.shadowBlur = 5;
+      ctx.shadowBlur = 4;
       ctx.shadowColor = "#999999";
     }
 
+    ctx.fillStyle =
+      isDiscovered && !isAlternativeDiscoveredStyle ? "#5f5d57" : icon.color;
     ctx.fill(path2D);
     ctx.strokeStyle = "black";
     ctx.lineWidth = icon.lineWidth + 1;

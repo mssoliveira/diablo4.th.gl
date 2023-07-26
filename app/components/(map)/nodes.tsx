@@ -29,6 +29,7 @@ export default function Nodes() {
       (isOverwolf ? router.value.search : searchParams.get("search")) ?? ""
     ).toLowerCase();
   }, [searchParams, isOverwolf && router.value.search]);
+  const isScreenshot = searchParams.get("screenshot") === "true";
   const dict = useDict();
   const iconSize = useGlobalSettingsStore((state) => state.iconSize);
   const isAlternativeDiscoveredStyle = useGlobalSettingsStore(
@@ -91,8 +92,14 @@ export default function Nodes() {
       {nodes.map((node) => {
         let isHighlighted = false;
         if (selectedName && coordinates) {
-          if (node.x === coordinates[0] && node.y === coordinates[1]) {
+          if (
+            node.x === coordinates[0] &&
+            node.y === coordinates[1] &&
+            ("name" in node ? node.name : node.type) === selectedName
+          ) {
             isHighlighted = true;
+          } else if (isScreenshot) {
+            return <Fragment key={node.id} />;
           }
         }
 
