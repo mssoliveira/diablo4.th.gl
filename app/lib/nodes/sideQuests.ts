@@ -851,13 +851,6 @@ export const sideQuests = [
       "A tradesman has been recruiting help to rebuild a ruined town.",
   },
   {
-    id: "QST_Step_Coast_MalignDevotion_hidden",
-    x: -69.46175929443632,
-    y: 63.07654906874582,
-    name: "Malign Devotion",
-    description: "Intro hidden quest for malign devotion",
-  },
-  {
     id: "QST_Frac_Menestad_Coffers",
     x: -93.25122345022979,
     y: 123.25402059979552,
