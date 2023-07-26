@@ -66,8 +66,7 @@ export default function Map({ children }: { children?: React.ReactNode }) {
       .split(",")
       .map(Number);
     if (coordinates) {
-      const isScreenshot = location.search.includes("screenshot=true");
-      map.setView(coordinates as [number, number], isScreenshot ? 3 : 7);
+      map.setView(coordinates as [number, number], 3);
     } else {
       map.setView([-100, 100], 3);
     }
