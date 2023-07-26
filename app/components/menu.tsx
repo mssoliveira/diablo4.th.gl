@@ -27,6 +27,14 @@ const DISCOVER_LINKS = [
     text: "Diablo 4 News & Guides",
   },
   {
+    href: "https://www.d4ut.net/",
+    text: "Diablo 4 Build Calculator",
+  },
+  {
+    href: "https://lilith.mom/",
+    text: "Lilith Discord Bot",
+  },
+  {
     href: "https://www.th.gl",
     text: "Gaming Apps & Tools",
   },
