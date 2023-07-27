@@ -34,7 +34,7 @@ export default function Header() {
       <>
         <SVGIcons />
         <button
-          className="px-1 lock flex items-center bg-opacity-50 hover:bg-neutral-700 fixed z-10 text-red-500 bg-neutral-800"
+          className="px-1 lock flex items-center fixed z-10 text-red-500 hover:text-red-400 bg-opacity-5 bg-black"
           onClick={settingsStore.toggleLockedWindow}
         >
           <svg className="h-[28px] w-[28px] p-1">
