@@ -200,6 +200,9 @@ export default function Routes() {
   const [globalMode, setGlobalMode] = useState("none");
 
   const updateGlobalMode = useCallback(() => {
+    if (!map) {
+      return;
+    }
     if (map.pm.globalRemovalModeEnabled()) {
       setGlobalMode("Removal");
     } else if (map.pm.globalEditModeEnabled()) {
@@ -209,7 +212,7 @@ export default function Routes() {
     } else {
       setGlobalMode(map.pm.Draw.getActiveShape());
     }
-  }, []);
+  }, [map]);
 
   if (routes.isCreating) {
     return (
