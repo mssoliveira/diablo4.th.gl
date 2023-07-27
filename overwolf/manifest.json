@@ -25,11 +25,13 @@
       "controller": {
         "file": "controller.html",
         "debug_url": "http://localhost:3666/controller",
+        "block_top_window_navigation": false,
         "is_background_page": true
       },
       "desktop": {
         "file": "app.html",
         "debug_url": "http://localhost:3666/app",
+        "block_top_window_navigation": false,
         "resizable": true,
         "override_on_update": true,
         "desktop_only": true,
@@ -52,6 +54,7 @@
       "overlay": {
         "file": "app.html",
         "debug_url": "http://localhost:3666/app",
+        "block_top_window_navigation": false,
         "resizable": true,
         "override_on_update": true,
         "transparent": true,
