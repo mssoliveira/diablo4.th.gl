@@ -2,7 +2,7 @@ import { nodes } from "@/app/lib/nodes";
 import leaflet, { Polyline } from "leaflet";
 import { nanoid } from "nanoid";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useOverwolfRouter } from "../(overwolf)/components/overwolf-router";
 import { ROUTE, useRoutesStore } from "../lib/storage/routes";
 import { useMap } from "./(map)/map";
@@ -21,49 +21,66 @@ export default function Routes() {
     }, {} as Record<string, { id: string; type: string }>);
   }, []);
 
-  const setRoutePositions = useCallback((workingLayers: leaflet.Polyline[]) => {
-    const types: ROUTE["types"] = [];
-    const positions: ROUTE["positions"] = [];
-    const visitedPositions: string[] = [];
-    workingLayers.forEach((workingLayer) => {
-      const latLngs = workingLayer.getLatLngs() as leaflet.LatLng[];
-      if (latLngs.length === 0) {
-        return;
-      }
-      const layerPositions = latLngs.map((latLng) => {
-        const position = `${latLng.lat}-${latLng.lng}`;
-        const snappedNode = nodeLatLngs[position];
-        if (snappedNode) {
-          if (!visitedPositions.includes(position)) {
-            visitedPositions.push(position);
+  const setRoutePolylines = useCallback(
+    (polylineLayers: leaflet.Polyline[]) => {
+      const types: ROUTE["types"] = [];
+      const positions: ROUTE["positions"] = [];
+      const visitedPositions: string[] = [];
+      polylineLayers.forEach((polylineLayer) => {
+        const latLngs = polylineLayer.getLatLngs() as leaflet.LatLng[];
+        if (latLngs.length === 0) {
+          return;
+        }
+        const layerPositions = latLngs.map((latLng) => {
+          const position = `${latLng.lat}-${latLng.lng}`;
+          const snappedNode = nodeLatLngs[position];
+          if (snappedNode) {
+            if (!visitedPositions.includes(position)) {
+              visitedPositions.push(position);
 
-            const existingType = types.find(
-              ({ type }) => type === snappedNode.type
-            );
-            if (existingType) {
-              existingType.count++;
-            } else {
-              types.push({
-                type: snappedNode.type,
-                count: 1,
-              });
+              const existingType = types.find(
+                ({ type }) => type === snappedNode.type
+              );
+              if (existingType) {
+                existingType.count++;
+              } else {
+                types.push({
+                  type: snappedNode.type,
+                  count: 1,
+                });
+              }
             }
+            return {
+              position: [latLng.lat, latLng.lng] as [number, number],
+              nodeId: snappedNode.id,
+              nodeType: snappedNode.type,
+            };
           }
           return {
             position: [latLng.lat, latLng.lng] as [number, number],
-            nodeId: snappedNode.id,
-            nodeType: snappedNode.type,
           };
-        }
-        return {
-          position: [latLng.lat, latLng.lng] as [number, number],
-        };
+        });
+        positions.push(layerPositions);
       });
-      positions.push(layerPositions);
+      routes.updateTempRoute({
+        types,
+        positions,
+      });
+    },
+    []
+  );
+
+  const setRouteTexts = useCallback((textLayers: leaflet.Marker[]) => {
+    const texts: ROUTE["texts"] = [];
+    textLayers.forEach((textLayer) => {
+      const latLngs = textLayer.getLatLng();
+      texts.push({
+        position: [latLngs.lat, latLngs.lng] as [number, number],
+        text: textLayer.pm.getText(),
+      });
     });
     routes.updateTempRoute({
-      types,
-      positions,
+      texts,
     });
   }, []);
 
@@ -72,86 +89,191 @@ export default function Routes() {
       return;
     }
 
-    const workingLayers: leaflet.Polyline[] = [];
+    const polylines: leaflet.Polyline[] = [];
+    const texts: leaflet.Marker[] = [];
     routes.tempRoute.positions.forEach((layerPositions) => {
-      const workingLayer = leaflet.polyline(
-        layerPositions.map(({ position }) => position)
+      const polylineLayer = leaflet.polyline(
+        layerPositions.map(({ position }) => position),
+        { pmIgnore: false }
       );
-      workingLayer.options.pmIgnore = false;
-      leaflet.PM.reInitLayer(workingLayer);
-      workingLayer.on("pm:edit", () => {
-        setRoutePositions(workingLayers);
+      polylineLayer.on("pm:edit", () => {
+        setRoutePolylines(polylines);
+        updateGlobalMode();
       });
-      workingLayers.push(workingLayer);
-      workingLayer.addTo(map);
+      polylines.push(polylineLayer);
+      polylineLayer.addTo(map);
+    });
+    routes.tempRoute.texts?.forEach((textPositions) => {
+      const textLayer = leaflet.marker(textPositions.position, {
+        textMarker: true,
+        text: textPositions.text,
+        pmIgnore: false,
+      });
+      textLayer.on("pm:edit", () => {
+        setRouteTexts(texts);
+        updateGlobalMode();
+      });
+      textLayer.on("pm:remove", () => {
+        texts.splice(texts.indexOf(textLayer), 1);
+        setRouteTexts(texts);
+        updateGlobalMode();
+      });
+      texts.push(textLayer);
+      textLayer.addTo(map);
     });
 
     map.on("pm:drawstart", ({ workingLayer, shape }) => {
-      if (shape !== "Line") {
-        return;
+      if (shape === "Line") {
+        polylines.push(workingLayer as Polyline);
+        workingLayer.on("pm:vertexadded", (e) => {
+          if (nodes.some((node) => e.latlng.equals([node.x, node.y]))) {
+            setRoutePolylines(polylines);
+          }
+        });
+        workingLayer.on("pm:vertexremoved", (e) => {
+          setRoutePolylines(polylines);
+        });
+        workingLayer.on("pm:markerdragend", (e) => {
+          setRoutePolylines(polylines);
+        });
+        workingLayer.on("pm:edit", () => {
+          setRoutePolylines(polylines);
+        });
       }
-      workingLayers.push(workingLayer as Polyline);
-      workingLayer.on("pm:vertexadded", (e) => {
-        if (nodes.some((node) => e.latlng.equals([node.x, node.y]))) {
-          setRoutePositions(workingLayers);
-        }
-      });
-      workingLayer.on("pm:vertexremoved", (e) => {
-        setRoutePositions(workingLayers);
-      });
-      workingLayer.on("pm:markerdragend", (e) => {
-        setRoutePositions(workingLayers);
-      });
-      workingLayer.on("pm:edit", () => {
-        setRoutePositions(workingLayers);
-      });
     });
 
     map.on("pm:drawend", () => {
-      setRoutePositions(workingLayers);
+      setRoutePolylines(polylines);
+      updateGlobalMode();
     });
 
-    map.on("pm:create", (e) => {
-      e.layer.options.pmIgnore = false;
-      leaflet.PM.reInitLayer(e.layer);
-      workingLayers.push(e.layer as Polyline);
+    map.on("pm:create", ({ shape, layer }) => {
+      layer.options.pmIgnore = false;
+      leaflet.PM.reInitLayer(layer);
 
-      e.layer.on("pm:edit", () => {
-        setRoutePositions(workingLayers);
-      });
+      if (shape === "Line") {
+        polylines.push(layer as Polyline);
+        layer.on("pm:edit", () => {
+          setRoutePolylines(polylines);
+        });
+      } else if (shape === "Text") {
+        const textLayer = layer as leaflet.Marker;
+        texts.push(textLayer);
+        leaflet.Util.setOptions(layer, {
+          draggable: true,
+        });
+
+        textLayer.pm.enable({});
+        const textarea = textLayer.pm.getElement() as HTMLTextAreaElement;
+        textarea.focus();
+
+        layer.on("pm:edit", () => {
+          updateGlobalMode();
+          setRouteTexts(texts);
+        });
+        layer.on("pm:remove", () => {
+          texts.splice(texts.indexOf(textLayer), 1);
+          setRouteTexts(texts);
+          updateGlobalMode();
+        });
+      }
     });
 
     map.pm.enableDraw("Line");
+    updateGlobalMode();
 
     return () => {
       map.pm.disableDraw();
       map.pm.disableGlobalEditMode();
       map.off("pm:drawstart");
       map.off("pm:create");
-      workingLayers.forEach((layer) => {
+      polylines.forEach((layer) => {
+        layer.remove();
+      });
+      texts.forEach((layer) => {
         layer.remove();
       });
       routes.resetTempRoute();
     };
   }, [routes.isCreating, map]);
 
+  const [globalMode, setGlobalMode] = useState("none");
+
+  const updateGlobalMode = useCallback(() => {
+    if (map.pm.globalRemovalModeEnabled()) {
+      setGlobalMode("Removal");
+    } else if (map.pm.globalEditModeEnabled()) {
+      setGlobalMode("Edit");
+    } else if (map.pm.globalDragModeEnabled()) {
+      setGlobalMode("Drag");
+    } else {
+      setGlobalMode(map.pm.Draw.getActiveShape());
+    }
+  }, []);
+
   if (routes.isCreating) {
     return (
       <div className="divide-y divide-neutral-700 border-t border-t-neutral-600 bg-neutral-900 text-gray-200 text-sm w-full md:border md:border-gray-600 md:rounded-lg">
-        <div className="flex leaflet-pm-toolbar">
+        <div className="flex leaflet-pm-toolbar flex-wrap">
           <button
-            className="flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center"
-            onClick={() => map.pm.enableDraw("Line")}
+            className={`flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center ${
+              globalMode === "Line" ? "bg-gray-700" : ""
+            }`}
+            onClick={() => {
+              map.pm.enableDraw("Line");
+              updateGlobalMode();
+            }}
           >
             <div className="control-icon leaflet-pm-icon-polyline !w-5 !h-5" />
             <span>Add Line</span>
           </button>
           <button
-            className="flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center"
-            onClick={() => map.pm.toggleGlobalEditMode()}
+            className={`flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center ${
+              globalMode === "Text" ? "bg-gray-700" : ""
+            }`}
+            onClick={() => {
+              map.pm.enableDraw("Text");
+              updateGlobalMode();
+            }}
+          >
+            <div className="control-icon leaflet-pm-icon-text !w-5 !h-5" />
+            <span>Add Text</span>
+          </button>
+          <button
+            className={`flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center ${
+              globalMode === "Edit" ? "bg-gray-700" : ""
+            }`}
+            onClick={() => {
+              map.pm.toggleGlobalEditMode();
+              updateGlobalMode();
+            }}
           >
             <div className="control-icon leaflet-pm-icon-edit !w-5 !h-5" />
-            <span>Edit Lines</span>
+            <span>Edit Mode</span>
+          </button>
+          <button
+            className={`flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center ${
+              globalMode === "Drag" ? "bg-gray-700" : ""
+            }`}
+            onClick={() => {
+              map.pm.toggleGlobalDragMode();
+              updateGlobalMode();
+            }}
+          >
+            <div className="control-icon leaflet-pm-icon-drag !w-5 !h-5" />
+            <span>Drag Text</span>
+          </button>
+          <button
+            className={`flex gap-1 p-2 uppercase hover:text-white w-1/2 justify-center ${
+              globalMode === "Removal" ? "bg-gray-700" : ""
+            }`}
+            onClick={() => {
+              map.pm.toggleGlobalRemovalMode();
+              updateGlobalMode();
+            }}
+          >
+            <div className="control-icon leaflet-pm-icon-delete !w-5 !h-5" />
+            <span>Delete Text</span>
           </button>
         </div>
         <div className="flex flex-col p-2 gap-1">

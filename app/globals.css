@@ -33,6 +33,10 @@
   cursor: initial !important;
 }
 
+.pm-textarea {
+  @apply text-neutral-200 bg-transparent p-0 text-shadow !border-none text-center -translate-x-1/2;
+}
+
 @layer components {
   .category-title {
     @apply text-sm text-gray-400;

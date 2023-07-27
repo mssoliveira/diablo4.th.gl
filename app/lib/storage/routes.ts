@@ -13,12 +13,17 @@ export type ROUTE = {
     nodeId?: string;
     nodeType?: string;
   }[][];
+  texts?: {
+    position: [number, number];
+    text: string;
+  }[];
 };
 const EMPTY_ROUTE: ROUTE = {
   id: "",
   name: "",
   types: [],
   positions: [],
+  texts: [],
 };
 export const useRoutesStore = create(
   persist<{

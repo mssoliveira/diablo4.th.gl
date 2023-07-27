@@ -13,7 +13,7 @@ export default function ActiveRoutes() {
     if (routes.isCreating) {
       return;
     }
-    const layers: leaflet.Polyline[] = [];
+    const layers: leaflet.Layer[] = [];
     routes.activeRoutes.forEach((activeRoute) => {
       const route = routes.routes.find(({ id }) => id === activeRoute);
       if (!route) {
@@ -24,6 +24,16 @@ export default function ActiveRoutes() {
         const layer = leaflet.polyline(
           layerPositions.map(({ position }) => position)
         );
+        layers.push(layer);
+        layer.addTo(map);
+      });
+      route.texts?.forEach((textPosition) => {
+        const layer = leaflet.marker(textPosition.position, {
+          textMarker: true,
+          text: textPosition.text,
+          interactive: false,
+          pmIgnore: false,
+        });
         layers.push(layer);
         layer.addTo(map);
       });
