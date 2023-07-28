@@ -92,6 +92,9 @@ export default function Routes() {
     const polylines: leaflet.Polyline[] = [];
     const texts: leaflet.Marker[] = [];
     routes.tempRoute.positions.forEach((layerPositions) => {
+      if (layerPositions.length <= 2) {
+        return;
+      }
       const polylineLayer = leaflet.polyline(
         layerPositions.map(({ position }) => position),
         { pmIgnore: false }

@@ -21,6 +21,10 @@ export default function ActiveRoutes() {
       }
 
       route.positions.forEach((layerPositions) => {
+        if (layerPositions.length <= 2) {
+          return;
+        }
+
         const layer = leaflet.polyline(
           layerPositions.map(({ position }) => position)
         );
