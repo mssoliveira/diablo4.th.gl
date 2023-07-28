@@ -36,12 +36,13 @@ export default function Filters() {
           return (
             <button
               key={key}
-              className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-1/2 ${
+              className={`flex gap-2 items-center hover:bg-neutral-700 p-2 basis-1/2 truncate ${
                 !filters.includes(key) ? "text-gray-500" : ""
               }`}
               onClick={() => {
                 toggleFilter(key);
               }}
+              title={dict.nodes[key]}
             >
               <svg
                 viewBox="0 0 100 100"
@@ -55,24 +56,31 @@ export default function Filters() {
           );
         })}
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ">
         {Object.keys(spawnNodes).map((_key) => {
           const key = _key as keyof typeof spawnNodes;
           const icon = ICONS[key];
           return (
             <button
               key={key}
-              className={`flex gap-2 items-center hover:bg-neutral-700 p-2 w-full ${
+              className={`flex gap-2 items-center hover:bg-neutral-700 p-2 basis-1/2 truncate ${
                 !filters.includes(key) ? "text-gray-500" : ""
               }`}
               onClick={() => {
                 toggleFilter(key);
               }}
+              title={dict.nodes[key as keyof typeof ICONS]}
             >
-              <svg viewBox="0 0 100 100" fill={icon.color} className="h-5">
+              <svg
+                viewBox="0 0 100 100"
+                fill={icon.color}
+                className="h-5 w-5 shrink-0"
+              >
                 <path d={icon.path} />
               </svg>
-              {dict.nodes[key as keyof typeof ICONS]}
+              <span className="truncate">
+                {dict.nodes[key as keyof typeof ICONS]}
+              </span>
             </button>
           );
         })}
