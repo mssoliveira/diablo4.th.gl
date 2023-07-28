@@ -167,7 +167,7 @@ export default function Search() {
             </svg>
           </button>
           <div
-            className={`absolute top-full text-sm w-full md:mt-1 md:space-y-2`}
+            className={`absolute top-full text-sm w-full md:mt-1 md:space-y-2 max-h-[calc(100vh-100px)] overflow-auto`}
           >
             {globalSettingsStore.showFilters && <Filters />}
             {globalSettingsStore.showRoutes && <Routes />}
