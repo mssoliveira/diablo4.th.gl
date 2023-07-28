@@ -152,7 +152,6 @@ export default function Routes() {
       leaflet.PM.reInitLayer(layer);
 
       if (shape === "Line") {
-        polylines.push(layer as Polyline);
         layer.on("pm:edit", () => {
           setRoutePolylines(polylines);
         });
@@ -187,10 +186,7 @@ export default function Routes() {
       map.pm.disableGlobalEditMode();
       map.off("pm:drawstart");
       map.off("pm:create");
-      polylines.forEach((layer) => {
-        layer.remove();
-      });
-      texts.forEach((layer) => {
+      map.pm.getGeomanLayers().forEach((layer) => {
         layer.remove();
       });
       routes.resetTempRoute();
