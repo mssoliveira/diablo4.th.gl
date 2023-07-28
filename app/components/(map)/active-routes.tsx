@@ -21,7 +21,7 @@ export default function ActiveRoutes() {
       }
 
       route.positions.forEach((layerPositions) => {
-        if (layerPositions.length <= 2) {
+        if (layerPositions.length < 2) {
           return;
         }
 
