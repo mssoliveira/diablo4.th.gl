@@ -14,6 +14,22 @@ import { harbingers } from "./harbingers";
 import { healers } from "./healers";
 import { highValueTargets } from "./high_value_targets";
 import { jewelers } from "./jewelers";
+import { banditMonsters } from "./monsters_bandit";
+import { cannibalMonsters } from "./monsters_cannibal";
+import { cultistMonsters } from "./monsters_cultist";
+import { demonMonsters } from "./monsters_demon";
+import { drownMonsters } from "./monsters_drown";
+import { fallenMonsters } from "./monsters_fallen";
+import { ghostMonsters } from "./monsters_ghost";
+import { goatmanMonsters } from "./monsters_goatman";
+import { knightMonsters } from "./monsters_knight";
+import { skeletonMonsters } from "./monsters_skeleton";
+import { snakeMonsters } from "./monsters_snake";
+import { spiderMonsters } from "./monsters_spider";
+import { vampireMonsters } from "./monsters_vampire";
+import { werewolfMonsters } from "./monsters_werewolf";
+import { wildlifeMonsters } from "./monsters_wildlife";
+import { zombieMonsters } from "./monsters_zombie";
 import { occultists } from "./occultists";
 import { sideQuestDungeons } from "./sideQuestDungeons";
 import { sideQuests } from "./sideQuests";
@@ -22,13 +38,29 @@ import { strongholds } from "./strongholds";
 import { waypoints } from "./waypoints";
 
 export const spawnNodes = {
-  additionalMonsters,
   chestsAny,
   chestsT1,
   chestsT2,
   chestsT3,
   harbingers,
   highValueTargets,
+  banditMonsters,
+  cannibalMonsters,
+  cultistMonsters,
+  demonMonsters,
+  drownMonsters,
+  fallenMonsters,
+  ghostMonsters,
+  goatmanMonsters,
+  knightMonsters,
+  skeletonMonsters,
+  snakeMonsters,
+  spiderMonsters,
+  vampireMonsters,
+  werewolfMonsters,
+  wildlifeMonsters,
+  zombieMonsters,
+  additionalMonsters,
 } as const;
 
 export const staticNodes = {
@@ -73,3 +105,5 @@ Object.keys(spawnNodes).forEach((_type) => {
     nodes.push({ ...node, id, type });
   });
 });
+
+nodes.reverse();
