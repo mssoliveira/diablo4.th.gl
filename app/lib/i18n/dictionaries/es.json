@@ -135,7 +135,7 @@
     "Kehj_WorldEvent_01": "Cuenca Socarrada",
     "Kehj_Ridge": "Arenas Erosivas"
   },
-  "settings" : {
+  "settings": {
     "rightClickToggle": "Right click to toggle discovered",
     "showEventsTimers": "Show Event Timers",
     "stackEventsTimers": "Stack Event Timers",
@@ -143,7 +143,7 @@
     "alternativeDiscoveredWaypointsIcon": "Alternative Discovered Waypoints Icon",
     "iconSize": "Icon Size",
     "backup": "Backup",
-    "restore":"Restore",
-    "reset":"Reset"
+    "restore": "Restore",
+    "reset": "Reset"
   }
 }
