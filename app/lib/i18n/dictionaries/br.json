@@ -34,7 +34,7 @@
     "jewelers": "Joalheiros",
     "occultists": "Ocultistas",
     "stableMasters": "Estabulos",
-    "waypoints": "Waypoints",
+    "waypoints": "Marco de Senda",
     "additionalMonsters": "Additional Monsters",
     "chestsAny": "Baús Comuns",
     "chestsT1": "Baús T1",
@@ -42,9 +42,9 @@
     "chestsT3": "Presentes Torturados dos Mistérios (T3)",
     "harbingers": "Harbingers",
     "highValueTargets": "High Value Targets",
-    "sideQuests": "Side Quests",
+    "sideQuests": "Missões Secundárias",
     "campaignQuests": "Campaign Quests",
-    "events": "Events",
+    "events": "Eventos",
     "strongholds": "Strongholds",
     "banditMonsters": "Bandits",
     "cannibalMonsters": "Cannibals",
@@ -64,8 +64,8 @@
     "zombieMonsters": "Zombies"
   },
   "helltide": {
-    "inProgress": "Helltide em andamento",
-    "startsIn": "Helltide começa em"
+    "inProgress": "Maré Infernal em andamento",
+    "startsIn": "Maré Infernal começa em"
   },
   "territories": {
     "Scos_WorldEvent_03": "Carrowcrest Ruins",
@@ -142,9 +142,9 @@
     "stackEventsTimers": "Stack Event Timers",
     "showTerritoryNames": "Show Territory Names",
     "alternativeDiscoveredWaypointsIcon": "Alternative Discovered Waypoints Icon",
-    "iconSize": "Icon Size",
+    "iconSize": "Tamanho dos Icones",
     "backup": "Backup",
-    "restore": "Restore",
-    "reset": "Reset"
+    "restore": "Restaure",
+    "reset": "Resetar"
   }
 }
